@@ -26,13 +26,13 @@ body {
   font-family: var(--font-body);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 img,
@@ -103,11 +103,9 @@ h4 {
 h1 {
   font-size: var(--fs-h1);
 }
-
 h2 {
   font-size: var(--fs-h2);
 }
-
 h3 {
   font-size: var(--fs-h3);
 }
@@ -128,24 +126,9 @@ p + p {
   padding-inline: var(--gutter);
 }
 
-.stack > * + * {
-  margin-top: var(--sp-4);
-}
-
-.stack-lg > * + * {
-  margin-top: var(--sp-6);
-}
-
 /* Page scaffolding */
 main {
   flex: 1 0 auto;
-}
-
-/* Dividers between sections */
-.divider {
-  border: 0;
-  border-top: 1px solid var(--sand);
-  margin: 0;
 }
 
 /* Section wrappers */
@@ -153,10 +136,67 @@ main {
   padding-block: var(--sp-8);
 }
 
-@media (max-width: 640px) {
-  .section {
-    padding-block: var(--sp-7);
-  }
+.section--tight {
+  padding-block: var(--sp-6);
+}
+
+.section--pad-lg {
+  padding-block: var(--sp-9);
+}
+
+/* Themed section surfaces (magazine color blocking) */
+.section--sand {
+  background: var(--sand);
+}
+
+.section--ink {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.section--ink a {
+  color: var(--yellow);
+}
+
+.section--ink a:hover,
+.section--ink a:focus-visible {
+  color: #fff;
+}
+
+.section--ink .section-label {
+  color: var(--yellow);
+}
+
+.section--ink .meta {
+  color: color-mix(in srgb, var(--cream) 75%, transparent);
+}
+
+/* Section header row: eyebrow label + optional trailing meta */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-6);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid currentColor;
+  opacity: 1;
+}
+
+.section-head > * {
+  margin: 0;
+}
+
+.section-head__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section--ink .section-head__meta {
+  color: color-mix(in srgb, var(--cream) 70%, transparent);
 }
 
 /* Section eyebrow / label */
@@ -166,9 +206,8 @@ main {
   font-weight: 500;
   color: var(--purple);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: var(--sp-5);
-  display: block;
+  letter-spacing: 0.08em;
+  display: inline-block;
 }
 
 /* Eyebrow (hero) */
@@ -176,10 +215,21 @@ main {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
-  color: var(--purple);
+  color: var(--ink);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--sp-5);
+  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--purple);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--purple) 22%, transparent);
 }
 
 /* Meta / captions */

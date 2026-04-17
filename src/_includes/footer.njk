@@ -1,24 +1,9 @@
 <footer class="site-footer">
-  <div class="container site-footer__inner">
+  <div class="container site-footer__inner site-footer__inner--simple">
     <div class="site-footer__brand">
       <span class="wordmark wordmark--sm">DJ PARDIS</span>
       <span class="meta">{{ site.tagline }}</span>
     </div>
-    <nav class="site-footer__links" aria-label="Social">
-      <ul>
-        {% if site.socials.instagram %}<li><a href="{{ site.socials.instagram }}" rel="me noopener">Instagram</a></li>{% endif %}
-        {% if site.socials.mixcloud %}<li><a href="{{ site.socials.mixcloud }}" rel="me noopener">Mixcloud</a></li>{% endif %}
-        {% if site.socials.soundcloud %}<li><a href="{{ site.socials.soundcloud }}" rel="me noopener">SoundCloud</a></li>{% endif %}
-        <li>
-          <button
-            type="button"
-            class="email-btn"
-            data-u="{{ site.email.user }}"
-            data-d="{{ site.email.domain }}"
-          >Email</button>
-        </li>
-      </ul>
-    </nav>
     <p class="meta site-footer__copy">© {% year %} {{ site.name }}</p>
   </div>
 </footer>

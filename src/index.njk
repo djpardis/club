@@ -6,70 +6,109 @@ bodyClass: page-home
 <section class="hero" aria-labelledby="hero-title">
   <div class="container hero__inner">
     <div class="hero__copy">
-      <p class="eyebrow">/// Currently taking bookings</p>
+      <p class="eyebrow hero__status">Currently booking</p>
       <h1 id="hero-title" class="wordmark-display">
         <span class="wordmark-display__line">DJ</span>
         <span class="wordmark-display__line"><span class="hl">PARDIS</span></span>
       </h1>
-      <p class="hero__tagline">{{ site.tagline }}</p>
-      <a class="btn btn--primary" href="/booking/">Book us <span aria-hidden="true">→</span></a>
+      <p class="hero__tagline">Pop house · West Coast · Booking worldwide</p>
+      <div class="hero__cta-row">
+        <a class="btn btn--primary btn--lg" href="/booking/">Book your next event <span aria-hidden="true">→</span></a>
+      </div>
     </div>
     <figure class="hero__media">
       <img
         src="{{ site.hero.photo }}"
         alt="{{ site.hero.alt }}"
-        width="1200"
-        height="800"
+        width="800"
+        height="519"
         loading="eager"
         decoding="async"
+        fetchpriority="high"
       />
-      <figcaption class="meta hero__credit">{{ site.hero.credit }}</figcaption>
+      <figcaption>{{ site.hero.credit }}</figcaption>
     </figure>
   </div>
 </section>
 
-<hr class="divider" />
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {% for i in range(0, 2) %}
+      <span class="marquee__item">Pop house</span>
+      <span class="marquee__item"><span class="dot"></span></span>
+      <span class="marquee__item marquee__item--alt">West coast</span>
+      <span class="marquee__item"><span class="dot"></span></span>
+      <span class="marquee__item">Booking worldwide</span>
+      <span class="marquee__item"><span class="dot"></span></span>
+      <span class="marquee__item marquee__item--alt">DJ Pardis</span>
+      <span class="marquee__item"><span class="dot"></span></span>
+    {% endfor %}
+  </div>
+</div>
 
-<section class="section" id="about" aria-labelledby="about-label">
+<section class="section section--pad-lg" id="about" aria-labelledby="about-label">
   <div class="container">
-    <h2 class="section-label" id="about-label">// About</h2>
+    <header class="section-head">
+      <h2 class="section-label" id="about-label">// About</h2>
+      <span class="section-head__meta">Est. 2017 · San Francisco</span>
+    </header>
     <div class="about-grid">
-      <p>
-        Hey, this is DJ Pardis!
-      </p>
-      <p>
-        I started DJing in May 2017 and played
-        <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
-        at <span class="hl-pink">Twitter HQ</span>. I usually DJed with
-        <a href="https://www.linkedin.com/in/juliengaillard1/" rel="noopener">Julien Gaillard</a>
-        on the
-        <a href="https://vimeo.com/463687716" rel="noopener">guitar</a>.
-      </p>
-      <p>
-        In the summer of 2019, I was the tour DJ for
-        <a href="https://soundcloud.com/ohsimsimah" rel="noopener">Sim Simah</a>
-        and
-        <a href="https://music.apple.com/us/artist/aarxn-cxle/1453179768" rel="noopener">Aarxn Cxle</a>.
-        The picture is by
-        <a href="https://www.instagram.com/meria.agency/" rel="noopener">Jesse Meria</a>
-        from July 2019 at
-        <a href="https://www.thenewparish.com/" rel="noopener">The New Parish</a>,
-        where we were
-        <a href="https://web.archive.org/web/20191023073406/https://www.teamllfent.com/news/2019/7/30/camron-with-special-guest-troyllf" rel="noopener"><span class="hl">the opening act</span></a>.
-      </p>
-      <p>
-        Book us for your event. We'd love to deejay your next company event, conference, gallery opening, or themed party.
-        <a href="/booking/">Submit a request</a>.
-      </p>
+      <div class="about-body">
+        <p class="about-lead">Hey, this is <span class="hl">DJ Pardis</span>. I'm a pop house DJ shaping the vibes for company events, conferences, gallery openings, themed parties.</p>
+        <p>
+          I started DJing in May 2017 and played
+          <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
+          at <span class="hl-pink">Twitter HQ</span>. I usually DJed with
+          <a href="https://www.linkedin.com/in/juliengaillard1/" rel="noopener">Julien Gaillard</a>
+          on the
+          <a href="https://vimeo.com/463687716" rel="noopener">guitar</a>.
+        </p>
+        <p>
+          In the summer of 2019, I was the tour DJ for
+          <a href="https://soundcloud.com/ohsimsimah" rel="noopener">Sim Simah</a>
+          and
+          <a href="https://music.apple.com/us/artist/aarxn-cxle/1453179768" rel="noopener">Aarxn Cxle</a>.
+          The picture is by
+          <a href="https://www.instagram.com/meria.agency/" rel="noopener">Jesse Meria</a>
+          from July 2019 at
+          <a href="https://www.thenewparish.com/" rel="noopener">The New Parish</a>,
+          where we were
+          <a href="https://web.archive.org/web/20191023073406/https://www.teamllfent.com/news/2019/7/30/camron-with-special-guest-troyllf" rel="noopener"><span class="hl">the opening act</span></a>.
+        </p>
+      </div>
+
+      <dl class="about-rail" aria-label="Quick facts">
+        <div>
+          <dt>Based</dt>
+          <dd>West coast · Booking worldwide</dd>
+        </div>
+        <div>
+          <dt>Sound</dt>
+          <dd>Pop house, dance pop, groove-forward edits</dd>
+        </div>
+        <div>
+          <dt>Plays well at</dt>
+          <dd>Company events, conferences, gallery openings, themed parties</dd>
+        </div>
+        <div>
+          <dt>Find on</dt>
+          <dd>
+            <a href="{{ site.socials.mixcloud }}" rel="noopener">Mixcloud</a> ·
+            <a href="{{ site.socials.instagram }}" rel="noopener">Instagram</a> ·
+            <a href="{{ site.socials.soundcloud }}" rel="noopener">SoundCloud</a>
+          </dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
 
-<hr class="divider" />
-
-<section class="section" id="gigs" aria-labelledby="gigs-label">
+<section class="section section--sand" id="gigs" aria-labelledby="gigs-label">
   <div class="container">
-    <h2 class="section-label" id="gigs-label">// Upcoming</h2>
+    <header class="section-head">
+      <h2 class="section-label" id="gigs-label">// Upcoming</h2>
+      <span class="section-head__meta">Schedule</span>
+    </header>
     {% set upcoming = gigs | upcomingGigs %}
     {% if upcoming and upcoming.length %}
       <ul class="gigs-list">
@@ -85,56 +124,85 @@ bodyClass: page-home
         {% endfor %}
       </ul>
     {% else %}
-      <p class="empty">Next date TBA. <a href="/booking/">Book us.</a></p>
+      <div class="upcoming-block">
+        <h3 class="upcoming-block__headline">Next date <span class="hl-pink">TBA</span>.<br />Book your next event.</h3>
+        <div class="upcoming-block__body">
+          <p>Have an event in mind? We deejay company events, conferences, gallery openings, themed parties.</p>
+          <a class="btn btn--primary btn--lg" href="/booking/">Check dates <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
     {% endif %}
   </div>
 </section>
 
-<hr class="divider" />
-
-<section class="section" id="listen" aria-labelledby="listen-label">
+<section class="section section--pad-lg" id="listen" aria-labelledby="listen-label">
   <div class="container">
-    <h2 class="section-label" id="listen-label">// Listen</h2>
-    <div class="mixcloud-embed">
-      <iframe
-        title="DJ Pardis on Mixcloud"
-        width="100%"
-        height="120"
-        src="{{ site.mixcloudEmbedUrl }}"
-        frameborder="0"
-        loading="lazy"
-        allow="autoplay"
-      ></iframe>
-    </div>
+    <header class="section-head">
+      <h2 class="section-label" id="listen-label">// Listen</h2>
+      <span class="section-head__meta">Mixtapes · {{ mixtapes.length }} years</span>
+    </header>
 
-    <h3 class="subsection-label">Annual mixtapes</h3>
-    <ul class="mixtapes-list">
-      {% for m in mixtapes | sortMixtapesDesc %}
-        <li class="mixtape">
-          <span class="mixtape__year">{{ m.year }}</span>
-          <a class="mixtape__title" href="{{ m.url }}" rel="noopener">{{ m.title }}</a>
-          <span class="mixtape__date meta">{{ m.date }}</span>
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="listen-split">
+      <aside class="mixcloud-card">
+        <span class="mixcloud-card__label">// Latest on Mixcloud</span>
+        <h3 class="mixcloud-card__title">Fresh mixes, straight from the booth.</h3>
+        <div class="mixcloud-embed">
+          <iframe
+            title="DJ Pardis on Mixcloud"
+            width="100%"
+            height="120"
+            src="{{ site.mixcloudEmbedUrl }}"
+            frameborder="0"
+            loading="lazy"
+            allow="autoplay"
+          ></iframe>
+        </div>
+        <div class="mixcloud-card__links">
+          <a href="{{ site.socials.mixcloud }}" rel="noopener">Mixcloud →</a>
+        </div>
+      </aside>
+
+      <div>
+        <div class="mixtapes-head">
+          <h3>Annual mixtapes</h3>
+          <span class="meta">One for every year, {{ mixtapes[mixtapes.length - 1].year }}–{{ mixtapes[0].year }}</span>
+        </div>
+        <ul class="mixtapes-grid">
+          {% for m in mixtapes | sortMixtapesDesc %}
+            <li>
+              <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
+                {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
+                <span class="mixtape-tile__year">{{ m.year }}</span>
+                <span class="mixtape-tile__title">{{ m.title }}</span>
+                <span class="mixtape-tile__date">{{ m.date }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
 {% if radio and radio.length %}
-<hr class="divider" />
-
-<section class="section" id="radio" aria-labelledby="radio-label">
+<section class="section section--sand" id="radio" aria-labelledby="radio-label">
   <div class="container">
-    <h2 class="section-label" id="radio-label">// Radio</h2>
+    <header class="section-head">
+      <h2 class="section-label" id="radio-label">// Radio</h2>
+      <span class="section-head__meta">Guest spots · bff.fm</span>
+    </header>
     <ul class="radio-list">
       {% for r in radio %}
         <li class="radio-item">
-          <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }} — Episode {{ r.episode }}</a>
-          <span class="radio-item__meta meta">
-            with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a>
-            at <a href="{{ r.showUrl }}" rel="noopener">{{ r.show }}</a>
-            · {{ r.date }}
-          </span>
+          <span class="radio-item__ep">Ep. {{ r.episode }} · {{ r.show }}</span>
+          <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }}</a>
+          <div class="radio-item__meta">
+            <span>with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a></span>
+            <span>·</span>
+            <span><a href="{{ r.showUrl }}" rel="noopener">{{ r.show }}</a></span>
+            <span>·</span>
+            <span>{{ r.date }}</span>
+          </div>
         </li>
       {% endfor %}
     </ul>
@@ -143,31 +211,52 @@ bodyClass: page-home
 {% endif %}
 
 {% if gallery and gallery.length %}
-<hr class="divider" />
-
-<section class="section" id="gallery" aria-labelledby="gallery-label">
+<section class="section section--pad-lg" id="gallery" aria-labelledby="gallery-label">
   <div class="container">
-    <h2 class="section-label" id="gallery-label">// Gallery</h2>
-    <ul class="gallery-grid">
-      {% for g in gallery %}
-        <li class="gallery-item">
-          <figure>
-            <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
-            {% if g.caption %}<figcaption class="meta">{{ g.caption }}</figcaption>{% endif %}
-          </figure>
-        </li>
-      {% endfor %}
-    </ul>
+    <header class="section-head">
+      <h2 class="section-label" id="gallery-label">// Featured</h2>
+      <span class="section-head__meta">Posters · flyers · ephemera</span>
+    </header>
+
+    {% if gallery.length == 1 %}
+      {% set g = gallery[0] %}
+      <div class="feature-grid">
+        <figure class="feature-grid__media">
+          <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
+        </figure>
+        <div class="feature-grid__copy">
+          <span class="feature-grid__label">// Poster</span>
+          <h3 class="feature-grid__title">Bay to Breakers 2019</h3>
+          <p>Sunday May 19th, 8am start. Music by DJ Pardis &amp; Pupusa Papi. A full morning of bottle-fueled dance pop and hip hop through the streets of San Francisco.</p>
+          <dl class="feature-grid__meta">
+            <div><dt>Designer</dt><dd>Regy Augustin</dd></div>
+            <div><dt>Date</dt><dd>May 19, 2019</dd></div>
+            <div><dt>City</dt><dd>San Francisco, CA</dd></div>
+          </dl>
+        </div>
+      </div>
+    {% else %}
+      <ul class="gallery-grid">
+        {% for g in gallery %}
+          <li class="gallery-item">
+            <figure>
+              <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
+              {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
+            </figure>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </div>
 </section>
 {% endif %}
 
 {% if press and press.length %}
-<hr class="divider" />
-
-<section class="section" id="press" aria-labelledby="press-label">
+<section class="section section--sand" id="press" aria-labelledby="press-label">
   <div class="container">
-    <h2 class="section-label" id="press-label">// Press</h2>
+    <header class="section-head">
+      <h2 class="section-label" id="press-label">// Press</h2>
+    </header>
     <ul class="press-list">
       {% for p in press %}
         <li class="pull-quote">
@@ -179,3 +268,15 @@ bodyClass: page-home
   </div>
 </section>
 {% endif %}
+
+<section class="cta-band" aria-labelledby="cta-label">
+  <div class="container cta-band__inner">
+    <h2 class="cta-band__title" id="cta-label">Let's make your <span class="hl">event</span> sound awesome.</h2>
+    <div class="cta-band__aside">
+      <p>Company events, conferences, gallery openings, themed parties. Tell us the date, the vibe, and the guest count and we'll take it from there.</p>
+      <div class="cta-band__actions">
+        <a class="btn btn--primary btn--lg" href="/booking/">Book us <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>

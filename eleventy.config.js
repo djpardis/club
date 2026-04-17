@@ -1,7 +1,6 @@
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
 
   eleventyConfig.addFilter("navActive", (pageUrl, itemUrl) => {
