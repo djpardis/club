@@ -1,0 +1,15 @@
+{
+  "name": "djpardis-club",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "djpardis.club — DJ Pardis personal site",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

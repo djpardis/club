@@ -1,0 +1,15 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="wordmark" aria-label="{{ site.name }} — home">DJ PARDIS</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/#about" class="{% if page.url == '/' %}nav-link{% else %}nav-link{% endif %}">About</a></li>
+        <li><a href="/#listen" class="nav-link">Listen</a></li>
+        <li><a href="/#gigs" class="nav-link">Gigs</a></li>
+        <li>
+          <a href="/booking/" class="nav-link nav-link--cta{% if page.url | navActive('/booking/') %} is-active{% endif %}">Book</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

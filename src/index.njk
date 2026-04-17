@@ -1,0 +1,181 @@
+---
+layout: base.njk
+title: null
+bodyClass: page-home
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow">/// Currently taking bookings</p>
+      <h1 id="hero-title" class="wordmark-display">
+        <span class="wordmark-display__line">DJ</span>
+        <span class="wordmark-display__line"><span class="hl">PARDIS</span></span>
+      </h1>
+      <p class="hero__tagline">{{ site.tagline }}</p>
+      <a class="btn btn--primary" href="/booking/">Book us <span aria-hidden="true">→</span></a>
+    </div>
+    <figure class="hero__media">
+      <img
+        src="{{ site.hero.photo }}"
+        alt="{{ site.hero.alt }}"
+        width="1200"
+        height="800"
+        loading="eager"
+        decoding="async"
+      />
+      <figcaption class="meta hero__credit">{{ site.hero.credit }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="section" id="about" aria-labelledby="about-label">
+  <div class="container">
+    <h2 class="section-label" id="about-label">// About</h2>
+    <div class="about-grid">
+      <p>
+        Hey, this is DJ Pardis!
+      </p>
+      <p>
+        I started DJing in May 2017 and played
+        <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
+        at <span class="hl-pink">Twitter HQ</span>. I usually DJed with
+        <a href="https://www.linkedin.com/in/juliengaillard1/" rel="noopener">Julien Gaillard</a>
+        on the
+        <a href="https://vimeo.com/463687716" rel="noopener">guitar</a>.
+      </p>
+      <p>
+        In the summer of 2019, I was the tour DJ for
+        <a href="https://soundcloud.com/ohsimsimah" rel="noopener">Sim Simah</a>
+        and
+        <a href="https://music.apple.com/us/artist/aarxn-cxle/1453179768" rel="noopener">Aarxn Cxle</a>.
+        The picture is by
+        <a href="https://www.instagram.com/meria.agency/" rel="noopener">Jesse Meria</a>
+        from July 2019 at
+        <a href="https://www.thenewparish.com/" rel="noopener">The New Parish</a>,
+        where we were
+        <a href="https://web.archive.org/web/20191023073406/https://www.teamllfent.com/news/2019/7/30/camron-with-special-guest-troyllf" rel="noopener"><span class="hl">the opening act</span></a>.
+      </p>
+      <p>
+        Book us for your event. We'd love to deejay your next company event, conference, gallery opening, or themed party.
+        <a href="/booking/">Submit a request</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="section" id="gigs" aria-labelledby="gigs-label">
+  <div class="container">
+    <h2 class="section-label" id="gigs-label">// Upcoming</h2>
+    {% set upcoming = gigs | upcomingGigs %}
+    {% if upcoming and upcoming.length %}
+      <ul class="gigs-list">
+        {% for gig in upcoming %}
+          <li class="gig">
+            <span class="gig__date">{{ gig.date | shortDate }}</span>
+            <span class="gig__venue">{{ gig.venue }}</span>
+            <span class="gig__city">{{ gig.city }}</span>
+            {% if gig.url %}
+              <a class="gig__link" href="{{ gig.url }}" rel="noopener" aria-label="More info on {{ gig.venue }}">→</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty">Next date TBA. <a href="/booking/">Book us.</a></p>
+    {% endif %}
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section class="section" id="listen" aria-labelledby="listen-label">
+  <div class="container">
+    <h2 class="section-label" id="listen-label">// Listen</h2>
+    <div class="mixcloud-embed">
+      <iframe
+        title="DJ Pardis on Mixcloud"
+        width="100%"
+        height="120"
+        src="{{ site.mixcloudEmbedUrl }}"
+        frameborder="0"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+    </div>
+
+    <h3 class="subsection-label">Annual mixtapes</h3>
+    <ul class="mixtapes-list">
+      {% for m in mixtapes | sortMixtapesDesc %}
+        <li class="mixtape">
+          <span class="mixtape__year">{{ m.year }}</span>
+          <a class="mixtape__title" href="{{ m.url }}" rel="noopener">{{ m.title }}</a>
+          <span class="mixtape__date meta">{{ m.date }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% if radio and radio.length %}
+<hr class="divider" />
+
+<section class="section" id="radio" aria-labelledby="radio-label">
+  <div class="container">
+    <h2 class="section-label" id="radio-label">// Radio</h2>
+    <ul class="radio-list">
+      {% for r in radio %}
+        <li class="radio-item">
+          <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }} — Episode {{ r.episode }}</a>
+          <span class="radio-item__meta meta">
+            with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a>
+            at <a href="{{ r.showUrl }}" rel="noopener">{{ r.show }}</a>
+            · {{ r.date }}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% if gallery and gallery.length %}
+<hr class="divider" />
+
+<section class="section" id="gallery" aria-labelledby="gallery-label">
+  <div class="container">
+    <h2 class="section-label" id="gallery-label">// Gallery</h2>
+    <ul class="gallery-grid">
+      {% for g in gallery %}
+        <li class="gallery-item">
+          <figure>
+            <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
+            {% if g.caption %}<figcaption class="meta">{{ g.caption }}</figcaption>{% endif %}
+          </figure>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% if press and press.length %}
+<hr class="divider" />
+
+<section class="section" id="press" aria-labelledby="press-label">
+  <div class="container">
+    <h2 class="section-label" id="press-label">// Press</h2>
+    <ul class="press-list">
+      {% for p in press %}
+        <li class="pull-quote">
+          <blockquote>"{{ p.quote }}"</blockquote>
+          <cite class="meta">— {% if p.url %}<a href="{{ p.url }}" rel="noopener">{{ p.source }}</a>{% else %}{{ p.source }}{% endif %}{% if p.date %} · {{ p.date }}{% endif %}</cite>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
