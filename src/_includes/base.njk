@@ -5,17 +5,81 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
     <meta name="description" content="{{ description or site.description }}" />
+    <meta name="author" content="DJ Pardis" />
+    <meta name="keywords" content="DJ Pardis, pop house DJ, West coast DJ, San Francisco DJ, company event DJ, conference DJ, gallery opening DJ, themed party DJ, booking worldwide" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
+    {% set ogTitle = (title + ' — ' + site.name) if title else (site.name + ' — ' + site.tagline) %}
+    {% set ogImage = site.url + (ogImage or '/og.png') %}
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="{{ ogTitle }}" />
     <meta property="og:description" content="{{ description or site.description }}" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:image" content="{{ site.url }}/og.png" />
+    <meta property="og:image" content="{{ ogImage }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DJ Pardis — pop house · West coast · booking worldwide" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ ogTitle }}" />
+    <meta name="twitter:description" content="{{ description or site.description }}" />
+    <meta name="twitter:image" content="{{ ogImage }}" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="/favicon.ico" />
     <meta name="theme-color" content="#F5EDE0" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "DJ Pardis",
+        "url": "{{ site.url }}",
+        "jobTitle": "DJ",
+        "description": "{{ site.description }}",
+        "image": "{{ site.url }}{{ site.hero.photo }}",
+        "sameAs": [
+          "{{ site.socials.mixcloud }}",
+          "{{ site.socials.soundcloud }}",
+          "{{ site.socials.instagram }}",
+          "https://djpardis.com"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ site.name }}",
+        "url": "{{ site.url }}",
+        "description": "{{ site.description }}"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicGroup",
+        "name": "DJ Pardis",
+        "genre": ["Pop house", "Dance pop", "House"],
+        "url": "{{ site.url }}",
+        "image": "{{ site.url }}{{ site.hero.photo }}",
+        "foundingLocation": {
+          "@type": "Place",
+          "name": "San Francisco, CA"
+        },
+        "member": {
+          "@type": "Person",
+          "name": "DJ Pardis"
+        },
+        "sameAs": [
+          "{{ site.socials.mixcloud }}",
+          "{{ site.socials.soundcloud }}",
+          "{{ site.socials.instagram }}",
+          "https://djpardis.com"
+        ]
+      }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

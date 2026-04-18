@@ -5,3 +5,9 @@ _site/
 .env.local
 *.log
 .eleventy-cache/
+
+# Local-only notes / scratchpad (never pushed).
+NOTES.md
+TODO.md
+SEO-TODO.md
+/notes/
