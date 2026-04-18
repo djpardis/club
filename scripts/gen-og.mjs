@@ -107,26 +107,32 @@ async function qrSvg(text, { x, y, size, dark = INK }) {
 // (tight line-height 0.88, yellow highlight on PARDIS), then a tagline
 // "Pop house · West Coast · Booking worldwide" with "Pop house" in pink.
 function frontSvg({ transparent = false } = {}) {
-  const padX = 100;
   const titleSize = 200;
-  // Match .wordmark-display line-height: 0.88
-  const lineHeight = titleSize * 0.88;
-  const tagSize = 44;
+  // Tighter than the site (0.88) so DJ sits closer to PARDIS and the yellow
+  // visibly clips into DJ.
+  const lineHeight = titleSize * 0.86;
+  const tagSize = 40;
 
-  // Measure everything first so we can vertically centre the block.
   const dj = textPath(fontBold, "DJ", titleSize, { letterSpacing: -8 });
   const pardis = textPath(fontBold, "PARDIS", titleSize, { letterSpacing: -8 });
-  // Subtitle on a single line: "POP HOUSE · WEST COAST · BOOKING WORLDWIDE"
-  // — bold all-caps purple with a pink highlight (white text) behind POP HOUSE.
-  const pop = textPath(fontBold, "POP HOUSE", tagSize, { letterSpacing: 0.5 });
+  // Subtitle: sentence case, medium weight, black — just like the site.
+  // Only "Pop house" gets a pink pill with white text (.hl-pink).
+  const pop = textPath(fontMedium, "Pop house", tagSize, { letterSpacing: 0 });
   const sepStr = " · ";
-  const sep1 = textPath(fontBold, sepStr, tagSize, { letterSpacing: 0.5 });
-  const west = textPath(fontBold, "WEST COAST", tagSize, { letterSpacing: 0.5 });
-  const sep2 = textPath(fontBold, sepStr, tagSize, { letterSpacing: 0.5 });
-  const book = textPath(fontBold, "BOOKING WORLDWIDE", tagSize, { letterSpacing: 0.5 });
-  const tagGap = 56;
+  const sep1 = textPath(fontMedium, sepStr, tagSize, { letterSpacing: 0 });
+  const west = textPath(fontMedium, "West Coast", tagSize, { letterSpacing: 0 });
+  const sep2 = textPath(fontMedium, sepStr, tagSize, { letterSpacing: 0 });
+  const book = textPath(fontMedium, "Booking worldwide", tagSize, { letterSpacing: 0 });
+  // Gap between PARDIS baseline and the subtitle so the visual distance
+  // between PARDIS bottom and the subtitle caps matches the distance between
+  // DJ bottom and PARDIS caps. The pink "Pop house" pill still overlaps the
+  // bottom of the yellow because popHlPadTop is generous.
+  const tagGap = 30;
 
-  // Total block height: cap of DJ + leading to PARDIS baseline + one tag line.
+  // Left-aligned block with a fixed left margin — same on left and right
+  // (PARDIS is the widest element so the right margin matches).
+  const padX = 100;
+
   const capHeight = titleSize * 0.72;
   const titleTopToBaseline = capHeight;
   const totalH = titleTopToBaseline + lineHeight + tagGap + tagSize;
@@ -136,25 +142,26 @@ function frontSvg({ transparent = false } = {}) {
   const pardisBaseline = djBaseline + lineHeight;
   const tagBaseline = pardisBaseline + tagGap + tagSize * 0.82;
 
-  // Yellow highlight behind PARDIS — hugging tight like the site .hl rule
-  // (padding 0.02em 0.1em 0.06em).
+  // Yellow highlight behind PARDIS — tall on both sides so it reaches UP
+  // into the bottom of DJ and DOWN below the PARDIS baseline (same vibe as
+  // the site's `.hl` rendered with line-height: 0.9 and box-decoration-break).
   const hlPadX = titleSize * 0.1;
-  const hlPadTop = titleSize * 0.04;
-  const hlPadBottom = titleSize * 0.12;
+  const hlPadTop = titleSize * 0.24;
+  const hlPadBottom = titleSize * 0.24;
   const hlX = padX - hlPadX;
   const hlY = pardisBaseline - capHeight - hlPadTop;
   const hlW = pardis.width + hlPadX * 2;
   const hlH = capHeight + hlPadTop + hlPadBottom;
 
-  // Subtitle on one line. "POP HOUSE" is white on top of its pink highlight;
-  // the rest of the line is purple.
+  // Subtitle glyphs — black text everywhere except "Pop house" which is white
+  // on the pink pill.
   let cursor = padX;
   const tagPieces = [
     { piece: pop, fill: "#ffffff" },
-    { piece: sep1, fill: PURPLE },
-    { piece: west, fill: PURPLE },
-    { piece: sep2, fill: PURPLE },
-    { piece: book, fill: PURPLE },
+    { piece: sep1, fill: INK },
+    { piece: west, fill: INK },
+    { piece: sep2, fill: INK },
+    { piece: book, fill: INK },
   ]
     .map(({ piece, fill }) => {
       const svg = `<path d="${piece.d}" fill="${fill}" transform="translate(${cursor} ${tagBaseline})" />`;
@@ -163,19 +170,26 @@ function frontSvg({ transparent = false } = {}) {
     })
     .join("\n");
 
-  // Pink highlight behind POP HOUSE (matches site .hl-pink vibe).
+  // Pink pill behind "Pop house" — generous padding top AND bottom so it
+  // covers the top of the letters (the caps) and extends below baseline,
+  // matching how the site's `.hl-pink` renders with box-decoration-break.
   const tagCapH = tagSize * 0.72;
-  const popHlPadX = tagSize * 0.14;
-  const popHlPadTop = tagSize * 0.08;
-  const popHlPadBottom = tagSize * 0.16;
+  const popHlPadX = tagSize * 0.22;
+  const popHlPadTop = tagSize * 0.4;
+  const popHlPadBottom = tagSize * 0.32;
   const popHlX = padX - popHlPadX;
   const popHlY = tagBaseline - tagCapH - popHlPadTop;
   const popHlW = pop.width + popHlPadX * 2;
   const popHlH = tagCapH + popHlPadTop + popHlPadBottom;
 
+  // Paint order matters:
+  //   1) DJ first (so the yellow rect can paint over its bottom)
+  //   2) Yellow rect — covers/hides the bottom of DJ
+  //   3) PARDIS — sits on top of the yellow
+  //   4) Pink pill, then subtitle glyphs on top of it (white Pop house visible).
   const inner = `
-    <rect x="${hlX}" y="${hlY}" width="${hlW}" height="${hlH}" fill="${YELLOW}" />
     <path d="${dj.d}" fill="${INK}" transform="translate(${padX} ${djBaseline})" />
+    <rect x="${hlX}" y="${hlY}" width="${hlW}" height="${hlH}" fill="${YELLOW}" />
     <path d="${pardis.d}" fill="${INK}" transform="translate(${padX} ${pardisBaseline})" />
     <rect x="${popHlX}" y="${popHlY}" width="${popHlW}" height="${popHlH}" fill="${PINK}" />
     ${tagPieces}
@@ -191,7 +205,7 @@ async function backSvg({ transparent = false } = {}) {
   const qrSize = 440;
   const qrX = padX;
   const qrY = (VB_H - qrSize) / 2;
-  const qr = await qrSvg(QR_URL, { x: qrX, y: qrY, size: qrSize, dark: PURPLE });
+  const qr = await qrSvg(QR_URL, { x: qrX, y: qrY, size: qrSize, dark: PINK });
 
   const colX = qrX + qrSize + 60;
   const handleSize = 76;
@@ -200,7 +214,7 @@ async function backSvg({ transparent = false } = {}) {
 
   const inner = `
     ${qr}
-    <path d="${handle.d}" fill="${PINK}" transform="translate(${colX} ${handleBaseline})" />
+    <path d="${handle.d}" fill="${PURPLE}" transform="translate(${colX} ${handleBaseline})" />
   `;
   return shell(inner, { transparent });
 }
