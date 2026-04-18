@@ -13,81 +13,89 @@ bodyClass: page-booking
       We respond within 48 hours.
     </p>
 
-    <div class="booking-grid">
-      <form
-        class="booking-form"
-        action="https://formspree.io/f/{{ site.formspreeId }}"
-        method="POST"
-        novalidate
-      >
-        <input type="hidden" name="_next" value="{{ site.url }}/booking/thanks/" />
-        <input type="hidden" name="_subject" value="New booking inquiry — djpardis.club" />
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <form
+      class="booking-form"
+      action="https://formspree.io/f/{{ site.formspreeId }}"
+      method="POST"
+      novalidate
+    >
+      <input type="hidden" name="_next" value="{{ site.url }}/booking/thanks/" />
+      <input type="hidden" name="_subject" value="New booking inquiry — djpardis.club" />
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-        <fieldset class="fieldset">
-          <legend class="fieldset__legend">// Contact</legend>
-          <div class="field-row">
-            <div class="field">
-              <label for="first-name">First name</label>
-              <input type="text" id="first-name" name="first_name" required autocomplete="given-name" />
-            </div>
-            <div class="field">
-              <label for="last-name">Last name</label>
-              <input type="text" id="last-name" name="last_name" required autocomplete="family-name" />
-            </div>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">// Contact</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="first-name">First name</label>
+            <input type="text" id="first-name" name="first_name" required autocomplete="given-name" />
           </div>
           <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email" />
+            <label for="last-name">Last name</label>
+            <input type="text" id="last-name" name="last_name" required autocomplete="family-name" />
           </div>
-          <div class="field">
-            <label for="company">Company or venue</label>
-            <input type="text" id="company" name="company" required autocomplete="organization" />
-          </div>
-        </fieldset>
-
-        <fieldset class="fieldset">
-          <legend class="fieldset__legend">// Event</legend>
-          <div class="field-row">
-            <div class="field">
-              <label for="event-date">Event date</label>
-              <input type="date" id="event-date" name="event_date" required />
-            </div>
-            <div class="field">
-              <label for="event-location">Event location</label>
-              <input type="text" id="event-location" name="event_location" required placeholder="City, state / country" />
-            </div>
-          </div>
-          <div class="field">
-            <label for="event-website">Event website <span class="field__optional">(optional)</span></label>
-            <input type="url" id="event-website" name="event_website" placeholder="https://" inputmode="url" />
-          </div>
-        </fieldset>
-
-        <fieldset class="fieldset">
-          <legend class="fieldset__legend">// Details</legend>
-          <div class="field">
-            <label for="message">Tell us about your event</label>
-            <textarea id="message" name="message" rows="6" placeholder="Guest count, music vibe, budget range, other acts…"></textarea>
-          </div>
-        </fieldset>
-
-        <div class="form-submit">
-          <p class="meta form-submit__note">We'll respond within 48 hours.</p>
-          <button type="submit" class="btn btn--primary">Send inquiry <span aria-hidden="true">→</span></button>
         </div>
-      </form>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="company">Company or venue</label>
+          <input type="text" id="company" name="company" required autocomplete="organization" />
+        </div>
+      </fieldset>
 
-      <aside class="booking-aside">
-        <h2 class="section-label">// What to include</h2>
-        <ul class="checklist">
-          <li>Approximate guest count</li>
-          <li>Music vibe or references</li>
-          <li>Budget range</li>
-          <li>Other acts if known</li>
-          <li>Venue details / setup</li>
-        </ul>
-      </aside>
-    </div>
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">// Event</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="event-date">Event date</label>
+            <input type="date" id="event-date" name="event_date" required />
+          </div>
+          <div class="field">
+            <label for="event-location">Event location</label>
+            <input type="text" id="event-location" name="event_location" required placeholder="City, state / country" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="event-website">Event website <span class="field__optional">(optional)</span></label>
+          <input type="url" id="event-website" name="event_website" placeholder="https://" inputmode="url" />
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset__legend">// Details <span class="field__optional">(all optional)</span></legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="guest-count">Approximate guest count</label>
+            <input type="number" id="guest-count" name="guest_count" min="1" inputmode="numeric" placeholder="e.g. 200" />
+          </div>
+          <div class="field">
+            <label for="budget">Budget range</label>
+            <input type="text" id="budget" name="budget" placeholder="e.g. $2–5k" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="music-vibe">Music vibe or references</label>
+          <textarea id="music-vibe" name="music_vibe" rows="3" placeholder="Artists, playlists, past events — anything that sets the tone."></textarea>
+        </div>
+        <div class="field">
+          <label for="other-acts">Other acts on the bill</label>
+          <input type="text" id="other-acts" name="other_acts" placeholder="DJs, bands, performers" />
+        </div>
+        <div class="field">
+          <label for="venue-details">Venue details / setup</label>
+          <textarea id="venue-details" name="venue_details" rows="3" placeholder="Indoor / outdoor, stage, sound system, load-in notes…"></textarea>
+        </div>
+        <div class="field">
+          <label for="message">Anything else</label>
+          <textarea id="message" name="message" rows="3" placeholder="Whatever didn't fit above."></textarea>
+        </div>
+      </fieldset>
+
+      <div class="form-submit">
+        <button type="submit" class="btn btn--primary">Send inquiry <span aria-hidden="true">→</span></button>
+      </div>
+    </form>
   </div>
 </section>

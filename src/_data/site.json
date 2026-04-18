@@ -1,6 +1,6 @@
 {
   "name": "DJ Pardis",
-  "tagline": "Pop house DJ · West coast · Booking worldwide",
+  "tagline": "Pop house · West coast · Booking worldwide",
   "description": "DJ Pardis — pop house DJ based on the West coast, booking worldwide. Book us for company events, conferences, gallery openings, themed parties.",
   "url": "https://djpardis.club",
   "email": {
@@ -10,9 +10,9 @@
   "formspreeId": "REPLACE_ME",
   "mixcloudEmbedUrl": "https://www.mixcloud.com/widget/iframe/?feed=%2Fdjpardis%2F&hide_cover=1&mini=0&light=1",
   "socials": {
-    "instagram": "https://instagram.com/djpardis",
     "mixcloud": "https://mixcloud.com/djpardis",
-    "soundcloud": "https://soundcloud.com/djpardis"
+    "soundcloud": "https://soundcloud.com/djpardis",
+    "instagram": "https://instagram.com/djpardis.club"
   },
   "hero": {
     "photo": "/images/hero-live.jpg",
