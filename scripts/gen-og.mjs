@@ -14,7 +14,8 @@
 // Run: node scripts/gen-og.mjs
 import sharp from "sharp";
 import opentype from "opentype.js";
-import { mkdirSync, readFileSync } from "node:fs";
+import QRCode from "qrcode";
+import { mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 // Palette — matches src/css/tokens.css
@@ -27,11 +28,7 @@ const PURPLE = "#7d78b5";
 
 const VB_W = 1200;
 const VB_H = 630;
-
-// Band on the right edge — identical on front and back.
-const STRIP_W = 180;
-const STRIP_X = VB_W - STRIP_W;
-const STRIP_TEXT = "djpardis.club";
+const QR_URL = "https://djpardis.club";
 
 // Load fonts once.
 const fontBold = opentype.loadSync(resolve("scripts/fonts/SpaceGrotesk-Bold.ttf"));
@@ -74,55 +71,35 @@ function textSvg(font, text, fontSize, { x, y, align = "left", fill = INK, lette
   };
 }
 
-// Band: black rect with `djpardis.club` knocked out (cut through). On a
-// transparent card that means cardboard shows through the letters too.
-function brandStrip({ knockout = false } = {}) {
-  const cx = STRIP_X + STRIP_W / 2;
-  const cy = VB_H / 2;
-  const fontSize = 64;
-  const letterSpacing = 8;
-
-  const { d, width } = textPath(fontBold, STRIP_TEXT, fontSize, { letterSpacing });
-  // Centre the text inside the rotated strip. Path origin sits on the baseline;
-  // shift up by roughly cap-height/2 to vertically centre.
-  const capAdjust = fontSize * 0.36;
-  const tx = -width / 2;
-  const ty = capAdjust;
-
-  if (knockout) {
-    // Mask: white = visible ink, black = hole. So rect=white, text=black.
-    return `
-      <defs>
-        <mask id="strip-mask" maskUnits="userSpaceOnUse" x="${STRIP_X}" y="0" width="${STRIP_W}" height="${VB_H}">
-          <rect x="${STRIP_X}" y="0" width="${STRIP_W}" height="${VB_H}" fill="white" />
-          <g transform="translate(${cx} ${cy}) rotate(-90)">
-            <path d="${d}" fill="black" transform="translate(${tx} ${ty})" />
-          </g>
-        </mask>
-      </defs>
-      <rect x="${STRIP_X}" y="0" width="${STRIP_W}" height="${VB_H}" fill="${INK}" mask="url(#strip-mask)" />
-    `;
-  }
-  return `
-    <rect x="${STRIP_X}" y="0" width="${STRIP_W}" height="${VB_H}" fill="${INK}" />
-    <g transform="translate(${cx} ${cy}) rotate(-90)">
-      <path d="${d}" fill="${CREAM}" transform="translate(${tx} ${ty})" />
-    </g>
-  `;
-}
-
 function shell(innerSvg, { transparent = false } = {}) {
   const bg = transparent
     ? ""
     : `<rect x="0" y="0" width="${VB_W}" height="${VB_H}" fill="${CREAM}" />`;
-  // On a transparent card the band text is knocked out so the cardboard shows
-  // through that too.
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${VB_W} ${VB_H}">
   ${bg}
   ${innerSvg}
-  ${brandStrip({ knockout: transparent })}
 </svg>`;
+}
+
+// Generate a QR code as an SVG <g> made of filled squares. High error
+// correction ("H") keeps it scannable even if it gets smudged or printed on
+// rough stock. Each module (pixel) becomes a rect of the given `moduleSize`.
+async function qrSvg(text, { x, y, size, dark = INK }) {
+  const qr = await QRCode.create(text, { errorCorrectionLevel: "H" });
+  const n = qr.modules.size;
+  const moduleSize = size / n;
+  let d = "";
+  for (let row = 0; row < n; row++) {
+    for (let col = 0; col < n; col++) {
+      if (qr.modules.get(row, col)) {
+        const px = col * moduleSize;
+        const py = row * moduleSize;
+        d += `M${px},${py}h${moduleSize}v${moduleSize}h-${moduleSize}z`;
+      }
+    }
+  }
+  return `<g transform="translate(${x} ${y})"><path d="${d}" fill="${dark}" /></g>`;
 }
 
 // ---------- FRONT ----------
@@ -130,27 +107,26 @@ function shell(innerSvg, { transparent = false } = {}) {
 // (tight line-height 0.88, yellow highlight on PARDIS), then a tagline
 // "Pop house · West Coast · Booking worldwide" with "Pop house" in pink.
 function frontSvg({ transparent = false } = {}) {
-  const padX = 90;
+  const padX = 100;
   const titleSize = 200;
   // Match .wordmark-display line-height: 0.88
   const lineHeight = titleSize * 0.88;
-  const tagSize = 36;
+  const tagSize = 44;
 
   // Measure everything first so we can vertically centre the block.
   const dj = textPath(fontBold, "DJ", titleSize, { letterSpacing: -8 });
   const pardis = textPath(fontBold, "PARDIS", titleSize, { letterSpacing: -8 });
-  // Subtitle: bold, all caps, purple, with a pink highlight behind "POP HOUSE"
-  // and white text on top of the pink (matches site .hl-pink). Tight spacing
-  // so the line clears the right-edge strip.
+  // Subtitle on a single line: "POP HOUSE · WEST COAST · BOOKING WORLDWIDE"
+  // — bold all-caps purple with a pink highlight (white text) behind POP HOUSE.
   const pop = textPath(fontBold, "POP HOUSE", tagSize, { letterSpacing: 0.5 });
   const sepStr = " · ";
   const sep1 = textPath(fontBold, sepStr, tagSize, { letterSpacing: 0.5 });
   const west = textPath(fontBold, "WEST COAST", tagSize, { letterSpacing: 0.5 });
   const sep2 = textPath(fontBold, sepStr, tagSize, { letterSpacing: 0.5 });
   const book = textPath(fontBold, "BOOKING WORLDWIDE", tagSize, { letterSpacing: 0.5 });
-  const tagGap = 60;
+  const tagGap = 56;
 
-  // Total block height: cap of DJ + leading to PARDIS baseline + tagline.
+  // Total block height: cap of DJ + leading to PARDIS baseline + one tag line.
   const capHeight = titleSize * 0.72;
   const titleTopToBaseline = capHeight;
   const totalH = titleTopToBaseline + lineHeight + tagGap + tagSize;
@@ -170,8 +146,8 @@ function frontSvg({ transparent = false } = {}) {
   const hlW = pardis.width + hlPadX * 2;
   const hlH = capHeight + hlPadTop + hlPadBottom;
 
-  // Tagline pieces laid out left-to-right, left-aligned with the title.
-  // "POP HOUSE" is white (on top of the pink highlight); rest is purple.
+  // Subtitle on one line. "POP HOUSE" is white on top of its pink highlight;
+  // the rest of the line is purple.
   let cursor = padX;
   const tagPieces = [
     { piece: pop, fill: "#ffffff" },
@@ -187,8 +163,7 @@ function frontSvg({ transparent = false } = {}) {
     })
     .join("\n");
 
-  // Pink highlight behind POP HOUSE — sit it under the caps like the yellow
-  // highlight under PARDIS, but tighter (matches site .hl-pink vibe).
+  // Pink highlight behind POP HOUSE (matches site .hl-pink vibe).
   const tagCapH = tagSize * 0.72;
   const popHlPadX = tagSize * 0.14;
   const popHlPadTop = tagSize * 0.08;
@@ -209,19 +184,25 @@ function frontSvg({ transparent = false } = {}) {
 }
 
 // ---------- BACK ----------
-// Just "@djpardis.club" (pink) centred + the band.
-function backSvg({ transparent = false } = {}) {
-  const areaCx = (VB_W - STRIP_W) / 2;
-  const areaCy = VB_H / 2;
-  const fontSize = 140;
-  const handle = textSvg(fontBold, "@djpardis.club", fontSize, {
-    x: areaCx,
-    y: areaCy + fontSize * 0.33,
-    align: "center",
-    fill: PINK,
-    letterSpacing: -3,
-  });
-  return shell(handle.svg, { transparent });
+// Purple QR code on the left linking to djpardis.club, "@djpardis.club" (pink)
+// centred vertically in the right column.
+async function backSvg({ transparent = false } = {}) {
+  const padX = 80;
+  const qrSize = 440;
+  const qrX = padX;
+  const qrY = (VB_H - qrSize) / 2;
+  const qr = await qrSvg(QR_URL, { x: qrX, y: qrY, size: qrSize, dark: PURPLE });
+
+  const colX = qrX + qrSize + 60;
+  const handleSize = 76;
+  const handle = textPath(fontBold, "@djpardis.club", handleSize, { letterSpacing: -2 });
+  const handleBaseline = VB_H / 2 + handleSize * 0.28;
+
+  const inner = `
+    ${qr}
+    <path d="${handle.d}" fill="${PINK}" transform="translate(${colX} ${handleBaseline})" />
+  `;
+  return shell(inner, { transparent });
 }
 
 async function render({ svg, outPath, width, height, dpi }) {
@@ -236,7 +217,9 @@ async function render({ svg, outPath, width, height, dpi }) {
 }
 
 const front = frontSvg();
-const back = backSvg();
+const back = await backSvg();
+const frontT = frontSvg({ transparent: true });
+const backT = await backSvg({ transparent: true });
 
 // Social / Open Graph
 await render({ svg: front, outPath: "src/static/og.png", width: 1200, height: 630 });
@@ -246,16 +229,16 @@ await render({ svg: back, outPath: "src/static/og-back.png", width: 1200, height
 await render({ svg: front, outPath: "src/static/card-front.png", width: 1125, height: 675, dpi: 300 });
 await render({ svg: back, outPath: "src/static/card-back.png", width: 1125, height: 675, dpi: 300 });
 
-// Transparent — for printing on cardboard / kraft. Strip text knocked out too.
+// Transparent — for printing on cardboard / kraft.
 await render({
-  svg: frontSvg({ transparent: true }),
+  svg: frontT,
   outPath: "src/static/card-front-transparent.png",
   width: 1125,
   height: 675,
   dpi: 300,
 });
 await render({
-  svg: backSvg({ transparent: true }),
+  svg: backT,
   outPath: "src/static/card-back-transparent.png",
   width: 1125,
   height: 675,
