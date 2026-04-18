@@ -13,8 +13,38 @@ bodyClass: page-home
       </h1>
       <p class="hero__tagline">Pop house · West Coast · Booking worldwide</p>
       <div class="hero__cta-row">
-        <a class="btn btn--primary btn--lg" href="/booking/">Book your next event <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary btn--lg" href="/booking/">Check dates <span aria-hidden="true">→</span></a>
       </div>
+      <nav class="hero__nav" aria-label="Sections">
+        <ul>
+          <li>
+            <a href="#about">
+              <span class="hero__nav-num" aria-hidden="true">01</span>
+              <span class="hero__nav-label">About</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gigs">
+              <span class="hero__nav-num" aria-hidden="true">02</span>
+              <span class="hero__nav-label">Gigs</span>
+            </a>
+          </li>
+          <li>
+            <a href="#listen">
+              <span class="hero__nav-num" aria-hidden="true">03</span>
+              <span class="hero__nav-label">Listen</span>
+            </a>
+          </li>
+          {% if gallery and gallery.length %}
+          <li>
+            <a href="#gallery">
+              <span class="hero__nav-num" aria-hidden="true">04</span>
+              <span class="hero__nav-label">Gallery</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
     </div>
     <figure class="hero__media">
       <img
@@ -49,7 +79,7 @@ bodyClass: page-home
 <section class="section section--pad-lg" id="about" aria-labelledby="about-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="about-label">// About</h2>
+      <h2 class="section-label" id="about-label">// <span class="section-label__num">01</span> About</h2>
       <span class="section-head__meta">Est. 2017 · San Francisco</span>
     </header>
     <div class="about-grid">
@@ -93,9 +123,9 @@ bodyClass: page-home
         <div>
           <dt>Follow me</dt>
           <dd>
-            <a href="{{ site.socials.mixcloud }}" rel="noopener">Mixcloud</a> ·
-            <a href="{{ site.socials.soundcloud }}" rel="noopener">SoundCloud</a> ·
-            <a href="{{ site.socials.instagram }}" rel="noopener">Instagram</a>
+            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="noopener noreferrer">Mixcloud</a> ·
+            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="noopener noreferrer">SoundCloud</a> ·
+            <a href="{{ site.socials.instagram }}" target="_blank" rel="noopener noreferrer">Instagram</a>
           </dd>
         </div>
       </dl>
@@ -106,7 +136,7 @@ bodyClass: page-home
 <section class="section section--sand" id="gigs" aria-labelledby="gigs-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="gigs-label">// Upcoming</h2>
+      <h2 class="section-label" id="gigs-label">// <span class="section-label__num">02</span> Gigs</h2>
       <span class="section-head__meta">Schedule</span>
     </header>
     {% set upcoming = gigs | upcomingGigs %}
@@ -138,49 +168,26 @@ bodyClass: page-home
 <section class="section section--pad-lg" id="listen" aria-labelledby="listen-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="listen-label">// Listen</h2>
+      <h2 class="section-label" id="listen-label">// <span class="section-label__num">03</span> Listen</h2>
       <span class="section-head__meta">Mixtapes · {{ mixtapes.length }} years</span>
     </header>
 
-    <div class="listen-split">
-      <aside class="mixcloud-card">
-        <span class="mixcloud-card__label">// Latest on Mixcloud</span>
-        <h3 class="mixcloud-card__title">Fresh mixes, straight from the booth.</h3>
-        <div class="mixcloud-embed">
-          <iframe
-            title="DJ Pardis on Mixcloud"
-            width="100%"
-            height="120"
-            src="{{ site.mixcloudEmbedUrl }}"
-            frameborder="0"
-            loading="lazy"
-            allow="autoplay"
-          ></iframe>
-        </div>
-        <div class="mixcloud-card__links">
-          <a href="{{ site.socials.mixcloud }}" rel="noopener">Mixcloud →</a>
-        </div>
-      </aside>
-
-      <div>
-        <div class="mixtapes-head">
-          <h3>Annual mixtapes</h3>
-          <span class="meta">One for every year, {{ mixtapes[mixtapes.length - 1].year }}–{{ mixtapes[0].year }}</span>
-        </div>
-        <ul class="mixtapes-grid">
-          {% for m in mixtapes | sortMixtapesDesc %}
-            <li>
-              <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
-                {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
-                <span class="mixtape-tile__year">{{ m.year }}</span>
-                <span class="mixtape-tile__title">{{ m.title }}</span>
-                <span class="mixtape-tile__date">{{ m.date }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
+    <div class="mixtapes-head">
+      <h3>Annual mixtapes</h3>
+      <span class="meta">One for every year, {{ mixtapes[mixtapes.length - 1].year }}–{{ mixtapes[0].year }}</span>
     </div>
+    <ul class="mixtapes-grid">
+      {% for m in mixtapes | sortMixtapesDesc %}
+        <li>
+          <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
+            {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
+            <span class="mixtape-tile__year">{{ m.year }}</span>
+            <span class="mixtape-tile__title">{{ m.title }}</span>
+            <span class="mixtape-tile__date">{{ m.date }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 
@@ -214,7 +221,7 @@ bodyClass: page-home
 <section class="section section--pad-lg" id="gallery" aria-labelledby="gallery-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="gallery-label">// Featured</h2>
+      <h2 class="section-label" id="gallery-label">// <span class="section-label__num">04</span> Gallery</h2>
       <span class="section-head__meta">Posters · flyers · ephemera</span>
     </header>
 

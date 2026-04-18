@@ -6,25 +6,22 @@ bodyClass: page-booking
 ---
 <section class="section">
   <div class="container">
+    <p class="booking-back"><a href="/"><span aria-hidden="true">←</span> Home</a></p>
     <p class="eyebrow">Booking inquiry</p>
     <h1 class="page-title"><span class="hl">Book us</span> for your event.</h1>
-    <p class="lead">
-      Company events, conferences, gallery openings, themed parties.
-      We respond within 48 hours.
-    </p>
+    <p class="lead">Book us to deejay your company events, conferences, gallery openings, and themed parties. We respond within 48 hours.</p>
 
     <form
       class="booking-form"
       action="https://formspree.io/f/{{ site.formspreeId }}"
       method="POST"
-      novalidate
     >
       <input type="hidden" name="_next" value="{{ site.url }}/booking/thanks/" />
       <input type="hidden" name="_subject" value="New booking inquiry — djpardis.club" />
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <fieldset class="fieldset">
-        <legend class="fieldset__legend">// Contact</legend>
+        <legend class="fieldset__legend">// <span class="fieldset__num">01</span> Contact</legend>
         <div class="field-row">
           <div class="field">
             <label for="first-name">First name</label>
@@ -46,7 +43,7 @@ bodyClass: page-booking
       </fieldset>
 
       <fieldset class="fieldset">
-        <legend class="fieldset__legend">// Event</legend>
+        <legend class="fieldset__legend">// <span class="fieldset__num">02</span> Event</legend>
         <div class="field-row">
           <div class="field">
             <label for="event-date">Event date</label>
@@ -64,7 +61,7 @@ bodyClass: page-booking
       </fieldset>
 
       <fieldset class="fieldset">
-        <legend class="fieldset__legend">// Details <span class="field__optional">(all optional)</span></legend>
+        <legend class="fieldset__legend">// <span class="fieldset__num">03</span> Details <span class="field__optional">(all optional)</span></legend>
         <div class="field-row">
           <div class="field">
             <label for="guest-count">Approximate guest count</label>
@@ -94,7 +91,7 @@ bodyClass: page-booking
       </fieldset>
 
       <div class="form-submit">
-        <button type="submit" class="btn btn--primary">Send inquiry <span aria-hidden="true">→</span></button>
+        <button type="submit" class="btn btn--primary btn--lg">Submit <span aria-hidden="true">→</span></button>
       </div>
     </form>
   </div>

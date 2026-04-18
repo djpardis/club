@@ -9,7 +9,6 @@
   backdrop-filter: saturate(140%) blur(8px);
   -webkit-backdrop-filter: saturate(140%) blur(8px);
   z-index: 10;
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
 }
 
 .site-header__inner {
@@ -22,7 +21,7 @@
 .wordmark {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   letter-spacing: -0.01em;
   color: var(--ink);
   text-decoration: none;
@@ -59,8 +58,10 @@
 .nav-link--cta {
   background: var(--pink);
   color: #fff;
-  padding: 0.25em 0.6em;
+  font-size: 1.0625rem;
   font-weight: 600;
+  padding: 0.55em 1.1em;
+  letter-spacing: 0.01em;
 }
 
 /* Book nav stays pink on every page — no active-state recolor. */
@@ -75,19 +76,21 @@
    Hero — magazine cover (hero + marquee = first viewport)
    ============================================================ */
 .hero {
-  padding-top: var(--sp-5);
-  padding-bottom: var(--sp-5);
+  padding-top: var(--sp-6);
+  padding-bottom: var(--sp-6);
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-/* Fold math: 100svh − header (~72px) − marquee (~70px) ≈ 100svh − 9rem.
+/* Fold math: no header — hero fills viewport minus the marquee strip (~4.5rem),
+   so the carousel peeks in just above the fold.
    On mobile (stacked hero), let height follow content. */
 @media (min-width: 900px) {
   .hero {
-    min-height: calc(100svh - 9rem);
+    min-height: calc(100svh - 4.5rem);
   }
 }
 
@@ -101,6 +104,10 @@
 
 .hero__copy {
   min-width: 0;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero__status {
@@ -152,6 +159,67 @@
   flex-wrap: wrap;
 }
 
+.hero__nav {
+  margin: var(--sp-6) 0 0;
+}
+
+.hero__nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-6);
+}
+
+.hero__nav a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.15em 0;
+  position: relative;
+  transition: color var(--t-fast);
+}
+
+.hero__nav-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  color: var(--purple);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero__nav-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 0.1em;
+  transition: background-size var(--t-med), background-image var(--t-med);
+}
+
+.hero__nav a:hover .hero__nav-label,
+.hero__nav a:focus-visible .hero__nav-label {
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-size: 100% 0.55em;
+  background-position: 0 85%;
+}
+
+.hero__nav a:focus-visible {
+  outline: none;
+}
+
+.hero__nav a:focus-visible .hero__nav-num {
+  color: var(--ink);
+}
+
 .hero__cta-meta {
   font-family: var(--font-mono);
   font-size: var(--fs-meta);
@@ -164,6 +232,7 @@
   margin: 0;
   min-width: 0;
   position: relative;
+  align-self: center;
 }
 
 .hero__media img {
@@ -1018,6 +1087,25 @@
 /* ============================================================
    Booking page
    ============================================================ */
+.booking-back {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--sp-5);
+}
+
+.booking-back a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+.booking-back a:hover,
+.booking-back a:focus-visible {
+  color: var(--ink);
+}
+
 .page-title {
   font-family: var(--font-display);
   font-weight: 700;
@@ -1040,8 +1128,15 @@
 .booking-form {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-6);
   max-width: 44rem;
+}
+
+.booking-form > .fieldset + .fieldset {
+  margin-top: var(--sp-8);
+}
+
+.booking-form > .form-submit {
+  margin-top: var(--sp-5);
 }
 
 .fieldset {
@@ -1053,15 +1148,21 @@
   gap: var(--sp-4);
 }
 
+/* Fieldset legend mirrors the home page's // section-label typography. */
 .fieldset__legend {
   font-family: var(--font-mono);
   font-size: var(--fs-meta);
   font-weight: 500;
   color: var(--purple);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: var(--sp-3);
+  letter-spacing: 0.08em;
   padding: 0;
+  margin-bottom: var(--sp-3);
+}
+
+.fieldset__num {
+  font-weight: 700;
+  margin-inline: 0.15em;
 }
 
 .field-row {
@@ -1086,9 +1187,9 @@
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
-  color: var(--muted);
+  color: var(--ink);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
 }
 
 .field:has(> input[required], > textarea[required], > select[required]) > label::after {
@@ -1101,37 +1202,49 @@
   color: var(--muted);
   text-transform: none;
   letter-spacing: 0;
+  font-weight: 400;
 }
 
+/* Inputs — borderless muted-purple highlighter blocks (lilac). */
 .field input,
 .field textarea {
   font-family: var(--font-body);
-  font-size: var(--fs-body);
-  background: var(--cream);
+  font-size: 1.0625rem;
   color: var(--ink);
-  border: 1px solid var(--sand-deep);
-  border-radius: var(--r-md);
-  padding: 0.75em 0.85em;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  background: color-mix(in srgb, var(--purple) 28%, var(--cream));
+  border: 0;
+  border-radius: var(--r-sm);
+  padding: 0.7em 0.8em;
   width: 100%;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 7.5rem;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
   color: var(--muted);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .field input:focus,
 .field textarea:focus {
-  outline: none;
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px var(--focus-ring);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
-.field textarea {
-  resize: vertical;
-  min-height: 8rem;
+/* Lock browser autofill so Chrome/Safari don't override our highlighter color. */
+.field input:-webkit-autofill,
+.field textarea:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px color-mix(in srgb, var(--purple) 28%, var(--cream)) inset !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  caret-color: var(--ink);
+  transition: background-color 9999s ease-out 0s;
 }
 
 .form-submit {
@@ -1140,11 +1253,6 @@
   justify-content: flex-end;
   gap: var(--sp-4);
   flex-wrap: wrap;
-  margin-top: var(--sp-3);
-}
-
-.form-submit__note {
-  margin: 0;
 }
 
 /* ============================================================

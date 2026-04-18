@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="/css/components.css" />
   </head>
   <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
-    {% include "header.njk" %}
     <main id="main">
       {{ content | safe }}
     </main>

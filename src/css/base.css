@@ -210,6 +210,11 @@ main {
   display: inline-block;
 }
 
+.section-label__num {
+  font-weight: 700;
+  margin-inline: 0.15em;
+}
+
 /* Eyebrow (hero) */
 .eyebrow {
   font-family: var(--font-mono);

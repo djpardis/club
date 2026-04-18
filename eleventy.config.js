@@ -51,6 +51,42 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addShortcode("year", () => String(new Date().getFullYear()));
 
+  // Make every external link open in a new tab with safe rel attrs.
+  const SITE_HOSTS = new Set(["djpardis.club", "www.djpardis.club", "localhost"]);
+  eleventyConfig.addTransform("externalLinks", function (content) {
+    if (!this.page || !this.page.outputPath || !this.page.outputPath.endsWith(".html")) {
+      return content;
+    }
+    return content.replace(/<a\b([^>]*?)href=(["'])([^"']+)\2([^>]*)>/gi, (match, before, quote, href, after) => {
+      if (!/^https?:\/\//i.test(href)) return match;
+      try {
+        const host = new URL(href).hostname;
+        if (SITE_HOSTS.has(host)) return match;
+      } catch {
+        return match;
+      }
+      const attrs = before + after;
+      if (/\btarget\s*=/i.test(attrs)) return match;
+      const relMatch = attrs.match(/\brel\s*=\s*(["'])([^"']*)\1/i);
+      const existingRel = relMatch ? relMatch[2].split(/\s+/).filter(Boolean) : [];
+      const relSet = new Set(existingRel.map((r) => r.toLowerCase()));
+      relSet.add("noopener");
+      relSet.add("noreferrer");
+      const relString = `rel="${[...relSet].join(" ")}"`;
+      let newBefore = before;
+      let newAfter = after;
+      if (relMatch) {
+        if (before.match(/\brel\s*=/i)) {
+          newBefore = before.replace(/\brel\s*=\s*(["'])([^"']*)\1/i, relString);
+        } else {
+          newAfter = after.replace(/\brel\s*=\s*(["'])([^"']*)\1/i, relString);
+        }
+        return `<a${newBefore}href=${quote}${href}${quote}${newAfter} target="_blank">`;
+      }
+      return `<a${before}href=${quote}${href}${quote}${after} target="_blank" ${relString}>`;
+    });
+  });
+
   return {
     dir: {
       input: "src",
