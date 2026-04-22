@@ -3,6 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script>
+      // Flag the Instagram in-app browser only. Its webview over-reports
+      // 100svh as the full screen height (ignoring its persistent
+      // top + bottom toolbars), which pushes the marquee band below the
+      // visible viewport. A scoped CSS rule trims the fold height only
+      // when this class is present — normal browsers are untouched.
+      (function () {
+        try {
+          if (/Instagram/i.test(navigator.userAgent)) {
+            document.documentElement.classList.add('in-app-ig');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
     <meta name="description" content="{{ description or site.description }}" />
     <meta name="author" content="DJ Pardis" />

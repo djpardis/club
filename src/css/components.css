@@ -85,6 +85,15 @@
   flex-direction: column;
 }
 
+/* Instagram in-app browser only. Its webview over-reports 100svh as
+   the full screen height, so a fold sized to svh ends up taller than
+   the visible area and the marquee gets pushed below the bottom
+   toolbar. The .in-app-ig class is set by a UA sniff in base.njk, so
+   normal mobile Safari / Chrome / desktop / iPad are untouched. */
+.in-app-ig .fold {
+  min-height: calc(100svh - 6rem);
+}
+
 .hero {
   padding-top: var(--sp-8);
   padding-bottom: var(--sp-6);
