@@ -6,8 +6,15 @@ bodyClass: page-booking
 ---
 <section class="section">
   <div class="container">
-    <p class="booking-back"><a href="/"><span aria-hidden="true">←</span> Home</a></p>
-    <p class="eyebrow">Booking inquiry</p>
+    <div class="page-head">
+      <p class="eyebrow">Booking inquiry</p>
+      <p class="booking-back">
+        <a href="/">
+          <span class="booking-back__arrow" aria-hidden="true">←</span>
+          <span class="booking-back__label">Home</span>
+        </a>
+      </p>
+    </div>
     <h1 class="page-title"><span class="hl">Book us</span> for your event.</h1>
     <p class="lead">Book us to deejay your company events, conferences, gallery openings, and themed parties. We respond within 48 hours.</p>
 
@@ -16,7 +23,7 @@ bodyClass: page-booking
       action="https://formspree.io/f/{{ site.formspreeId }}"
       method="POST"
     >
-      <input type="hidden" name="_next" value="{{ site.url }}/booking/thanks/" />
+      <input type="hidden" name="_next" value="{{ site.url }}/book/thanks/" />
       <input type="hidden" name="_subject" value="New booking inquiry — djpardis.club" />
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 

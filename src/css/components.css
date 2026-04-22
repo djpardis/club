@@ -75,22 +75,34 @@
 /* ============================================================
    Hero — magazine cover (hero + marquee = first viewport)
    ============================================================ */
+/* Fold wrapper: hero + marquee stack to exactly fill the viewport so
+   the band sits precisely at the fold on every client — no more
+   hard-coded marquee-height math. The hero flexes to fill whatever
+   room is left after the band's natural height. */
+.fold {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
 .hero {
-  padding-top: var(--sp-6);
+  padding-top: var(--sp-8);
   padding-bottom: var(--sp-6);
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  /* Top-align content so the eyebrow sits at a fixed offset from the
+     top of the viewport — this lets the Book page's eyebrow land at
+     the same spot on every client. Empty space falls below; marquee
+     stays pinned at the fold via the .fold flex wrapper. */
+  align-items: flex-start;
   justify-content: center;
+  flex: 1 0 auto;
 }
 
-/* Fold math: no header — hero fills viewport minus the marquee strip (~4.5rem),
-   so the carousel peeks in just above the fold.
-   On mobile (stacked hero), let height follow content. */
-@media (min-width: 900px) {
+@media (max-width: 720px) {
   .hero {
-    min-height: calc(100svh - 4.5rem);
+    padding-block: var(--sp-5);
   }
 }
 
@@ -104,10 +116,9 @@
 
 .hero__copy {
   min-width: 0;
-  align-self: center;
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .hero__status {
@@ -152,6 +163,21 @@
   }
 }
 
+/* On phones the smaller font scales the em-based paddings down so the
+   pink "Pop house" block no longer visually overlaps the yellow PARDIS
+   block above it (which it does at larger sizes). Pull the tagline up
+   and grow the pink block's vertical padding so the overlap reads the
+   same as it does on tablet/desktop. */
+@media (max-width: 720px) {
+  .hero__tagline {
+    margin-top: -0.45em;
+  }
+
+  .hero__tagline .hl-pink {
+    padding: 0.3em 0.22em 0.1em;
+  }
+}
+
 .hero__cta-row {
   display: flex;
   align-items: center;
@@ -163,6 +189,16 @@
   margin: var(--sp-6) 0 0;
 }
 
+/* Hide the section menu on phones so the hero photo + copy fit inside
+   100svh and the marquee band sits at the fold. Users still reach the
+   sections by scrolling — which is the expected mobile pattern. Kept
+   visible on tablets and up where there's room. */
+@media (max-width: 720px) {
+  .hero__nav {
+    display: none;
+  }
+}
+
 .hero__nav ul {
   list-style: none;
   padding: 0;
@@ -170,6 +206,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-3) var(--sp-6);
+}
+
+/* On narrow screens, keep the section menu on a single line by
+   distributing items across the full width and tightening typography. */
+@media (max-width: 560px) {
+  .hero__nav ul {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--sp-2);
+  }
+
+  .hero__nav a {
+    gap: 0.4em;
+  }
+
+  .hero__nav-label {
+    font-size: 0.9375rem;
+  }
 }
 
 .hero__nav a {
@@ -1088,29 +1142,85 @@
 /* ============================================================
    Booking page
    ============================================================ */
+/* Eyebrow on the left, back link on the right — so the page-title
+   lines up with the top of the section the same way the home hero
+   does, without the back link pushing content down.
+   align-items: flex-start (not baseline) so the eyebrow's top edge
+   sits at exactly the same pixel offset as "Currently booking" on
+   the home page — baseline alignment would nudge it down a pixel or
+   two because the back-link's text baseline differs from the
+   eyebrow's (which contains a ::before dot, not text). */
+.page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+
+/* Keep the back link's first line of text aligned with the eyebrow's
+   dot+text by nudging its own padding slightly — the <a> inside adds
+   a small padding; normalise it so both items read as top-aligned. */
+.page-head .booking-back a {
+  padding-top: 0;
+}
+
+/* Back link echoes the hero nav pattern: a purple-accent glyph paired
+   with an ink-underlined label that flips to the site's yellow
+   highlighter on hover. Typography matches the eyebrow sitting
+   opposite it in the .page-head row so the two feel paired. */
 .booking-back {
   font-family: var(--font-mono);
   font-size: var(--fs-meta);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin: 0 0 var(--sp-5);
+  margin: 0;
 }
 
 .booking-back a {
-  color: var(--muted);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  color: var(--ink);
   text-decoration: none;
-  transition: color var(--t-fast);
+  padding: 0.15em 0;
 }
 
-.booking-back a:hover,
 .booking-back a:focus-visible {
-  color: var(--ink);
+  outline: none;
+}
+
+.booking-back__arrow {
+  font-weight: 700;
+  color: var(--purple);
+  transition: transform var(--t-fast), color var(--t-fast);
+}
+
+.booking-back__label {
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 0.1em;
+  transition: background-size var(--t-med), background-image var(--t-med);
+}
+
+.booking-back a:hover .booking-back__label,
+.booking-back a:focus-visible .booking-back__label {
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-size: 100% 0.55em;
+  background-position: 0 85%;
+}
+
+.booking-back a:hover .booking-back__arrow,
+.booking-back a:focus-visible .booking-back__arrow {
+  transform: translateX(-3px);
 }
 
 .page-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-size: clamp(2.25rem, 7vw, 5.5rem);
   line-height: 1;
   letter-spacing: -0.025em;
   margin-block: var(--sp-4) var(--sp-5);
@@ -1123,7 +1233,7 @@
 .lead {
   font-size: var(--fs-lead);
   max-width: 48ch;
-  margin-bottom: var(--sp-8);
+  margin-bottom: var(--sp-7);
 }
 
 .booking-form {
@@ -1133,11 +1243,65 @@
 }
 
 .booking-form > .fieldset + .fieldset {
-  margin-top: var(--sp-8);
+  margin-top: var(--sp-7);
 }
 
 .booking-form > .form-submit {
   margin-top: var(--sp-5);
+}
+
+/* Book page section padding matches the home hero's top padding so
+   the "Booking inquiry" eyebrow lands at the same pixel offset as
+   "Currently booking" on every client. Bottom stays roomy for the
+   form's breathing space. */
+.page-booking .section {
+  padding-block: var(--sp-8);
+}
+
+/* Book page: tighten vertical rhythm on phones so more of the form
+   is visible above the fold without scrolling a lot of empty space. */
+@media (max-width: 720px) {
+  .page-booking .section {
+    padding-block: var(--sp-5) var(--sp-7);
+  }
+
+  .page-booking .page-title {
+    margin-block: var(--sp-3) var(--sp-4);
+  }
+
+  .page-booking .lead {
+    margin-bottom: var(--sp-5);
+    font-size: var(--fs-body);
+  }
+
+  .booking-form > .fieldset + .fieldset {
+    margin-top: var(--sp-6);
+  }
+
+  .booking-form .fieldset {
+    gap: var(--sp-3);
+  }
+
+  .booking-form .fieldset__legend {
+    margin-bottom: var(--sp-2);
+  }
+
+  .booking-form .field input,
+  .booking-form .field textarea {
+    padding: 0.75em 0.85em;
+  }
+
+  .booking-form .field textarea {
+    min-height: 6rem;
+  }
+
+  .booking-form .form-submit {
+    justify-content: stretch;
+  }
+
+  .booking-form .form-submit .btn {
+    width: 100%;
+  }
 }
 
 .fieldset {
@@ -1195,7 +1359,7 @@
 
 .field:has(> input[required], > textarea[required], > select[required]) > label::after {
   content: " *";
-  color: var(--pink);
+  color: var(--purple);
   font-weight: 700;
 }
 
@@ -1206,43 +1370,61 @@
   font-weight: 400;
 }
 
-/* Inputs — borderless muted-purple highlighter blocks (lilac). */
+/* Inputs — clean editorial boxes: transparent fill, ink border, no
+   drop shadow. Border tints purple on focus with a soft purple glow
+   ring (matches --focus-ring used elsewhere on the site). */
 .field input,
 .field textarea {
   font-family: var(--font-body);
   font-size: 1.0625rem;
   color: var(--ink);
-  background: color-mix(in srgb, var(--purple) 28%, var(--cream));
-  border: 0;
+  background: transparent;
+  border: 1.5px solid var(--ink);
   border-radius: var(--r-sm);
-  padding: 0.7em 0.8em;
+  padding: 0.85em 0.95em;
   width: 100%;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .field textarea {
   resize: vertical;
   min-height: 7.5rem;
+  line-height: 1.5;
 }
 
 .field input::placeholder,
 .field textarea::placeholder {
   color: var(--muted);
-  opacity: 0.7;
+  opacity: 0.8;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--purple);
 }
 
 .field input:focus,
 .field textarea:focus {
-  outline: 2px solid var(--ink);
-  outline-offset: 2px;
+  outline: none;
+  border-color: var(--purple-deep);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-/* Lock browser autofill so Chrome/Safari don't override our highlighter color. */
+/* Invalid state only after the user has interacted — subtle, no shouting. */
+.field input:not(:placeholder-shown):invalid,
+.field textarea:not(:placeholder-shown):invalid {
+  border-color: var(--muted);
+}
+
+/* Keep the transparent fill across Chrome/Safari autofill. */
 .field input:-webkit-autofill,
 .field textarea:-webkit-autofill,
 .field input:-webkit-autofill:hover,
 .field input:-webkit-autofill:focus,
 .field input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px color-mix(in srgb, var(--purple) 28%, var(--cream)) inset !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--cream) inset !important;
   -webkit-text-fill-color: var(--ink) !important;
   caret-color: var(--ink);
   transition: background-color 9999s ease-out 0s;

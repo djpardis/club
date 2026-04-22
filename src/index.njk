@@ -3,6 +3,7 @@ layout: base.njk
 title: null
 bodyClass: page-home
 ---
+<div class="fold">
 <section class="hero" aria-labelledby="hero-title">
   <div class="container hero__inner">
     <div class="hero__copy">
@@ -13,7 +14,7 @@ bodyClass: page-home
       </h1>
       <p class="hero__tagline"><span class="hl-pink">Pop house</span> · West Coast · Booking worldwide</p>
       <div class="hero__cta-row">
-        <a class="btn btn--primary btn--lg" href="/booking/">Check dates <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
       </div>
       <nav class="hero__nav" aria-label="Sections">
         <ul>
@@ -74,6 +75,7 @@ bodyClass: page-home
       <span class="marquee__item"><span class="dot"></span></span>
     {% endfor %}
   </div>
+</div>
 </div>
 
 <section class="section section--pad-lg" id="about" aria-labelledby="about-label">
@@ -158,7 +160,7 @@ bodyClass: page-home
         <h3 class="upcoming-block__headline">Next date <span class="hl-pink">TBA</span>.<br />Book your next event.</h3>
         <div class="upcoming-block__body">
           <p>Have an event in mind? We deejay company events, conferences, gallery openings, and themed parties to set all the right vibes.</p>
-          <a class="btn btn--primary btn--lg" href="/booking/">Check dates <span aria-hidden="true">→</span></a>
+          <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
         </div>
       </div>
     {% endif %}
@@ -282,7 +284,7 @@ bodyClass: page-home
     <div class="cta-band__aside">
       <p>Tell us about your company events, conferences, gallery openings, and themed parties. Tell us the date, the vibe, and the guest count and we'll take it from there.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--primary btn--lg" href="/booking/">Book your next event <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary btn--lg" href="/book/">Book your event <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
