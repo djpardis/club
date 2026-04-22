@@ -75,33 +75,14 @@
 /* ============================================================
    Hero — magazine cover (hero + marquee = first viewport)
    ============================================================ */
-/* Fold wrapper: hero + marquee stack to fill the first viewport so
-   the band sits at the fold on every client — no more hard-coded
-   marquee-height math. The hero flexes to fill whatever room is
-   left after the band's natural height.
-
-   In-app browsers (Instagram, TikTok, Facebook, Messenger) keep
-   their top + bottom toolbars persistently visible but over-report
-   100svh as the full screen height, so a fold sized to 100svh ends
-   up taller than the visible area and the band gets pushed below
-   it. We cap the fold with max-height so it can never exceed the
-   reported viewport, and subtract the iOS safe-area inset plus a
-   small mobile buffer so the band stays inside the visible area in
-   those contexts. Normal browsers see no change since inset and
-   buffer are both 0 on desktop. */
+/* Fold wrapper: hero + marquee stack to exactly fill the viewport so
+   the band sits precisely at the fold on every client — no more
+   hard-coded marquee-height math. The hero flexes to fill whatever
+   room is left after the band's natural height. */
 .fold {
-  min-height: calc(100svh - env(safe-area-inset-bottom, 0px));
-  max-height: calc(100svh - env(safe-area-inset-bottom, 0px));
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-}
-
-@media (max-width: 720px) {
-  .fold {
-    min-height: calc(100svh - env(safe-area-inset-bottom, 0px) - 3.5rem);
-    max-height: calc(100svh - env(safe-area-inset-bottom, 0px) - 3.5rem);
-  }
 }
 
 .hero {
@@ -116,12 +97,7 @@
      stays pinned at the fold via the .fold flex wrapper. */
   align-items: flex-start;
   justify-content: center;
-  /* 1 1 auto (with min-height: 0) lets the hero shrink inside the
-     capped .fold when a webview's viewport is smaller than expected.
-     Without this, the hero's natural content height would overflow
-     the fold and push the marquee off-screen. */
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 1 0 auto;
 }
 
 @media (max-width: 720px) {
