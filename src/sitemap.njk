@@ -4,13 +4,16 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {%- set urls = ["/", "/book/"] -%}
+  {#- /book/ and /book/thanks/ are intentionally excluded: they are
+      utility pages marked noindex via meta robots. Only the home page
+      should be crawled and indexed. -#}
+  {%- set urls = ["/"] -%}
   {%- for u in urls %}
   <url>
     <loc>{{ site.url }}{{ u }}</loc>
     <lastmod>{{ page.date | dateIso }}</lastmod>
-    <changefreq>{% if u == "/" %}weekly{% else %}monthly{% endif %}</changefreq>
-    <priority>{% if u == "/" %}1.0{% else %}0.7{% endif %}</priority>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   {%- endfor %}
 </urlset>

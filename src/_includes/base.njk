@@ -3,13 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
+    <title>
+      {%- if documentTitle -%}
+        {{- documentTitle -}}
+      {%- elif title -%}
+        {{- title }} / {{ site.name -}}
+      {%- else -%}
+        {{- site.name }} — {{ site.tagline -}}
+      {%- endif -%}
+    </title>
     <meta name="description" content="{{ description or site.description }}" />
     <meta name="author" content="DJ Pardis" />
-    <meta name="keywords" content="DJ Pardis, pop house DJ, West coast DJ, San Francisco DJ, company event DJ, conference DJ, gallery opening DJ, themed party DJ, booking worldwide" />
+    <meta name="keywords" content="DJ Pardis, djpardis, pop house DJ, West coast DJ, San Francisco DJ, company event DJ, conference DJ, gallery opening DJ, themed party DJ, booking worldwide" />
+    {% if noIndex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
-    {% set ogTitle = (title + ' — ' + site.name) if title else (site.name + ' — ' + site.tagline) %}
+    {% if documentTitle %}
+      {% set ogTitle = documentTitle %}
+    {% elif title %}
+      {% set ogTitle = title + ' — ' + site.name %}
+    {% else %}
+      {% set ogTitle = site.name + ' — ' + site.tagline %}
+    {% endif %}
     {% set ogImage = site.url + (ogImage or '/og.png') %}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.name }}" />
@@ -35,6 +50,7 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "DJ Pardis",
+        "alternateName": ["djpardis", "Pardis"],
         "url": "{{ site.url }}",
         "jobTitle": "DJ",
         "description": "{{ site.description }}",
@@ -52,8 +68,15 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "{{ site.name }}",
+        "alternateName": ["djpardis", "djpardis.club"],
         "url": "{{ site.url }}",
-        "description": "{{ site.description }}"
+        "description": "{{ site.description }}",
+        "sameAs": [
+          "https://djpardis.com",
+          "{{ site.socials.mixcloud }}",
+          "{{ site.socials.soundcloud }}",
+          "{{ site.socials.instagram }}"
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -61,6 +84,7 @@
         "@context": "https://schema.org",
         "@type": "MusicGroup",
         "name": "DJ Pardis",
+        "alternateName": ["djpardis"],
         "genre": ["Pop house", "Dance pop", "House"],
         "url": "{{ site.url }}",
         "image": "{{ site.url }}{{ site.hero.photo }}",
