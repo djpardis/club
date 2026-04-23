@@ -324,44 +324,47 @@
 /* ============================================================
    Marquee band (magazine running head)
    ============================================================ */
+/* Running band: slower drift + softer contrast than pure black/yellow
+   so it reads mellow without losing the magazine ticker energy. */
 .marquee {
-  background: var(--ink);
-  color: var(--cream);
-  padding-block: var(--sp-4);
+  background: color-mix(in srgb, var(--ink) 90%, var(--purple-deep) 10%);
+  color: color-mix(in srgb, var(--cream) 88%, var(--sand) 12%);
+  padding-block: var(--sp-5);
   overflow: hidden;
-  border-block: 1px solid var(--ink);
+  border-block: 1px solid color-mix(in srgb, var(--ink) 85%, var(--purple) 15%);
 }
 
 .marquee__track {
   display: flex;
   align-items: center;
-  gap: var(--sp-5);
+  gap: var(--sp-6);
   white-space: nowrap;
-  animation: marquee 36s linear infinite;
+  animation: marquee 56s linear infinite;
   will-change: transform;
 }
 
 .marquee__item {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-5);
+  gap: var(--sp-6);
 }
 
 .marquee__item .dot {
-  width: 0.4em;
-  height: 0.4em;
+  width: 0.32em;
+  height: 0.32em;
   border-radius: 50%;
-  background: var(--yellow);
+  background: color-mix(in srgb, var(--yellow) 70%, var(--sand) 30%);
   display: inline-block;
+  opacity: 0.92;
 }
 
 .marquee__item--alt {
-  color: var(--yellow);
+  color: color-mix(in srgb, var(--yellow) 78%, var(--cream) 22%);
 }
 
 @media (prefers-reduced-motion: reduce) {
