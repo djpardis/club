@@ -14,8 +14,12 @@
     </title>
     <meta name="description" content="{{ description or site.description }}" />
     <meta name="author" content="DJ Pardis" />
-    <meta name="keywords" content="DJ Pardis, djpardis, pop house DJ, West coast DJ, San Francisco DJ, company event DJ, conference DJ, gallery opening DJ, themed party DJ, booking worldwide" />
-    {% if noIndex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
+    <meta name="keywords" content="DJ Pardis, djpardis, DJ Pardis booking, book DJ Pardis, pop house DJ, West coast DJ, San Francisco DJ, corporate events DJ, conference DJ, gallery opening DJ, themed party DJ, booking worldwide" />
+    {% if noIndex %}
+      <meta name="robots" content="noindex, nofollow, max-image-preview:large" />
+    {% else %}
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+    {% endif %}
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
     {% if documentTitle %}
@@ -63,6 +67,22 @@
         ]
       }
     </script>
+    {% if page.url == "/" %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ ogTitle }}",
+        "url": "{{ site.url }}{{ page.url }}",
+        "description": "{{ description or site.description }}",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "{{ site.url }}{{ site.hero.photo }}",
+          "caption": "{{ site.hero.alt }}"
+        }
+      }
+    </script>
+    {% endif %}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

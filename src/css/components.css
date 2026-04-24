@@ -397,7 +397,7 @@
   letter-spacing: 0.1em;
   text-decoration: none;
   cursor: pointer;
-  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+  transition: background var(--t-fast), color var(--t-fast);
   border: 0;
 }
 
@@ -408,13 +408,13 @@
 
 .btn--primary:hover,
 .btn--primary:focus-visible {
-  background: var(--purple-deep);
-  color: #fff;
-  transform: translateY(-1px);
+  background: var(--yellow);
+  color: var(--ink);
 }
 
 .btn--primary:active {
-  transform: translateY(0);
+  background: color-mix(in srgb, var(--yellow) 82%, var(--pink) 18%);
+  color: var(--ink);
 }
 
 .btn--lg {
