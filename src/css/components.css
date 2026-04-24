@@ -80,21 +80,9 @@
    hard-coded marquee-height math. The hero flexes to fill whatever
    room is left after the band's natural height. */
 .fold {
-  min-height: 100svh;
+  min-height: var(--fold-h, 100svh);
   display: flex;
   flex-direction: column;
-}
-
-/* Short viewports (in-app browsers like Instagram/Facebook where the host
-   chrome is fixed and doesn't collapse) report 100svh as the full native
-   screen height even though the visible area is smaller. That pushes the
-   marquee below the fold. Drop the fold-filling on short viewports so the
-   marquee lands right after the hero and stays on screen. Regular mobile
-   Safari/Chrome and desktop are unaffected (both comfortably >700px). */
-@media (max-height: 700px) {
-  .fold {
-    min-height: 0;
-  }
 }
 
 .hero {
@@ -121,9 +109,15 @@
 .hero__inner {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
+}
+
+@media (min-width: 1280px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
 }
 
 .hero__copy {
@@ -216,8 +210,14 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-3) var(--sp-6);
+  flex-wrap: nowrap;
+  gap: var(--sp-3) var(--sp-4);
+}
+
+@media (min-width: 1280px) {
+  .hero__nav ul {
+    gap: var(--sp-3) var(--sp-6);
+  }
 }
 
 /* On narrow screens, keep the section menu on a single line by
