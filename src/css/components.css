@@ -85,6 +85,18 @@
   flex-direction: column;
 }
 
+/* Short viewports (in-app browsers like Instagram/Facebook where the host
+   chrome is fixed and doesn't collapse) report 100svh as the full native
+   screen height even though the visible area is smaller. That pushes the
+   marquee below the fold. Drop the fold-filling on short viewports so the
+   marquee lands right after the hero and stays on screen. Regular mobile
+   Safari/Chrome and desktop are unaffected (both comfortably >700px). */
+@media (max-height: 700px) {
+  .fold {
+    min-height: 0;
+  }
+}
+
 .hero {
   padding-top: var(--sp-8);
   padding-bottom: var(--sp-6);
