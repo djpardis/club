@@ -46,6 +46,7 @@
     <meta name="twitter:image" content="{{ ogImage }}" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/atom+xml" title="DJ Pardis — Mixtapes" href="/feed.xml" />
     <meta name="theme-color" content="#F5EDE0" />
 
     <script type="application/ld+json">
@@ -135,17 +136,26 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/components.css" />
     <script>
-      // visualViewport.height is the only API that correctly reports the true
-      // visible height inside every browser including WKWebView in-app browsers
-      // (Instagram, TikTok, etc.) where 100svh overshoots the visible area.
+      // Capture the visible viewport height once so 100svh works correctly
+      // in WKWebView in-app browsers (Instagram, TikTok, etc.) where it
+      // otherwise overshoots. We deliberately do NOT listen to
+      // visualViewport.resize: that fires constantly as the mobile URL bar
+      // collapses/expands during scroll, which would re-size the fold and
+      // shove the marquee around. We only re-measure when the viewport
+      // width actually changes (orientation change or true window resize).
       (function () {
+        var lastWidth = window.innerWidth;
         function setFoldHeight() {
           var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
           document.documentElement.style.setProperty('--fold-h', h + 'px');
+          lastWidth = window.innerWidth;
         }
         setFoldHeight();
-        if (window.visualViewport) {
-          window.visualViewport.addEventListener('resize', setFoldHeight);
+        window.addEventListener('resize', function () {
+          if (window.innerWidth !== lastWidth) setFoldHeight();
+        });
+        if (screen && screen.orientation) {
+          screen.orientation.addEventListener('change', setFoldHeight);
         }
       })();
     </script>

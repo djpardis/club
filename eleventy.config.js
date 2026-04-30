@@ -49,6 +49,31 @@ export default function (eleventyConfig) {
     return [...items].sort((a, b) => (b.year || 0) - (a.year || 0));
   });
 
+  // Rewrites relative URLs ("/foo", `src="/bar`) to absolute ones for use
+  // inside the RSS/Atom feed where readers fetch content out of context.
+  eleventyConfig.addFilter("absoluteUrls", (html, base) => {
+    if (!html || !base) return html;
+    const root = String(base).replace(/\/$/, "");
+    return String(html).replace(
+      /(\s(?:href|src|poster)\s*=\s*["'])\/(?!\/)/gi,
+      `$1${root}/`
+    );
+  });
+
+  eleventyConfig.addFilter("rfc3339", (dateObj) => {
+    if (!dateObj) return "";
+    const d = dateObj instanceof Date ? dateObj : new Date(dateObj);
+    return d.toISOString();
+  });
+
+  // All mixtape post pages, newest first.
+  eleventyConfig.addCollection("mixtapes", (collectionApi) => {
+    return collectionApi
+      .getAll()
+      .filter((item) => /^\/mixtapes\/\d{4}\/$/.test(item.url || ""))
+      .sort((a, b) => (b.date || 0) - (a.date || 0));
+  });
+
   eleventyConfig.addShortcode("year", () => String(new Date().getFullYear()));
 
   // Make every external link open in a new tab with safe rel attrs.

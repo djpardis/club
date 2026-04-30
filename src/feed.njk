@@ -1,0 +1,34 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+{%- set posts = collections.mixtapes -%}
+{%- set updated = posts[0].date if posts.length else build.date -%}
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>{{ site.name }} — Mixtapes</title>
+  <subtitle>Annual mixtapes from DJ Pardis. One every year — favorite songs of the year, with notes.</subtitle>
+  <link href="{{ site.url }}/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="{{ site.url }}/" rel="alternate" type="text/html"/>
+  <updated>{{ updated | rfc3339 }}</updated>
+  <id>{{ site.url }}/</id>
+  <author>
+    <name>DJ Pardis</name>
+    <uri>{{ site.url }}</uri>
+  </author>
+  <icon>{{ site.url }}/favicon.svg</icon>
+  <rights>© {% year %} {{ site.name }}</rights>
+{% for post in posts %}
+  {%- set entryUrl = site.url + post.url -%}
+  {%- set entryTitle = post.data.title + (": " + post.data.subtitle if post.data.subtitle else "") -%}
+  <entry>
+    <title>{{ entryTitle }}</title>
+    <link href="{{ entryUrl }}" rel="alternate" type="text/html"/>
+    <id>{{ entryUrl }}</id>
+    <published>{{ post.date | rfc3339 }}</published>
+    <updated>{{ post.date | rfc3339 }}</updated>
+    {% if post.data.description %}<summary>{{ post.data.description }}</summary>{% endif %}
+    <content type="html">{{ post.templateContent | absoluteUrls(site.url) }}</content>
+  </entry>
+{% endfor %}
+</feed>

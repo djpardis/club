@@ -1,0 +1,29 @@
+---
+layout: base.njk
+bodyClass: page-post
+---
+<article>
+  <header class="mixtape-post__header section">
+    <div class="container">
+      <div class="page-head">
+        <p class="eyebrow">{{ year }} mixtape</p>
+        <p class="booking-back">
+          <a href="/#listen">
+            <span class="booking-back__arrow" aria-hidden="true">←</span>
+            <span class="booking-back__label">Mixtapes</span>
+          </a>
+        </p>
+      </div>
+
+      <h1 class="page-title">{{ title }}</h1>
+      {% if subtitle %}
+        <p class="mixtape-post__subtitle lead">{{ subtitle }}</p>
+      {% endif %}
+      <p class="mixtape-post__date meta">{{ displayDate }}</p>
+    </div>
+  </header>
+
+  <div class="mixtape-post__body container">
+    {{ content | safe }}
+  </div>
+</article>
