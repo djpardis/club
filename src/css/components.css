@@ -1289,23 +1289,27 @@
 /* Shared top padding for booking + post pages — eyebrow lands at the
    same pixel offset on every page that uses the .page-head pattern. */
 .page-booking .section,
-.page-post .section {
+.page-post .section,
+.page-mixtapes .section {
   padding-block: var(--sp-8);
 }
 
 /* Mobile: tighten so page content starts higher on small screens. */
 @media (max-width: 720px) {
   .page-booking .section,
-  .page-post .section {
+  .page-post .section,
+  .page-mixtapes .section {
     padding-block: var(--sp-5) var(--sp-7);
   }
 
   .page-booking .page-title,
-  .page-post .page-title {
+  .page-post .page-title,
+  .page-mixtapes .page-title {
     margin-block: var(--sp-3) var(--sp-4);
   }
 
-  .page-booking .lead {
+  .page-booking .lead,
+  .page-mixtapes .lead {
     margin-bottom: var(--sp-5);
     font-size: var(--fs-body);
   }
