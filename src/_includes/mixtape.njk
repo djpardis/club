@@ -5,15 +5,10 @@ bodyClass: page-post
 <article>
   <header class="mixtape-post__header section">
     <div class="container">
-      <div class="page-head">
-        <p class="eyebrow">{{ year }} mixtape</p>
-        <p class="booking-back">
-          <a href="/mixtapes/">
-            <span class="booking-back__arrow" aria-hidden="true">←</span>
-            <span class="booking-back__label">Mixtapes</span>
-          </a>
-        </p>
-      </div>
+      {% set headEyebrow = year + " mixtape" %}
+      {% set headBackHref = "/mixtapes/" %}
+      {% set headBackLabel = "Mixtapes" %}
+      {% include "page-head.njk" %}
 
       <h1 class="page-title">{{ title }}</h1>
       {% if subtitle %}

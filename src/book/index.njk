@@ -5,25 +5,25 @@ description: Book DJ Pardis for company events, conferences, gallery openings, t
 bodyClass: page-booking
 noIndex: true
 ---
-<section class="section">
-  <div class="container">
-    <div class="page-head">
-      <p class="eyebrow">Booking inquiry</p>
-      <p class="booking-back">
-        <a href="/">
-          <span class="booking-back__arrow" aria-hidden="true">←</span>
-          <span class="booking-back__label">Home</span>
-        </a>
-      </p>
+<article class="booking-page">
+  <header class="booking-page__header section">
+    <div class="container">
+      {% set headEyebrow = "Booking inquiry" %}
+      {% set headBackHref = "/" %}
+      {% set headBackLabel = "Home" %}
+      {% include "page-head.njk" %}
+      <h1 class="page-title"><span class="hl">Book us</span> for your event.</h1>
+      <p class="lead">Book us to deejay your company events, conferences, gallery openings, and themed parties. We respond within 48 hours.</p>
     </div>
-    <h1 class="page-title"><span class="hl">Book us</span> for your event.</h1>
-    <p class="lead">Book us to deejay your company events, conferences, gallery openings, and themed parties. We respond within 48 hours.</p>
+  </header>
 
-    <form
-      class="booking-form"
-      action="https://formspree.io/f/{{ site.formspreeId }}"
-      method="POST"
-    >
+  <section class="booking-page__body section">
+    <div class="container">
+      <form
+        class="booking-form"
+        action="https://formspree.io/f/{{ site.formspreeId }}"
+        method="POST"
+      >
       <input type="hidden" name="_next" value="{{ site.url }}/book/thanks/" />
       <input type="hidden" name="_subject" value="New booking inquiry — djpardis.club" />
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -40,13 +40,15 @@ noIndex: true
             <input type="text" id="last-name" name="last_name" required autocomplete="family-name" />
           </div>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required autocomplete="email" />
-        </div>
-        <div class="field">
-          <label for="company">Company or venue</label>
-          <input type="text" id="company" name="company" required autocomplete="organization" />
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="company">Company or venue</label>
+            <input type="text" id="company" name="company" required autocomplete="organization" />
+          </div>
         </div>
       </fieldset>
 
@@ -98,9 +100,10 @@ noIndex: true
         </div>
       </fieldset>
 
-      <div class="form-submit">
-        <button type="submit" class="btn btn--primary btn--lg">Submit <span aria-hidden="true">→</span></button>
-      </div>
-    </form>
-  </div>
-</section>
+        <div class="form-submit">
+          <button type="submit" class="btn btn--primary btn--lg">Submit <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</article>

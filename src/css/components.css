@@ -1276,10 +1276,21 @@
   display: flex;
   flex-direction: column;
   max-width: 44rem;
+  margin-inline: 0;
+}
+
+.booking-page__header {
+  background: var(--cream);
+}
+
+.booking-page__body {
+  background: #fff;
 }
 
 .booking-form > .fieldset + .fieldset {
-  margin-top: var(--sp-7);
+  margin-top: var(--sp-4);
+  padding-top: 0;
+  border-top: 0;
 }
 
 .booking-form > .form-submit {
@@ -1315,7 +1326,8 @@
   }
 
   .booking-form > .fieldset + .fieldset {
-    margin-top: var(--sp-6);
+    margin-top: var(--sp-3);
+    padding-top: 0;
   }
 
   .booking-form .fieldset {
@@ -1346,11 +1358,13 @@
 
 .fieldset {
   border: 0;
+  background: transparent;
+  border-radius: 0;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-4);
+  gap: var(--sp-3);
 }
 
 /* Fieldset legend mirrors the home page's // section-label typography. */
@@ -1380,6 +1394,10 @@
   .field-row {
     grid-template-columns: 1fr;
   }
+
+  .fieldset {
+    padding: 0;
+  }
 }
 
 .field {
@@ -1391,10 +1409,10 @@
 .field label {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  font-weight: 500;
-  color: var(--ink);
+  font-weight: 400;
+  color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
 }
 
 .field:has(> input[required], > textarea[required], > select[required]) > label::after {
@@ -1418,19 +1436,19 @@
   font-family: var(--font-body);
   font-size: 1.0625rem;
   color: var(--ink);
-  background: transparent;
-  border: 1.5px solid var(--ink);
+  background: color-mix(in srgb, var(--cream) 55%, #fff);
+  border: 0;
   border-radius: var(--r-sm);
-  padding: 0.85em 0.95em;
+  padding: 0.62em 0.72em;
   width: 100%;
-  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+  transition: border-color var(--t-fast), background-color var(--t-fast);
   -webkit-appearance: none;
   appearance: none;
 }
 
 .field textarea {
   resize: vertical;
-  min-height: 7.5rem;
+  min-height: 5.25rem;
   line-height: 1.5;
 }
 
@@ -1440,16 +1458,34 @@
   opacity: 0.8;
 }
 
+/* Normalize native date control text so it matches other inputs */
+.field input[type="date"] {
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+
+.field input[type="date"]::-webkit-datetime-edit,
+.field input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+.field input[type="date"]::-webkit-datetime-edit-text,
+.field input[type="date"]::-webkit-datetime-edit-month-field,
+.field input[type="date"]::-webkit-datetime-edit-day-field,
+.field input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--ink);
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.75;
+}
+
 .field input:hover,
 .field textarea:hover {
-  border-color: var(--purple);
+  background: color-mix(in srgb, var(--cream) 62%, #fff);
 }
 
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--purple-deep);
-  box-shadow: 0 0 0 3px var(--focus-ring);
+  background: color-mix(in srgb, var(--cream) 70%, #fff);
 }
 
 /* Invalid state only after the user has interacted — subtle, no shouting. */

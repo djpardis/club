@@ -6,17 +6,12 @@ bodyClass: page-mixtapes
 ---
 <section class="section">
   <div class="container">
-    <div class="page-head">
-      <p class="eyebrow">Mixtapes archive</p>
-      <p class="booking-back">
-        <a href="/">
-          <span class="booking-back__arrow" aria-hidden="true">←</span>
-          <span class="booking-back__label">Home</span>
-        </a>
-      </p>
-    </div>
+    {% set headEyebrow = "Mixtapes archive" %}
+    {% set headBackHref = "/" %}
+    {% set headBackLabel = "Home" %}
+    {% include "page-head.njk" %}
     <h1 class="page-title"><span class="hl">All mixtapes</span>.</h1>
-    <p class="lead">One mixtape every year, with track notes and links.</p>
+    <p class="lead">One mixtape every year, with track notes and links.<br /><a class="mixtapes-head__feed" href="/feed.xml">Subscribe (RSS)</a></p>
 
     <ul class="mixtapes-grid">
       {% for m in mixtapes | sortMixtapesDesc %}
