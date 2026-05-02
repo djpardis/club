@@ -18,10 +18,6 @@ eleventyExcludeFromCollections: true
       <image:loc>{{ site.url }}{{ site.hero.photo }}</image:loc>
       <image:caption>{{ site.hero.alt | xmlEscape }}</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>{{ site.url }}{{ site.defaultOg.path }}</image:loc>
-      <image:caption>{{ site.defaultOg.alt | xmlEscape }}</image:caption>
-    </image:image>
     {%- for item in gallery %}
     <image:image>
       <image:loc>{{ site.url }}{{ item.src }}</image:loc>

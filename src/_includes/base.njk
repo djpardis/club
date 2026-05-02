@@ -106,21 +106,17 @@
           "width": {{ site.hero.width }},
           "height": {{ site.hero.height }},
           "caption": {{ site.hero.alt | jsonEncode | safe }}
-        },
+        }{% if gallery and gallery.length %},
         "image": [
-          {
-            "@type": "ImageObject",
-            "url": "{{ site.url }}{{ site.hero.photo }}",
-            "width": {{ site.hero.width }},
-            "height": {{ site.hero.height }},
-            "caption": {{ site.hero.alt | jsonEncode | safe }}
-          }{% for item in gallery %},
+          {% for item in gallery %}
           {
             "@type": "ImageObject",
             "url": "{{ site.url }}{{ item.src }}",
             "caption": {{ (item.caption or item.alt) | jsonEncode | safe }}
-          }{% endfor %}
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
         ]
+        {% endif %}
       }
     </script>
     {% endif %}
@@ -137,34 +133,6 @@
           "{{ site.socials.mixcloud }}",
           "{{ site.socials.soundcloud }}",
           "{{ site.socials.instagram }}"
-        ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "MusicGroup",
-        "name": "DJ Pardis",
-        "alternateName": ["djpardis"],
-        "genre": ["Pop house", "Dance pop", "House"],
-        "url": "{{ site.url }}",
-        "image": [
-          "{{ site.url }}{{ site.hero.photo }}"{% for item in gallery %},
-          "{{ site.url }}{{ item.src }}"{% endfor %}
-        ],
-        "foundingLocation": {
-          "@type": "Place",
-          "name": "San Francisco, CA"
-        },
-        "member": {
-          "@type": "Person",
-          "name": "DJ Pardis"
-        },
-        "sameAs": [
-          "{{ site.socials.mixcloud }}",
-          "{{ site.socials.soundcloud }}",
-          "{{ site.socials.instagram }}",
-          "https://djpardis.com"
         ]
       }
     </script>
