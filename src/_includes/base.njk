@@ -29,7 +29,27 @@
     {% else %}
       {% set ogTitle = site.name + ' — ' + site.tagline %}
     {% endif %}
-    {% set ogImage = site.url + (ogImage or '/og.png') %}
+    {#- Homepage: use the real hero photo for og/twitter so crawlers match on-page <img>.
+        Other pages: optional front-matter ogImage, else default card. -#}
+    {% if ogImage %}
+      {% set ogPath = ogImage %}
+    {% elif page.url == "/" %}
+      {% set ogPath = site.hero.photo %}
+    {% else %}
+      {% set ogPath = site.defaultOg.path %}
+    {% endif %}
+    {% set ogImage = site.url + ogPath %}
+    {% if ogPath == site.hero.photo %}
+      {% set ogImageW = site.hero.width %}
+      {% set ogImageH = site.hero.height %}
+      {% set ogImageType = site.hero.mimeType %}
+      {% set ogImageAlt = site.hero.alt %}
+    {% else %}
+      {% set ogImageW = site.defaultOg.width %}
+      {% set ogImageH = site.defaultOg.height %}
+      {% set ogImageType = site.defaultOg.mimeType %}
+      {% set ogImageAlt = site.defaultOg.alt %}
+    {% endif %}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:locale" content="en_US" />
@@ -37,9 +57,11 @@
     <meta property="og:description" content="{{ description or site.description }}" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
     <meta property="og:image" content="{{ ogImage }}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="DJ Pardis — pop house · West Coast · booking worldwide" />
+    <meta property="og:image:secure_url" content="{{ ogImage }}" />
+    <meta property="og:image:type" content="{{ ogImageType }}" />
+    <meta property="og:image:width" content="{{ ogImageW }}" />
+    <meta property="og:image:height" content="{{ ogImageH }}" />
+    <meta property="og:image:alt" content="{{ ogImageAlt }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ ogTitle }}" />
     <meta name="twitter:description" content="{{ description or site.description }}" />
@@ -58,7 +80,10 @@
         "url": "{{ site.url }}",
         "jobTitle": "DJ",
         "description": "{{ site.description }}",
-        "image": "{{ site.url }}{{ site.hero.photo }}",
+        "image": [
+          "{{ site.url }}{{ site.hero.photo }}"{% for item in gallery %},
+          "{{ site.url }}{{ item.src }}"{% endfor %}
+        ],
         "sameAs": [
           "{{ site.socials.mixcloud }}",
           "{{ site.socials.soundcloud }}",
@@ -78,8 +103,24 @@
         "primaryImageOfPage": {
           "@type": "ImageObject",
           "url": "{{ site.url }}{{ site.hero.photo }}",
-          "caption": "{{ site.hero.alt }}"
-        }
+          "width": {{ site.hero.width }},
+          "height": {{ site.hero.height }},
+          "caption": {{ site.hero.alt | jsonEncode | safe }}
+        },
+        "image": [
+          {
+            "@type": "ImageObject",
+            "url": "{{ site.url }}{{ site.hero.photo }}",
+            "width": {{ site.hero.width }},
+            "height": {{ site.hero.height }},
+            "caption": {{ site.hero.alt | jsonEncode | safe }}
+          }{% for item in gallery %},
+          {
+            "@type": "ImageObject",
+            "url": "{{ site.url }}{{ item.src }}",
+            "caption": {{ (item.caption or item.alt) | jsonEncode | safe }}
+          }{% endfor %}
+        ]
       }
     </script>
     {% endif %}
@@ -107,7 +148,10 @@
         "alternateName": ["djpardis"],
         "genre": ["Pop house", "Dance pop", "House"],
         "url": "{{ site.url }}",
-        "image": "{{ site.url }}{{ site.hero.photo }}",
+        "image": [
+          "{{ site.url }}{{ site.hero.photo }}"{% for item in gallery %},
+          "{{ site.url }}{{ item.src }}"{% endfor %}
+        ],
         "foundingLocation": {
           "@type": "Place",
           "name": "San Francisco, CA"

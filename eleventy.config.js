@@ -66,6 +66,20 @@ export default function (eleventyConfig) {
     return d.toISOString();
   });
 
+  /** JSON-stringify a value for safe embedding inside application/ld+json (quotes, newlines). */
+  eleventyConfig.addFilter("jsonEncode", (value) => JSON.stringify(value ?? ""));
+
+  /** Escape text for XML (sitemap captions, etc.). */
+  eleventyConfig.addFilter("xmlEscape", (value) => {
+    if (value == null) return "";
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&apos;");
+  });
+
   // All mixtape post pages, newest first.
   eleventyConfig.addCollection("mixtapes", (collectionApi) => {
     return collectionApi

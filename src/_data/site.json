@@ -3,6 +3,13 @@
   "tagline": "Pop house · West Coast · Booking worldwide",
   "description": "DJ Pardis — pop house DJ based on the West Coast, booking worldwide. Book us for company events, conferences, gallery openings, themed parties.",
   "url": "https://djpardis.club",
+  "defaultOg": {
+    "path": "/og.png",
+    "width": 1200,
+    "height": 630,
+    "mimeType": "image/png",
+    "alt": "DJ Pardis — pop house · West Coast · booking worldwide"
+  },
   "email": {
     "user": "djpardis.official",
     "domain": "gmail.com"
@@ -15,7 +22,10 @@
     "instagram": "https://instagram.com/djpardis.club"
   },
   "hero": {
-    "photo": "/images/hero-live.jpg",
+    "photo": "/images/djpardis.jpg",
+    "width": 800,
+    "height": 519,
+    "mimeType": "image/jpeg",
     "alt": "DJ Pardis performing live at The New Parish, Oakland, July 2019",
     "credit": "Jesse Meria · The New Parish · July 2019"
   }
