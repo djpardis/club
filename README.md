@@ -1,4 +1,4 @@
-Eleventy static site. Content in `src/_data/*.json`.
+11ty static site. Content in `src/_data/*.json`.
 
 ```
 npm install
