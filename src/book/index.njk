@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-documentTitle: "Book now"
-description: Book DJ Pardis for company events, conferences, gallery openings, themed parties. We respond within 48 hours.
+documentTitle: "Check dates for your event."
+description: Book us for your company events, conferences, gallery openings, themed parties. We respond within 48 hours.
 bodyClass: page-booking
 noIndex: true
 ---
@@ -12,8 +12,8 @@ noIndex: true
       {% set headBackHref = "/" %}
       {% set headBackLabel = "Home" %}
       {% include "page-head.njk" %}
-      <h1 class="page-title"><span class="hl">Book us</span> for your event.</h1>
-      <p class="lead">Book us to deejay your company events, conferences, gallery openings, and themed parties. We respond within 48 hours.</p>
+      <h1 class="page-title"><span class="hl">Check dates</span> for your event.</h1>
+      <p class="lead">We respond within 48 hours.</p>
     </div>
   </header>
 
@@ -32,22 +32,12 @@ noIndex: true
         <legend class="fieldset__legend">// <span class="fieldset__num">01</span> Contact</legend>
         <div class="field-row">
           <div class="field">
-            <label for="first-name">First name</label>
-            <input type="text" id="first-name" name="first_name" required autocomplete="given-name" />
+            <label for="full-name">Full name</label>
+            <input type="text" id="full-name" name="full_name" required autocomplete="name" />
           </div>
-          <div class="field">
-            <label for="last-name">Last name</label>
-            <input type="text" id="last-name" name="last_name" required autocomplete="family-name" />
-          </div>
-        </div>
-        <div class="field-row">
           <div class="field">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required autocomplete="email" />
-          </div>
-          <div class="field">
-            <label for="company">Company or venue</label>
-            <input type="text" id="company" name="company" required autocomplete="organization" />
           </div>
         </div>
       </fieldset>
@@ -61,7 +51,7 @@ noIndex: true
           </div>
           <div class="field">
             <label for="event-location">Event location</label>
-            <input type="text" id="event-location" name="event_location" required placeholder="City, state / country" />
+            <input type="text" id="event-location" name="event_location" required placeholder="City, neighborhood, or venue name" />
           </div>
         </div>
         <div class="field">
@@ -71,32 +61,10 @@ noIndex: true
       </fieldset>
 
       <fieldset class="fieldset">
-        <legend class="fieldset__legend">// <span class="fieldset__num">03</span> Details <span class="field__optional">(all optional)</span></legend>
-        <div class="field-row">
-          <div class="field">
-            <label for="guest-count">Approximate guest count</label>
-            <input type="number" id="guest-count" name="guest_count" min="1" inputmode="numeric" placeholder="e.g. 200" />
-          </div>
-          <div class="field">
-            <label for="budget">Budget range</label>
-            <input type="text" id="budget" name="budget" placeholder="e.g. $2–5k" />
-          </div>
-        </div>
+        <legend class="fieldset__legend">// <span class="fieldset__num">03</span> Details</legend>
         <div class="field">
-          <label for="music-vibe">Music vibe or references</label>
-          <textarea id="music-vibe" name="music_vibe" rows="3" placeholder="Artists, playlists, past events — anything that sets the tone."></textarea>
-        </div>
-        <div class="field">
-          <label for="other-acts">Other acts on the bill</label>
-          <input type="text" id="other-acts" name="other_acts" placeholder="DJs, bands, performers" />
-        </div>
-        <div class="field">
-          <label for="venue-details">Venue details / setup</label>
-          <textarea id="venue-details" name="venue_details" rows="3" placeholder="Indoor / outdoor, stage, sound system, load-in notes…"></textarea>
-        </div>
-        <div class="field">
-          <label for="message">Anything else</label>
-          <textarea id="message" name="message" rows="3" placeholder="Whatever didn't fit above."></textarea>
+          <label for="comments">Comments <span class="field__optional">(optional)</span></label>
+          <textarea id="comments" name="comments" rows="4" placeholder="Any details you'd like to share about your event, like the venue, crowd, or vibe."></textarea>
         </div>
       </fieldset>
 

@@ -29,6 +29,8 @@
   --fs-h2: clamp(1.75rem, 2.5vw, 2.5rem);
   --fs-h1: clamp(2.5rem, 6vw, 4.5rem);
   --fs-display: clamp(3.75rem, 11vw, 8.75rem);
+  /* Hero tagline + social link labels (same optical size) */
+  --hero-subline-size: clamp(1rem, 1.5vw, 1.25rem);
 
   /* Line heights */
   --lh-tight: 0.88;

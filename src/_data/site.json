@@ -17,10 +17,9 @@
   "formspreeId": "xldnywyl",
   "mixcloudEmbedUrl": "https://www.mixcloud.com/widget/iframe/?feed=%2Fdjpardis%2F&hide_cover=1&mini=0&light=1",
   "socials": {
-    "mixcloud": "https://mixcloud.com/djpardis",
-    "soundcloud": "https://soundcloud.com/djpardis",
     "instagram": "https://instagram.com/djpardis.club",
-    "bandcamp": "https://bandcamp.com/djpardis"
+    "soundcloud": "https://soundcloud.com/djpardis",
+    "mixcloud": "https://mixcloud.com/djpardis"
   },
   "hero": {
     "photo": "/images/djpardis.jpg",

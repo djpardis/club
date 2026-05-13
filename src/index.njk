@@ -14,39 +14,58 @@ bodyClass: page-home
         <span class="wordmark-display__line"><span class="hl">PARDIS</span></span>
       </h1>
       <p class="hero__tagline"><span class="hl-pink">Pop house</span> · West Coast · Booking worldwide</p>
-      <div class="hero__cta-row">
+      <div class="hero__cta-bar">
         <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
+        <nav class="hero__socials" aria-label="Social">
+          <ul>
+          <li>
+            <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer">
+              <span class="hero__socials-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.788-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.234.413.562.217.96.478 1.378.896.419.42.679.819.896 1.378.164.429.358 1.066.413 2.234.056 1.266.07 1.646.07 4.85s-.015 3.585-.07 4.85c-.055 1.17-.249 1.805-.413 2.234-.217.562-.479.96-.897 1.378-.419.418-.818.679-1.378.896-.428.164-1.065.358-2.234.413-1.266.056-1.646.07-4.85.07-3.204 0-3.584-.015-4.85-.07-1.17-.055-1.805-.25-2.234-.413-.569-.224-.96-.479-1.379-.897-.421-.419-.69-.818-.9-1.378-.165-.429-.359-1.066-.413-2.234-.057-1.266-.07-1.646-.07-4.85 0-3.204.013-3.583.07-4.85.055-1.17.25-1.805.413-2.234.224-.569.48-.96.9-1.379.419-.421.75-.69 1.379-.9.428-.164 1.066-.357 2.23-.413 1.266-.057 1.646-.07 4.85-.07zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm7.806-11.845a1.44 1.44 0 11.001 2.881 1.44 1.44 0 000-2.881z"
+                  />
+                </svg>
+              </span>
+              <span class="hero__socials-label">Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer">
+              <span class="hero__socials-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+                  <rect fill="currentColor" x="2" y="11" width="2.6" height="7" rx="0.65" />
+                  <rect fill="currentColor" x="6.2" y="8" width="2.6" height="13" rx="0.65" />
+                  <rect fill="currentColor" x="10.4" y="5" width="2.6" height="16" rx="0.65" />
+                  <rect fill="currentColor" x="14.6" y="9" width="2.6" height="12" rx="0.65" />
+                  <rect fill="currentColor" x="18.8" y="12" width="2.6" height="6" rx="0.65" />
+                </svg>
+              </span>
+              <span class="hero__socials-label">SoundCloud</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">
+              <span class="hero__socials-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M4.5 14.25C4.5 10.8 7.3 8.25 10.75 8.25c.65 0 1.28.12 1.87.35A5.25 5.25 0 0117.5 6a5.26 5.26 0 015.25 5.25v.75H4.5v-2.75z"
+                  />
+                  <rect fill="currentColor" x="2" y="15.5" width="2.75" height="5" rx="0.5" />
+                  <rect fill="currentColor" x="6.25" y="15.5" width="2.75" height="7" rx="0.5" />
+                  <rect fill="currentColor" x="10.5" y="15.5" width="2.75" height="4.5" rx="0.5" />
+                  <rect fill="currentColor" x="14.75" y="15.5" width="2.75" height="6.25" rx="0.5" />
+                  <rect fill="currentColor" x="19" y="15.5" width="3" height="3.5" rx="0.5" />
+                </svg>
+              </span>
+              <span class="hero__socials-label">Mixcloud</span>
+            </a>
+          </li>
+          </ul>
+        </nav>
       </div>
-      <nav class="hero__nav" aria-label="Sections">
-        <ul>
-          <li>
-            <a href="#about">
-              <span class="hero__nav-num" aria-hidden="true">01</span>
-              <span class="hero__nav-label">About</span>
-            </a>
-          </li>
-          <li>
-            <a href="#gigs">
-              <span class="hero__nav-num" aria-hidden="true">02</span>
-              <span class="hero__nav-label">Gigs</span>
-            </a>
-          </li>
-          <li>
-            <a href="#listen">
-              <span class="hero__nav-num" aria-hidden="true">03</span>
-              <span class="hero__nav-label">Listen</span>
-            </a>
-          </li>
-          {% if gallery and gallery.length %}
-          <li>
-            <a href="#gallery">
-              <span class="hero__nav-num" aria-hidden="true">04</span>
-              <span class="hero__nav-label">Gallery</span>
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </nav>
     </div>
     <figure class="hero__media">
       <img
@@ -117,19 +136,18 @@ bodyClass: page-home
         </div>
         <div>
           <dt>Sound</dt>
-          <dd>Pop house, dance pop, groove-forward edits</dd>
+          <dd>Pop house . Dance pop . Downtempo</dd>
         </div>
         <div>
           <dt>Plays well at</dt>
-          <dd>Company events, conferences, gallery openings, themed parties</dd>
+          <dd>Company events · Conferences · Gallery openings · Theme nights · Product launches · Fundraisers</dd>
         </div>
         <div>
           <dt>Follow me</dt>
           <dd>
-            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">Mixcloud</a> ·
-            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer">SoundCloud</a> ·
             <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer">Instagram</a> ·
-            <a href="{{ site.socials.bandcamp }}" target="_blank" rel="me noopener noreferrer">Bandcamp</a>
+            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer">SoundCloud</a> ·
+            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">Mixcloud</a>
           </dd>
         </div>
       </dl>
@@ -161,8 +179,8 @@ bodyClass: page-home
       <div class="upcoming-block">
         <h3 class="upcoming-block__headline">Next date <span class="hl-pink">TBA</span>.<br />Book your next event.</h3>
         <div class="upcoming-block__body">
-          <p>Whether it's company events, conferences, gallery openings, or themed parties, tell us the date, the vibe, and the guest count, and we'll be there.</p>
-          <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
+          <p>Whether it's conferences, gallery openings, or product launches, tell us the date, the vibe, and the location, and we'll be there.</p>
+          <a class="btn btn--primary btn--lg upcoming-block__cta" href="/book/">Check dates <span aria-hidden="true">→</span></a>
         </div>
       </div>
     {% endif %}
