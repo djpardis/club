@@ -13,20 +13,20 @@ noIndex: true
       {% set headBackLabel = "Home" %}
       {% include "page-head.njk" %}
       <h1 class="page-title"><span class="hl">Check dates</span> for your event.</h1>
-      <p class="lead">We respond within 48 hours.</p>
+      <p class="booking-page__subtitle lead">We respond within 48 hours.</p>
     </div>
   </header>
 
   <section class="booking-page__body section">
-    <div class="container">
+    <div class="booking-page__body-inner container">
       <form
         class="booking-form"
-        action="https://formspree.io/f/{{ site.formspreeId }}"
+        action="{{ site.forms.booking.action }}"
         method="POST"
+        data-booking-form
+        data-success-url="/book/thanks/"
       >
-      <input type="hidden" name="_next" value="{{ site.url }}/book/thanks/" />
-      <input type="hidden" name="_subject" value="New booking inquiry — djpardis.club" />
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <fieldset class="fieldset">
         <legend class="fieldset__legend">// <span class="fieldset__num">01</span> Contact</legend>
@@ -47,7 +47,7 @@ noIndex: true
         <div class="field-row">
           <div class="field">
             <label for="event-date">Event date</label>
-            <input type="date" id="event-date" name="event_date" required />
+            <input type="date" id="event-date" name="event_date" required data-event-date />
           </div>
           <div class="field">
             <label for="event-location">Event location</label>
@@ -69,9 +69,93 @@ noIndex: true
       </fieldset>
 
         <div class="form-submit">
+          <p class="form-status" data-booking-status role="status" aria-live="polite"></p>
           <button type="submit" class="btn btn--primary btn--lg">Submit <span aria-hidden="true">→</span></button>
         </div>
       </form>
+      <noscript>
+        <p class="form-status">After submitting, you may see a JSON confirmation from the form service.</p>
+      </noscript>
     </div>
   </section>
 </article>
+
+<script>
+  (function () {
+    var form = document.querySelector('[data-booking-form]');
+    if (!form) return;
+
+    var status = form.querySelector('[data-booking-status]');
+    var button = form.querySelector('button[type="submit"]');
+    var dateInput = form.querySelector('[data-event-date]');
+
+    function todayString() {
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = String(now.getMonth() + 1).padStart(2, '0');
+      var day = String(now.getDate()).padStart(2, '0');
+      return year + '-' + month + '-' + day;
+    }
+
+    function setDateBounds() {
+      if (dateInput) dateInput.min = todayString();
+    }
+
+    function validateEventDate() {
+      if (!dateInput) return true;
+
+      setDateBounds();
+      if (dateInput.value && dateInput.value < dateInput.min) {
+        dateInput.setCustomValidity('Choose today or a future date.');
+        if (status) status.textContent = 'Choose today or a future date.';
+        return false;
+      }
+
+      dateInput.setCustomValidity('');
+      return true;
+    }
+
+    setDateBounds();
+    if (dateInput) {
+      dateInput.addEventListener('input', validateEventDate);
+      dateInput.addEventListener('change', validateEventDate);
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!validateEventDate() || !form.reportValidity()) return;
+      if (!window.fetch || !window.FormData) {
+        form.submit();
+        return;
+      }
+
+      if (status) status.textContent = 'Sending...';
+      if (button) {
+        button.disabled = true;
+      }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form)
+      }).then(function (response) {
+        if (response.ok) return;
+        return response.json().catch(function () {
+          return {};
+        }).then(function (body) {
+          throw new Error(body.error || 'Form submission failed');
+        });
+      }).then(function () {
+        window.location.href = form.dataset.successUrl || '/book/thanks/';
+      }).catch(function (error) {
+        if (status) {
+          status.textContent = error instanceof TypeError
+            ? 'We could not reach the form service. Please try again in a minute.'
+            : error.message || 'Something went wrong. Please try again.';
+        }
+        if (button) {
+          button.disabled = false;
+        }
+      });
+    });
+  })();
+</script>

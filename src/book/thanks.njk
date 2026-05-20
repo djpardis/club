@@ -5,15 +5,24 @@ description: Thanks for your booking inquiry. We'll be in touch within 48 hours.
 bodyClass: page-thanks
 noIndex: true
 ---
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">/// Received</p>
-    <h1 class="page-title"><span class="hl">Thanks</span> — we'll be in touch.</h1>
-    <p class="lead">
+<article>
+  <header class="thanks-page__header section">
+    <div class="container">
+      {% set headEyebrow = "Received" %}
+      {% set headBackHref = "/book/" %}
+      {% set headBackLabel = "Booking" %}
+      {% include "page-head.njk" %}
+
+      <h1 class="page-title"><span class="hl">Thanks</span>, we'll be in touch.</h1>
+    </div>
+  </header>
+
+  <div class="thanks-page__body container">
+    <p>
       Your inquiry landed. We respond within 48 hours.
     </p>
     <p>
       In the meantime, <a href="/#listen">have a listen</a> or head <a href="/">back home</a>.
     </p>
   </div>
-</section>
+</article>

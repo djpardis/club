@@ -1308,8 +1308,11 @@
 .booking-form {
   display: flex;
   flex-direction: column;
-  max-width: 44rem;
-  margin-inline: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  font-family: var(--font-body);
+  font-size: 1.375rem;
+  line-height: 1.6;
 }
 
 .booking-page__header {
@@ -1320,14 +1323,29 @@
   background: #fff;
 }
 
+.booking-page__subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink-2);
+  margin: 0 0 var(--sp-4);
+  max-width: 40ch;
+}
+
+.booking-page__body-inner {
+  max-width: calc(680px + 2 * var(--gutter));
+}
+
 .booking-form > .fieldset + .fieldset {
-  margin-top: var(--sp-4);
+  margin-top: var(--sp-6);
   padding-top: 0;
   border-top: 0;
 }
 
 .booking-form > .form-submit {
-  margin-top: var(--sp-5);
+  margin-top: var(--sp-6);
 }
 
 /* Shared top padding for booking + post pages — eyebrow lands at the
@@ -1352,10 +1370,15 @@
     margin-block: var(--sp-3) var(--sp-4);
   }
 
-  .page-booking .lead,
+  .page-booking .lead:not(.booking-page__subtitle),
   .page-mixtapes .lead {
     margin-bottom: var(--sp-5);
     font-size: var(--fs-body);
+  }
+
+  .booking-page__subtitle {
+    font-size: 1.25rem;
+    margin-bottom: var(--sp-4);
   }
 
   .booking-form > .fieldset + .fieldset {
@@ -1368,7 +1391,13 @@
   }
 
   .booking-form .fieldset__legend {
+    font-size: 1.5rem;
     margin-bottom: var(--sp-2);
+  }
+
+  .booking-form {
+    font-size: 1.25rem;
+    line-height: 1.6;
   }
 
   .booking-form .field input,
@@ -1397,24 +1426,28 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-4);
 }
 
-/* Fieldset legend mirrors the home page's // section-label typography. */
 .fieldset__legend {
-  font-family: var(--font-mono);
-  font-size: var(--fs-meta);
-  font-weight: 500;
-  color: var(--purple);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  line-height: 1;
   padding: 0;
   margin-bottom: var(--sp-3);
 }
 
 .fieldset__num {
-  font-weight: 700;
-  margin-inline: 0.15em;
+  color: var(--purple);
+  font-family: var(--font-body);
+  font-size: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-inline: 0.1em;
+  vertical-align: 0.15em;
 }
 
 .field-row {
@@ -1440,12 +1473,12 @@
 }
 
 .field label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 400;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
   color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .field:has(> input[required], > textarea[required], > select[required]) > label::after {
@@ -1467,12 +1500,13 @@
 .field input,
 .field textarea {
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
+  line-height: 1.45;
   color: var(--ink);
-  background: color-mix(in srgb, var(--cream) 55%, #fff);
-  border: 0;
+  background: #fff;
+  border: 1px solid var(--ink);
   border-radius: var(--r-sm);
-  padding: 0.62em 0.72em;
+  padding: 0.8em 0.9em;
   width: 100%;
   transition: border-color var(--t-fast), background-color var(--t-fast);
   -webkit-appearance: none;
@@ -1512,19 +1546,14 @@
 
 .field input:hover,
 .field textarea:hover {
-  background: color-mix(in srgb, var(--cream) 62%, #fff);
+  background: color-mix(in srgb, var(--cream) 20%, #fff);
 }
 
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  background: color-mix(in srgb, var(--cream) 70%, #fff);
-}
-
-/* Invalid state only after the user has interacted — subtle, no shouting. */
-.field input:not(:placeholder-shown):invalid,
-.field textarea:not(:placeholder-shown):invalid {
-  border-color: var(--muted);
+  background: #fff;
+  border-color: var(--ink);
 }
 
 /* Keep the transparent fill across Chrome/Safari autofill. */
@@ -1543,8 +1572,35 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--sp-4);
+  gap: var(--sp-2) var(--sp-4);
   flex-wrap: wrap;
+}
+
+.form-submit .btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.form-status {
+  flex: 1 1 16rem;
+  color: var(--muted);
+  font-size: var(--fs-small);
+  margin: 0;
+  max-width: 28rem;
+  text-align: left;
+  margin-right: auto;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .form-status {
+    flex-basis: 100%;
+    max-width: none;
+    text-align: left;
+  }
 }
 
 /* ============================================================
@@ -1622,6 +1678,10 @@ body.page-post {
   background-color: #ffffff !important;
 }
 
+body.page-thanks {
+  background-color: #ffffff !important;
+}
+
 /* Subtitle — editor's deck */
 .mixtape-post__subtitle {
   font-family: var(--font-body);
@@ -1647,6 +1707,10 @@ body.page-post {
   background: var(--cream);
 }
 
+.thanks-page__header {
+  background: var(--cream);
+}
+
 /* ---- Reading column ---- */
 .mixtape-post__body {
   max-width: calc(680px + 2 * var(--gutter));
@@ -1658,7 +1722,19 @@ body.page-post {
   font-weight: 400;
 }
 
+.thanks-page__body {
+  max-width: calc(680px + 2 * var(--gutter));
+  padding-block: var(--sp-7) var(--sp-10);
+  font-family: var(--font-body);
+  font-size: 1.375rem;
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 400;
+}
+
 .mixtape-post__body > *:first-child { margin-top: 0; }
+
+.thanks-page__body > *:first-child { margin-top: 0; }
 
 /* Body-level children fill the reading column (figures override below) */
 .mixtape-post__body p,
@@ -1668,6 +1744,12 @@ body.page-post {
 }
 
 .mixtape-post__body p {
+  margin: 0 0 var(--sp-6);
+  color: var(--ink);
+  font-size: inherit;
+}
+
+.thanks-page__body p {
   margin: 0 0 var(--sp-6);
   color: var(--ink);
   font-size: inherit;
@@ -1799,7 +1881,8 @@ body.page-post {
 
 /* Mobile */
 @media (max-width: 640px) {
-  .mixtape-post__body {
+  .mixtape-post__body,
+  .thanks-page__body {
     font-size: 1.25rem;
     line-height: 1.6;
     padding-block: var(--sp-6) var(--sp-8);
