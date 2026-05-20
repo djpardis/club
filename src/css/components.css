@@ -211,7 +211,7 @@
 
 .hero__socials ul {
   list-style: none;
-  padding: 0.45rem 0.75rem;
+  padding: 0.45rem 0.8rem;
   margin: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -246,6 +246,8 @@
 
 .hero__socials-icon svg {
   display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .hero__socials-label {
@@ -268,7 +270,8 @@
 
 @media (min-width: 721px) {
   .hero__socials-item--soundcloud,
-  .hero__socials-item--mixcloud {
+  .hero__socials-item--mixcloud,
+  .hero__socials-item--instagram {
     display: list-item;
   }
 
