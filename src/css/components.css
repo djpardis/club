@@ -128,7 +128,7 @@
 }
 
 .hero__status {
-  margin-bottom: var(--sp-4);
+  margin-bottom: clamp(var(--sp-6), 7vh, var(--sp-9));
 }
 
 .wordmark-display {
@@ -158,7 +158,7 @@
   font-weight: 500;
   font-size: var(--hero-subline-size);
   color: var(--ink);
-  margin-bottom: var(--sp-5);
+  margin-bottom: var(--sp-7);
   line-height: 1.25;
   white-space: nowrap;
 }
@@ -175,8 +175,13 @@
    and grow the pink block's vertical padding so the overlap reads the
    same as it does on tablet/desktop. */
 @media (max-width: 720px) {
+  .hero__status {
+    margin-bottom: var(--sp-5);
+  }
+
   .hero__tagline {
     margin-top: -0.45em;
+    margin-bottom: var(--sp-5);
   }
 
   .hero__tagline .hl-pink {
@@ -185,44 +190,50 @@
 }
 
 .hero__cta-bar {
+  --hero-cta-height: 4rem;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  gap: var(--sp-3);
   justify-content: flex-start;
-  gap: var(--sp-3) var(--sp-5);
+  align-items: center;
 }
 
 .hero__cta-bar .btn {
-  flex: 0 0 auto;
+  justify-content: center;
+  min-height: var(--hero-cta-height);
 }
 
 .hero__socials {
   margin: 0;
-  flex: 0 1 auto;
   min-width: 0;
+  color: #fff;
 }
 
 .hero__socials ul {
   list-style: none;
-  padding: 0;
+  padding: 0.45rem 0.75rem;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
-  justify-content: flex-start;
-  gap: var(--sp-2);
+  gap: 0.15rem;
+  background: var(--purple);
+  border-radius: var(--r-pill);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 20%, transparent);
+  min-height: var(--hero-cta-height);
 }
 
 .hero__socials a {
   display: inline-flex;
   align-items: center;
-  color: var(--purple);
+  color: currentColor;
   text-decoration: none;
   justify-content: center;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
   padding: 0;
   position: relative;
+  transition: color var(--t-fast), transform var(--t-fast);
 }
 
 .hero__socials-icon {
@@ -262,41 +273,36 @@
   }
 
   .hero__cta-bar {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    column-gap: var(--sp-5);
-    row-gap: var(--sp-2);
+    gap: var(--sp-3);
   }
 
   .hero__socials {
-    width: 100%;
+    width: auto;
     max-width: none;
-    margin-top: var(--sp-3);
+    margin-top: 0;
   }
 
   .hero__socials ul {
-    justify-content: flex-start;
-    gap: var(--sp-3);
-    width: 100%;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .hero__socials a {
-    min-width: 0;
+    min-width: 2.25rem;
     min-height: 2.25rem;
   }
 
   .hero__socials-icon svg {
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
   }
 }
 
 @media (max-width: 720px) {
   .hero__cta-bar {
+    --hero-cta-height: 3.75rem;
     flex-wrap: nowrap;
     align-items: center;
-    gap: var(--sp-3);
+    gap: var(--sp-2);
     min-width: 0;
   }
 
@@ -307,20 +313,19 @@
   }
 
   .hero__socials ul {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: var(--sp-1);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 0.4rem 0.55rem;
   }
 
   .hero__socials a {
-    min-width: 2.5rem;
-    min-height: 2.5rem;
+    min-width: 2rem;
+    min-height: 2rem;
     padding: 0;
   }
 
   .hero__socials-icon svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -333,6 +338,7 @@
 .hero__socials a:hover,
 .hero__socials a:focus-visible {
   color: var(--yellow);
+  transform: translateY(-1px);
 }
 
 .hero__cta-meta {
