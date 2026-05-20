@@ -18,8 +18,8 @@ bodyClass: page-home
         <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
         <nav class="hero__socials" aria-label="Social">
           <ul>
-          <li>
-            <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer">
+          <li class="hero__socials-item hero__socials-item--instagram">
+            <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer" aria-label="Instagram">
               <span class="hero__socials-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
                   <path
@@ -31,8 +31,8 @@ bodyClass: page-home
               <span class="hero__socials-label">Instagram</span>
             </a>
           </li>
-          <li>
-            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer">
+          <li class="hero__socials-item hero__socials-item--soundcloud">
+            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer" aria-label="SoundCloud">
               <span class="hero__socials-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
                   <rect fill="currentColor" x="2" y="11" width="2.6" height="7" rx="0.65" />
@@ -45,8 +45,8 @@ bodyClass: page-home
               <span class="hero__socials-label">SoundCloud</span>
             </a>
           </li>
-          <li>
-            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">
+          <li class="hero__socials-item hero__socials-item--mixcloud">
+            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer" aria-label="Mixcloud">
               <span class="hero__socials-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
                   <path
@@ -61,6 +61,32 @@ bodyClass: page-home
                 </svg>
               </span>
               <span class="hero__socials-label">Mixcloud</span>
+            </a>
+          </li>
+          <li class="hero__socials-item hero__socials-item--spotify">
+            <a href="{{ site.socials.spotify }}" target="_blank" rel="me noopener noreferrer" aria-label="Spotify">
+              <span class="hero__socials-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M12 0a12 12 0 100 24 12 12 0 000-24zm5.52 17.31a.75.75 0 01-1.03.25c-2.82-1.72-6.37-2.11-10.55-1.15a.75.75 0 11-.34-1.46c4.58-1.05 8.51-.6 11.67 1.33.35.21.47.68.25 1.03zm1.47-3.27a.94.94 0 01-1.29.31c-3.23-1.99-8.15-2.56-11.97-1.4a.94.94 0 11-.55-1.8c4.36-1.32 9.78-.68 13.5 1.6.44.27.58.85.31 1.29zm.13-3.4C15.25 8.34 8.85 8.13 5.15 9.25a1.13 1.13 0 11-.66-2.16c4.24-1.29 11.32-1.04 15.78 1.61a1.13 1.13 0 01-1.15 1.94z"
+                  />
+                </svg>
+              </span>
+              <span class="hero__socials-label">Spotify</span>
+            </a>
+          </li>
+          <li class="hero__socials-item hero__socials-item--apple-music">
+            <a href="{{ site.socials.appleMusic }}" target="_blank" rel="me noopener noreferrer" aria-label="Apple Music">
+              <span class="hero__socials-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M19.8 3.24c-.17-1.05-.99-1.87-2.04-2.04C15.98.9 8.02.9 6.24 1.2 5.19 1.37 4.37 2.19 4.2 3.24 3.9 5.02 3.9 18.98 4.2 20.76c.17 1.05.99 1.87 2.04 2.04 1.78.3 9.74.3 11.52 0 1.05-.17 1.87-.99 2.04-2.04.3-1.78.3-15.74 0-17.52zM16.7 7.8v7.18c0 1.5-1.3 2.26-2.58 2.26-1.12 0-2.05-.58-2.05-1.55 0-1.18 1.16-1.77 2.47-1.77.33 0 .63.04.87.12V9.88l-5.2 1.05v5.5c0 1.5-1.29 2.26-2.58 2.26-1.12 0-2.05-.58-2.05-1.55 0-1.18 1.16-1.77 2.47-1.77.33 0 .63.04.87.12V8.6c0-.42.29-.79.7-.87l6.23-1.26c.44-.09.85.25.85.7v.63z"
+                  />
+                </svg>
+              </span>
+              <span class="hero__socials-label">Apple Music</span>
             </a>
           </li>
           </ul>
@@ -147,7 +173,9 @@ bodyClass: page-home
           <dd>
             <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer">Instagram</a> ·
             <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer">SoundCloud</a> ·
-            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">Mixcloud</a>
+            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">Mixcloud</a> ·
+            <a href="{{ site.socials.spotify }}" target="_blank" rel="me noopener noreferrer">Spotify</a> ·
+            <a href="{{ site.socials.appleMusic }}" target="_blank" rel="me noopener noreferrer">Apple Music</a>
           </dd>
         </div>
       </dl>
