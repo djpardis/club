@@ -206,7 +206,7 @@
 .hero__socials {
   margin: 0;
   min-width: 0;
-  color: #fff;
+  color: var(--purple);
 }
 
 .hero__socials ul {
@@ -217,9 +217,9 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   gap: 0.15rem;
-  background: var(--purple);
+  background: transparent;
   border-radius: var(--r-pill);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 20%, transparent);
+  box-shadow: inset 0 0 0 2px var(--purple);
   min-height: var(--hero-cta-height);
 }
 
@@ -340,7 +340,7 @@
 
 .hero__socials a:hover,
 .hero__socials a:focus-visible {
-  color: var(--yellow);
+  color: var(--ink);
   transform: translateY(-1px);
 }
 
