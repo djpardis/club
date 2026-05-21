@@ -196,6 +196,7 @@
   gap: var(--sp-3);
   justify-content: flex-start;
   align-items: center;
+  padding: 0 4px 4px 0;
 }
 
 .hero__cta-bar .btn {
@@ -233,7 +234,7 @@
   min-height: 2.25rem;
   padding: 0;
   position: relative;
-  transition: color var(--t-fast), transform var(--t-fast);
+  transition: color var(--t-fast);
 }
 
 .hero__socials-icon {
@@ -270,13 +271,8 @@
 
 @media (min-width: 721px) {
   .hero__socials-item--soundcloud,
-  .hero__socials-item--mixcloud,
-  .hero__socials-item--instagram {
+  .hero__socials-item--mixcloud {
     display: list-item;
-  }
-
-  .hero__cta-bar {
-    gap: var(--sp-3);
   }
 
   .hero__socials {
@@ -340,8 +336,7 @@
 
 .hero__socials a:hover,
 .hero__socials a:focus-visible {
-  color: var(--ink);
-  transform: translateY(-1px);
+  color: var(--pink);
 }
 
 .hero__cta-meta {
@@ -385,6 +380,14 @@
 }
 
 @media (max-width: 900px) {
+  .hero {
+    align-items: center;
+  }
+
+  .hero__copy {
+    align-self: center;
+  }
+
   .hero__inner {
     grid-template-columns: 1fr;
     gap: var(--sp-5);
@@ -491,6 +494,23 @@
   padding: 1em 1.75em;
   font-size: var(--fs-body);
   letter-spacing: 0.08em;
+}
+
+/* Hero + final CTA: hard pink offset shadow (follows pill shape) */
+.hero__cta-bar .btn--primary.btn--lg,
+.cta-band__actions .btn--primary.btn--lg {
+  box-shadow: 3px 3px 0 0 var(--pink);
+}
+
+.hero__cta-bar .btn--primary.btn--lg:hover,
+.hero__cta-bar .btn--primary.btn--lg:focus-visible,
+.cta-band__actions .btn--primary.btn--lg:hover,
+.cta-band__actions .btn--primary.btn--lg:focus-visible {
+  box-shadow: 3px 3px 0 0 var(--pink);
+}
+
+.cta-band__actions {
+  padding: 0 4px 4px 0;
 }
 
 .btn--ghost-light {
@@ -784,6 +804,24 @@
   justify-content: space-between;
   gap: var(--sp-4);
   margin-bottom: var(--sp-4);
+}
+
+.section--listen .mixtapes-head h3 {
+  background: var(--pink);
+  color: #fff;
+  padding: 0.05em 0.2em 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.section--listen .mixtape-tile__badge {
+  background: var(--pink);
+  color: #fff;
+}
+
+.section--listen .mixtapes-head__feed:hover,
+.section--listen .mixtapes-head__feed:focus-visible {
+  color: var(--pink);
 }
 
 .mixtapes-head h3 {
@@ -1194,7 +1232,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 4rem);
-  align-items: end;
+  align-items: center;
 }
 
 .cta-band__title {
@@ -1215,7 +1253,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
-  padding-bottom: var(--sp-2);
 }
 
 .cta-band__aside p {

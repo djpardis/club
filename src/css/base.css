@@ -211,6 +211,7 @@ main {
 }
 
 .section-label__num {
+  color: var(--pink);
   font-weight: 700;
   margin-inline: 0.15em;
 }

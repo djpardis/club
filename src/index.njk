@@ -124,7 +124,7 @@ bodyClass: page-home
 </div>
 </div>
 
-<section class="section section--pad-lg" id="about" aria-labelledby="about-label">
+<section class="section section--sand" id="about" aria-labelledby="about-label">
   <div class="container">
     <header class="section-head">
       <h2 class="section-label" id="about-label">// <span class="section-label__num">01</span> About</h2>
@@ -132,7 +132,7 @@ bodyClass: page-home
     </header>
     <div class="about-grid">
       <div class="about-body">
-        <p class="about-lead">Hey, this is <span class="hl">DJ Pardis</span>!</p>
+        <p class="about-lead">Hey, it's <span class="hl">DJ Pardis</span></p>
         <p>
           I started DJing in May 2017 and played
           <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
@@ -166,23 +166,14 @@ bodyClass: page-home
         </div>
         <div>
           <dt>Plays well at</dt>
-          <dd>Company events · Conferences · Gallery openings · Theme nights · Product launches · Fundraisers</dd>
-        </div>
-        <div>
-          <dt>Follow me</dt>
-          <dd>
-            <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer">IG</a> .
-            <a href="{{ site.socials.spotify }}" target="_blank" rel="me noopener noreferrer">Spotify</a> .
-            <a href="{{ site.socials.appleMusic }}" target="_blank" rel="me noopener noreferrer">Apple</a> .
-            <a href="{{ site.socials.soundcloud }}" target="_blank" rel="me noopener noreferrer">SoundCloud</a> .
-            <a href="{{ site.socials.mixcloud }}" target="_blank" rel="me noopener noreferrer">Mixcloud</a>
-          </dd>
+          <dd>Launch events · Art openings · Pop-ups . Club nights</dd>
         </div>
       </dl>
     </div>
   </div>
 </section>
 
+{# Keep the gigs/schedule section here so it can be restored when there are dates to list.
 <section class="section section--sand" id="gigs" aria-labelledby="gigs-label">
   <div class="container">
     <header class="section-head">
@@ -214,11 +205,12 @@ bodyClass: page-home
     {% endif %}
   </div>
 </section>
+#}
 
-<section class="section section--pad-lg" id="listen" aria-labelledby="listen-label">
+<section class="section section--pad-lg section--listen" id="listen" aria-labelledby="listen-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="listen-label">// <span class="section-label__num">03</span> Listen</h2>
+      <h2 class="section-label" id="listen-label">// <span class="section-label__num">02</span> Listen</h2>
       <span class="section-head__meta">Mixtapes · {{ mixtapes.length }} years</span>
     </header>
 
@@ -236,7 +228,6 @@ bodyClass: page-home
       {% for m in mixtapes | sortMixtapesDesc %}
         <li>
           <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
-            {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
             <span class="mixtape-tile__year">{{ m.year }}</span>
             <span class="mixtape-tile__title">{{ m.title }}</span>
             <span class="mixtape-tile__date">{{ m.date }}</span>
@@ -251,7 +242,7 @@ bodyClass: page-home
 <section class="section section--sand" id="radio" aria-labelledby="radio-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="radio-label">// Radio</h2>
+      <h2 class="section-label" id="radio-label">// <span class="section-label__num">03</span> Radio</h2>
       <span class="section-head__meta">Guest spots · bff.fm</span>
     </header>
     <ul class="radio-list">
@@ -318,7 +309,7 @@ bodyClass: page-home
 <section class="section section--sand" id="press" aria-labelledby="press-label">
   <div class="container">
     <header class="section-head">
-      <h2 class="section-label" id="press-label">// Press</h2>
+      <h2 class="section-label" id="press-label">// <span class="section-label__num">05</span> Press</h2>
     </header>
     <ul class="press-list">
       {% for p in press %}
@@ -336,7 +327,7 @@ bodyClass: page-home
   <div class="container cta-band__inner">
     <h2 class="cta-band__title" id="cta-label">Let's make your <span class="hl">event</span> sound awesome.</h2>
     <div class="cta-band__aside">
-      <p>Planning a company event, conference, gallery opening, or themed party? Send the date, vibe, location, and guest count, and we'll take it from there.</p>
+      <p>Throwing a launch event, art opening, pop-up, or club night? Send the date, location, vibe, and we'll take it from there.</p>
       <div class="cta-band__actions">
         <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
       </div>
