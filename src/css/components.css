@@ -196,7 +196,6 @@
   gap: var(--sp-3);
   justify-content: flex-start;
   align-items: center;
-  padding: 0 4px 4px 0;
 }
 
 .hero__cta-bar .btn {
@@ -496,20 +495,25 @@
   letter-spacing: 0.08em;
 }
 
-/* Hero + final CTA: hard pink offset shadow (follows pill shape) */
+/* Primary lg pills: hard pink offset shadow (follows pill shape) */
 .hero__cta-bar .btn--primary.btn--lg,
-.cta-band__actions .btn--primary.btn--lg {
+.cta-band__actions .btn--primary.btn--lg,
+.booking-form .form-submit .btn--primary.btn--lg {
   box-shadow: 3px 3px 0 0 var(--pink);
 }
 
 .hero__cta-bar .btn--primary.btn--lg:hover,
 .hero__cta-bar .btn--primary.btn--lg:focus-visible,
 .cta-band__actions .btn--primary.btn--lg:hover,
-.cta-band__actions .btn--primary.btn--lg:focus-visible {
+.cta-band__actions .btn--primary.btn--lg:focus-visible,
+.booking-form .form-submit .btn--primary.btn--lg:hover,
+.booking-form .form-submit .btn--primary.btn--lg:focus-visible {
   box-shadow: 3px 3px 0 0 var(--pink);
 }
 
-.cta-band__actions {
+.hero__cta-bar,
+.cta-band__actions,
+.booking-form .form-submit {
   padding: 0 4px 4px 0;
 }
 
@@ -1508,7 +1512,7 @@
 }
 
 .fieldset__num {
-  color: var(--purple);
+  color: var(--pink);
   font-family: var(--font-body);
   font-size: 0.55em;
   font-weight: 600;
