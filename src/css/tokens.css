@@ -49,6 +49,9 @@
   --sp-9: 6rem;
   --sp-10: 8rem;
 
+  /* Eyebrow top inset — home hero + book/mixtapes headers */
+  --eyebrow-offset-top: var(--sp-8);
+
   /* Layout */
   --max-w: 1320px;
   --max-w-text: 72ch;

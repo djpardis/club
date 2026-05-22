@@ -7,8 +7,11 @@ bodyClass: page-home
 <div class="fold">
 <section class="hero" aria-labelledby="hero-title">
   <div class="container hero__inner">
-    <div class="hero__copy">
+    <div class="page-head page-head--hero">
       <p class="eyebrow hero__status">Currently booking</p>
+    </div>
+    <div class="hero__stage">
+      <div class="hero__copy-main">
       <h1 id="hero-title" class="wordmark-display">
         <span class="wordmark-display__line">DJ</span>
         <span class="wordmark-display__line"><span class="hl">PARDIS</span></span>
@@ -92,8 +95,8 @@ bodyClass: page-home
         </nav>
         <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
       </div>
-    </div>
-    <figure class="hero__media">
+      </div>
+      <figure class="hero__media">
       <img
         src="{{ site.hero.photo }}"
         alt="{{ site.hero.alt }}"
@@ -104,7 +107,8 @@ bodyClass: page-home
         fetchpriority="high"
       />
       <figcaption>{{ site.hero.credit }}</figcaption>
-    </figure>
+      </figure>
+    </div>
   </div>
 </section>
 

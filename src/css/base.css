@@ -216,21 +216,24 @@ main {
   margin-inline: 0.15em;
 }
 
-/* Eyebrow (hero) */
-.eyebrow {
+/* Eyebrow — page headers (home hero, book, mixtapes, etc.) */
+p.eyebrow {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
   font-weight: 500;
+  line-height: 1;
   color: var(--ink);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
+  margin: 0;
 }
 
-.eyebrow::before {
+p.eyebrow::before {
   content: "";
+  flex-shrink: 0;
   width: 0.55em;
   height: 0.55em;
   border-radius: 50%;

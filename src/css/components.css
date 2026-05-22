@@ -85,8 +85,14 @@
   flex-direction: column;
 }
 
+@media (max-width: 720px) {
+  :root {
+    --eyebrow-offset-top: var(--sp-5);
+  }
+}
+
 .hero {
-  padding-top: var(--sp-8);
+  padding-top: var(--eyebrow-offset-top);
   padding-bottom: var(--sp-6);
   position: relative;
   overflow: hidden;
@@ -95,40 +101,74 @@
      top of the viewport — this lets the Book page's eyebrow land at
      the same spot on every client. Empty space falls below; marquee
      stays pinned at the fold via the .fold flex wrapper. */
-  align-items: flex-start;
-  justify-content: center;
-  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 @media (max-width: 720px) {
   .hero {
-    padding-block: var(--sp-5);
+    padding-top: var(--eyebrow-offset-top);
+    padding-bottom: var(--sp-5);
   }
 }
 
 .hero__inner {
   width: 100%;
+  flex: 1 1 0;
+  align-self: stretch;
+  min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  row-gap: 0;
 }
 
-@media (min-width: 1280px) {
-  .hero__inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  }
+/* Same .page-head row as book — keeps the purple dot on the same inset. */
+.page-head--hero {
+  display: block;
+  margin-bottom: clamp(var(--sp-6), 7vh, var(--sp-9));
 }
 
-.hero__copy {
+.hero__status {
+  margin: 0;
+}
+
+/* Copy + photo share one flex row, vertically centered in the cream
+   below the eyebrow (row 2 of .hero__inner). Eyebrow stays in row 1. */
+.hero__stage {
+  min-height: 0;
   min-width: 0;
-  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  /* Nudge copy + photo only — transform on .hero__stage, never the eyebrow row. */
+  transform: translateY(
+    calc(
+      -0.4 * clamp(var(--sp-6), 7vh, var(--sp-9)) - 0.25 * (var(--sp-8) - var(--sp-6))
+    )
+  );
+}
+
+.hero__copy-main {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
-.hero__status {
-  margin-bottom: clamp(var(--sp-6), 7vh, var(--sp-9));
+.hero__media {
+  flex: 1.1 1 0;
+  min-width: 0;
+}
+
+@media (min-width: 1280px) {
+  .hero__media {
+    flex: 1.4 1 0;
+  }
 }
 
 .wordmark-display {
@@ -175,8 +215,12 @@
    and grow the pink block's vertical padding so the overlap reads the
    same as it does on tablet/desktop. */
 @media (max-width: 720px) {
-  .hero__status {
+  .page-head--hero {
     margin-bottom: var(--sp-5);
+  }
+
+  .hero__stage {
+    transform: translateY(calc(-0.4 * var(--sp-5)));
   }
 
   .hero__tagline {
@@ -350,7 +394,6 @@
   margin: 0;
   min-width: 0;
   position: relative;
-  align-self: center;
 }
 
 .hero__media img {
@@ -379,17 +422,16 @@
 }
 
 @media (max-width: 900px) {
-  .hero {
-    align-items: center;
-  }
-
-  .hero__copy {
-    align-self: center;
-  }
-
-  .hero__inner {
-    grid-template-columns: 1fr;
+  .hero__stage {
+    flex-direction: column;
+    justify-content: center;
     gap: var(--sp-5);
+  }
+
+  .hero__copy-main,
+  .hero__media {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }
 
@@ -397,6 +439,7 @@
    Marquee band (magazine running head)
    ============================================================ */
 .marquee {
+  flex-shrink: 0;
   background: var(--ink);
   color: var(--cream);
   padding-block: var(--sp-4);
@@ -1420,11 +1463,12 @@
 }
 
 /* Shared top padding for booking + post pages — eyebrow lands at the
-   same pixel offset on every page that uses the .page-head pattern. */
+   same pixel offset as the home hero (see --eyebrow-offset-top). */
 .page-booking .section,
 .page-post .section,
 .page-mixtapes .section {
-  padding-block: var(--sp-8);
+  padding-top: var(--eyebrow-offset-top);
+  padding-bottom: var(--sp-8);
 }
 
 /* Mobile: tighten so page content starts higher on small screens. */
@@ -1432,7 +1476,8 @@
   .page-booking .section,
   .page-post .section,
   .page-mixtapes .section {
-    padding-block: var(--sp-5) var(--sp-7);
+    padding-top: var(--eyebrow-offset-top);
+    padding-bottom: var(--sp-7);
   }
 
   .page-booking .page-title,
