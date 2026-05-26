@@ -262,7 +262,7 @@
   align-items: center;
   gap: 0.15rem;
   background: transparent;
-  border-radius: var(--r-pill);
+  border-radius: 0;
   box-shadow: inset 0 0 0 2px var(--purple);
   min-height: var(--hero-cta-height);
 }
@@ -312,7 +312,9 @@
   display: none;
 }
 
-@media (min-width: 721px) {
+/* Desktop: show all 5 socials. Below 1100px (phones + iPad) match the
+   mobile 3-icon pill. */
+@media (min-width: 1100px) {
   .hero__socials-item--soundcloud,
   .hero__socials-item--mixcloud {
     display: list-item;
@@ -339,7 +341,7 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1099px) {
   .hero__cta-bar {
     --hero-cta-height: 3.75rem;
     flex-wrap: nowrap;
@@ -504,7 +506,7 @@
   align-items: center;
   gap: var(--sp-2);
   padding: 0.85em 1.5em;
-  border-radius: var(--r-pill);
+  border-radius: 0;
   font-family: var(--font-mono);
   font-size: var(--fs-meta);
   font-weight: 500;
@@ -2059,4 +2061,156 @@ body.page-thanks {
   text-transform: lowercase;
   letter-spacing: 0.04em;
   color: var(--muted);
+}
+
+/* ============================================================
+   Lightbox — click any post image to view full size + carousel
+   ============================================================ */
+figure.is-zoomable img {
+  cursor: zoom-in;
+  transition: filter var(--t-fast);
+}
+
+figure.is-zoomable img:hover,
+figure.is-zoomable img:focus-visible {
+  filter: brightness(0.95);
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(var(--sp-4), 4vw, var(--sp-7));
+  background: color-mix(in srgb, var(--ink) 92%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox__stage {
+  margin: 0;
+  max-width: min(1400px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - var(--sp-10));
+  width: auto;
+  height: auto;
+  border-radius: var(--r-md);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  background: var(--ink);
+}
+
+.lightbox__caption {
+  color: color-mix(in srgb, var(--cream) 92%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: 0.02em;
+  text-align: center;
+  max-width: 72ch;
+  line-height: 1.5;
+}
+
+.lightbox__caption[hidden] {
+  display: none;
+}
+
+.lightbox__caption a {
+  color: var(--yellow);
+}
+
+.lightbox__counter {
+  margin: 0;
+  color: color-mix(in srgb, var(--cream) 60%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  appearance: none;
+  border: 0;
+  background: color-mix(in srgb, var(--ink) 70%, transparent);
+  color: var(--cream);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover,
+.lightbox__close:focus-visible,
+.lightbox__nav:focus-visible {
+  background: var(--ink);
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.lightbox__close {
+  top: var(--sp-4);
+  right: var(--sp-4);
+  font-size: 1.75rem;
+}
+
+.lightbox__nav--prev {
+  left: var(--sp-4);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox__nav--next {
+  right: var(--sp-4);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox__nav--prev:hover,
+.lightbox__nav--next:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox__nav[hidden],
+.lightbox__close[hidden] {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .lightbox__close,
+  .lightbox__nav {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+  }
+  .lightbox__close { top: var(--sp-3); right: var(--sp-3); }
+  .lightbox__nav--prev { left: var(--sp-2); }
+  .lightbox__nav--next { right: var(--sp-2); }
+  .lightbox__img {
+    max-height: calc(100vh - var(--sp-9));
+  }
 }

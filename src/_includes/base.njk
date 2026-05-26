@@ -150,7 +150,7 @@
 
     <link rel="stylesheet" href="/css/tokens.css" />
     <link rel="stylesheet" href="/css/base.css" />
-    <link rel="stylesheet" href="/css/components.css?v=hero-stage-2" />
+    <link rel="stylesheet" href="/css/components.css?v=ipad-socials" />
     <script>
       // Capture the visible viewport height once so 100svh works correctly
       // in WKWebView in-app browsers (Instagram, TikTok, etc.) where it
@@ -177,9 +177,10 @@
     </script>
   </head>
   <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
-    <main id="main">
+    <main id="main" data-lightbox-group="page">
       {{ content | safe }}
     </main>
     {% include "footer.njk" %}
+    <script src="/js/lightbox.js?v=page-group" defer></script>
   </body>
 </html>
