@@ -85,7 +85,7 @@
   grid-template-rows: minmax(0, 1fr) auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .fold {
     height: var(--fold-h, 100lvh);
     min-height: 0;
@@ -233,7 +233,7 @@
 
   .hero__tagline {
     margin-top: -0.45em;
-    margin-bottom: var(--sp-5);
+    margin-bottom: var(--sp-6);
   }
 
   .hero__tagline .hl-pink {
@@ -448,11 +448,11 @@
   letter-spacing: 0.04em;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   .hero__stage {
     flex-direction: column;
     justify-content: center;
-    gap: var(--sp-5);
+    gap: var(--sp-7);
   }
 
   .hero__copy-main,
@@ -568,36 +568,6 @@
   padding: 1em 1.75em;
   font-size: var(--fs-body);
   letter-spacing: 0.08em;
-}
-
-.btn--primary.btn--lg {
-  position: relative;
-}
-
-.btn--primary.btn--lg::after {
-  content: "";
-  position: absolute;
-  inset: 0 -3px -3px 0;
-  background:
-    linear-gradient(var(--pink), var(--pink)) bottom right / calc(100% - 6px) 3px no-repeat,
-    linear-gradient(var(--pink), var(--pink)) bottom right / 3px calc(100% - 6px) no-repeat;
-  pointer-events: none;
-}
-
-/* Primary lg CTAs get an editorial highlighter offset. */
-.hero__cta-bar .btn--primary.btn--lg,
-.cta-band__actions .btn--primary.btn--lg,
-.booking-form .form-submit .btn--primary.btn--lg {
-  box-shadow: none;
-}
-
-.hero__cta-bar .btn--primary.btn--lg:hover,
-.hero__cta-bar .btn--primary.btn--lg:focus-visible,
-.cta-band__actions .btn--primary.btn--lg:hover,
-.cta-band__actions .btn--primary.btn--lg:focus-visible,
-.booking-form .form-submit .btn--primary.btn--lg:hover,
-.booking-form .form-submit .btn--primary.btn--lg:focus-visible {
-  box-shadow: none;
 }
 
 .cta-band__actions,
@@ -1571,11 +1541,11 @@
   }
 
   .booking-form .form-submit {
-    justify-content: stretch;
+    justify-content: flex-end;
   }
 
   .booking-form .form-submit .btn {
-    width: 100%;
+    width: auto;
   }
 }
 

@@ -148,9 +148,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
     />
 
-    <link rel="stylesheet" href="/css/tokens.css?v=cyan-primary-short-shadow" />
+    <link rel="stylesheet" href="/css/tokens.css?v=roomiest-phone-hero" />
     <link rel="stylesheet" href="/css/base.css" />
-    <link rel="stylesheet" href="/css/components.css?v=cyan-primary-short-shadow" />
+    <link rel="stylesheet" href="/css/components.css?v=roomiest-phone-hero" />
     <script>
       // Capture the visible viewport height once so 100svh works correctly
       // in WKWebView in-app browsers (Instagram, TikTok, etc.) where it
@@ -163,7 +163,7 @@
       // does not float upward as mobile browser chrome changes size.
       (function () {
         var lastWidth = window.innerWidth;
-        var stableMobile = window.matchMedia("(max-width: 900px)");
+        var stableMobile = window.matchMedia("(max-width: 720px)");
         function setFoldHeight() {
           if (stableMobile.matches) {
             document.documentElement.style.setProperty('--fold-h', '100lvh');
