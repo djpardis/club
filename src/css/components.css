@@ -577,11 +577,10 @@
 .btn--primary.btn--lg::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0 -3px -3px 0;
   background:
-    linear-gradient(var(--pink), var(--pink)) top left / 100% 3px no-repeat,
-    linear-gradient(var(--pink), var(--pink)) bottom left / 100% 3px no-repeat,
-    linear-gradient(var(--pink), var(--pink)) top right / 3px 100% no-repeat;
+    linear-gradient(var(--pink), var(--pink)) bottom right / calc(100% - 6px) 3px no-repeat,
+    linear-gradient(var(--pink), var(--pink)) bottom right / 3px calc(100% - 6px) no-repeat;
   pointer-events: none;
 }
 
