@@ -9,7 +9,7 @@
   --purple: #7d78b5;
   --purple-deep: #6b46c1;
   --plum: #3b2f63;
-  --green: #00b4c7;
+  --green: #01b5c7;
   --yellow: #ffff99;
   --pink: #ff00aa;
 
@@ -53,6 +53,7 @@
 
   /* Eyebrow top inset — home hero + book/mixtapes headers */
   --eyebrow-offset-top: var(--sp-8);
+  --cta-height: 4rem;
 
   /* Layout */
   --max-w: 1320px;
