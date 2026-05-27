@@ -81,8 +81,16 @@
    room is left after the band's natural height. */
 .fold {
   min-height: var(--fold-h, 100svh);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+@media (max-width: 900px) {
+  .fold {
+    height: var(--fold-h, 100lvh);
+    min-height: 0;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 720px) {
@@ -220,7 +228,7 @@
   }
 
   .hero__stage {
-    transform: translateY(calc(-0.4 * var(--sp-5)));
+    transform: none;
   }
 
   .hero__tagline {
@@ -235,11 +243,17 @@
 
 .hero__cta-bar {
   --hero-cta-height: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-3);
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
+  align-self: flex-start;
+  width: 100%;
+  max-width: 100%;
+  background: var(--green);
+  position: relative;
 }
 
 .hero__cta-bar .btn {
@@ -250,7 +264,7 @@
 .hero__socials {
   margin: 0;
   min-width: 0;
-  color: var(--purple);
+  color: var(--cream);
 }
 
 .hero__socials ul {
@@ -263,7 +277,6 @@
   gap: 0.15rem;
   background: transparent;
   border-radius: 0;
-  box-shadow: inset 0 0 0 2px var(--purple);
   min-height: var(--hero-cta-height);
 }
 
@@ -273,8 +286,8 @@
   color: currentColor;
   text-decoration: none;
   justify-content: center;
-  min-width: 2.25rem;
-  min-height: 2.25rem;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
   padding: 0;
   position: relative;
   transition: color var(--t-fast);
@@ -312,8 +325,7 @@
   display: none;
 }
 
-/* Desktop: show all 5 socials. Below 1100px (phones + iPad) match the
-   mobile 3-icon pill. */
+/* Desktop has room for all channels; smaller screens keep the compact three. */
 @media (min-width: 1100px) {
   .hero__socials-item--soundcloud,
   .hero__socials-item--mixcloud {
@@ -344,9 +356,7 @@
 @media (max-width: 1099px) {
   .hero__cta-bar {
     --hero-cta-height: 3.75rem;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: var(--sp-2);
+    gap: 0;
     min-width: 0;
   }
 
@@ -370,6 +380,21 @@
   .hero__socials-icon svg {
     width: 24px;
     height: 24px;
+  }
+}
+
+@media (max-width: 460px) {
+  .hero__socials ul {
+    padding-inline: 0.45rem;
+  }
+
+  .hero__socials a {
+    min-width: 1.75rem;
+  }
+
+  .hero__cta-bar .btn--lg {
+    padding-inline: 1rem;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -519,19 +544,24 @@
 }
 
 .btn--primary {
-  background: var(--purple);
-  color: #fff;
+  background: var(--green);
+  color: var(--cream);
+}
+
+.hero__cta-bar .btn--primary {
+  margin-left: auto;
+  background: transparent;
 }
 
 .btn--primary:hover,
 .btn--primary:focus-visible {
-  background: var(--yellow);
-  color: var(--ink);
+  background: var(--pink);
+  color: var(--cream);
 }
 
 .btn--primary:active {
-  background: color-mix(in srgb, var(--yellow) 82%, var(--pink) 18%);
-  color: var(--ink);
+  background: color-mix(in srgb, var(--green) 82%, var(--pink) 18%);
+  color: var(--cream);
 }
 
 .btn--lg {
@@ -540,11 +570,26 @@
   letter-spacing: 0.08em;
 }
 
-/* Primary lg pills: hard pink offset shadow (follows pill shape) */
+.btn--primary.btn--lg {
+  position: relative;
+}
+
+.btn--primary.btn--lg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--pink), var(--pink)) top left / 100% 3px no-repeat,
+    linear-gradient(var(--pink), var(--pink)) bottom left / 100% 3px no-repeat,
+    linear-gradient(var(--pink), var(--pink)) top right / 3px 100% no-repeat;
+  pointer-events: none;
+}
+
+/* Primary lg CTAs get an editorial highlighter offset. */
 .hero__cta-bar .btn--primary.btn--lg,
 .cta-band__actions .btn--primary.btn--lg,
 .booking-form .form-submit .btn--primary.btn--lg {
-  box-shadow: 3px 3px 0 0 var(--pink);
+  box-shadow: none;
 }
 
 .hero__cta-bar .btn--primary.btn--lg:hover,
@@ -553,13 +598,12 @@
 .cta-band__actions .btn--primary.btn--lg:focus-visible,
 .booking-form .form-submit .btn--primary.btn--lg:hover,
 .booking-form .form-submit .btn--primary.btn--lg:focus-visible {
-  box-shadow: 3px 3px 0 0 var(--pink);
+  box-shadow: none;
 }
 
-.hero__cta-bar,
 .cta-band__actions,
 .booking-form .form-submit {
-  padding: 0 4px 4px 0;
+  padding: 0;
 }
 
 .btn--ghost-light {
