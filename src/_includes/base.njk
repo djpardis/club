@@ -162,7 +162,7 @@
       (function () {
         var lastWidth = window.innerWidth;
         function setFoldHeight() {
-          var h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+          var h = window.innerHeight;
           document.documentElement.style.setProperty('--fold-h', h + 'px');
           lastWidth = window.innerWidth;
         }
