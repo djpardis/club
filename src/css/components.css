@@ -620,6 +620,43 @@
 .hero__cta-bar .btn--primary {
   margin-left: auto;
   background: transparent;
+  min-height: var(--cta-height);
+  height: var(--cta-height);
+}
+
+/* Desktop-only stepped ribbon treatment. */
+@media (min-width: 900px) {
+  .hero__cta-bar {
+    --hero-cta-drop: 0.9rem;
+    --hero-cta-overlap: 0.38rem;
+    align-items: flex-start;
+    padding-left: 0;
+    background: transparent;
+    clip-path: none;
+    min-height: 0;
+  }
+
+  .hero__socials {
+    background: var(--green);
+    padding-left: var(--hero-cta-notch);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--hero-cta-notch) 50%);
+  }
+
+  .hero__cta-bar .btn--primary {
+    background: var(--green);
+    margin-left: calc(-1 * var(--hero-cta-overlap));
+    margin-top: var(--hero-cta-drop);
+    position: relative;
+    z-index: 2;
+    min-height: var(--cta-height);
+    height: var(--cta-height);
+  }
+}
+
+@media (max-width: 899px) {
+  .hero__cta-bar {
+    overflow: hidden;
+  }
 }
 
 .btn--primary:hover,
@@ -1378,6 +1415,12 @@
 
 .cta-band__title .hl {
   color: var(--ink);
+}
+
+@media (min-width: 761px) {
+  .cta-band__nowrap {
+    white-space: nowrap;
+  }
 }
 
 .cta-band__aside {
