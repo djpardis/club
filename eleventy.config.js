@@ -80,6 +80,93 @@ export default function (eleventyConfig) {
       .replace(/'/g, "&apos;");
   });
 
+  function decodeHtmlEntities(value) {
+    return String(value)
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, "\"")
+      .replace(/&#39;/g, "'")
+      .replace(/&apos;/g, "'")
+      .replace(/&nbsp;/g, " ");
+  }
+
+  function headingText(html) {
+    return decodeHtmlEntities(
+      String(html)
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/<[^>]+>/g, " ")
+    )
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function slugifyHeading(value) {
+    return headingText(value)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "section";
+  }
+
+  function uniqueHeadingId(base, seen) {
+    const count = seen.get(base) || 0;
+    seen.set(base, count + 1);
+    return count === 0 ? base : `${base}-${count + 1}`;
+  }
+
+  function songLeadText(html) {
+    if (!/<em\b/i.test(html)) return "";
+    const title = String(html).match(/<em\b[^>]*>([\s\S]*?)<\/em>/i);
+    return headingText(title ? title[1] : html).replace(/[.\s]+$/g, "");
+  }
+
+  eleventyConfig.addFilter("headingToc", (html) => {
+    if (!html) return [];
+    const seen = new Map();
+    const items = [];
+    let parentId;
+    const blockPattern = /<h([23])\b([^>]*)>([\s\S]*?)<\/h\1>|<p\b([^>]*)>\s*<strong\b[^>]*>([\s\S]*?)<\/strong>([\s\S]*?)<\/p>/gi;
+
+    for (const match of String(html).matchAll(blockPattern)) {
+      if (match[1]) {
+        const level = Number(match[1]);
+        const attrs = match[2];
+        const text = headingText(match[3]);
+        const existingId = attrs.match(/\bid\s*=\s*["']([^"']+)["']/i);
+        const id = existingId ? existingId[1] : uniqueHeadingId(slugifyHeading(text), seen);
+        items.push({ id, text, level, parentId: undefined });
+        parentId = id;
+        continue;
+      }
+
+      const text = songLeadText(match[5]);
+      if (!parentId || !text) continue;
+      const existingId = match[4].match(/\bid\s*=\s*["']([^"']+)["']/i);
+      const id = existingId ? existingId[1] : uniqueHeadingId(slugifyHeading(text), seen);
+      items.push({ id, text, level: 4, parentId });
+    }
+
+    return items.filter((item) => item.text);
+  });
+
+  eleventyConfig.addFilter("addHeadingIds", (html) => {
+    if (!html) return html;
+    const seen = new Map();
+    let parentId;
+    return String(html).replace(/<h([23])\b([^>]*)>([\s\S]*?)<\/h\1>|<p\b([^>]*)>\s*<strong\b[^>]*>([\s\S]*?)<\/strong>([\s\S]*?)<\/p>/gi, (match, level, attrs, inner, paragraphAttrs, strongInner) => {
+      if (level) {
+        const existingId = attrs.match(/\bid\s*=\s*["']([^"']+)["']/i);
+        const id = existingId ? existingId[1] : uniqueHeadingId(slugifyHeading(inner), seen);
+        parentId = id;
+        if (existingId) return match;
+        return `<h${level}${attrs} id="${id}">${inner}</h${level}>`;
+      }
+
+      const text = songLeadText(strongInner);
+      if (!parentId || !text || /\bid\s*=/.test(paragraphAttrs)) return match;
+      const id = uniqueHeadingId(slugifyHeading(text), seen);
+      return match.replace(/^<p\b([^>]*)>/i, `<p$1 id="${id}">`);
+    });
+  });
+
   // All mixtape post pages, newest first.
   eleventyConfig.addCollection("mixtapes", (collectionApi) => {
     return collectionApi

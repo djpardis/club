@@ -93,7 +93,7 @@ bodyClass: page-home
           </li>
           </ul>
         </nav>
-        <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
+        <a class="btn btn--primary btn--lg" href="/book/">Book a show <span aria-hidden="true">→</span></a>
       </div>
       </div>
       <figure class="hero__media">
@@ -170,7 +170,7 @@ bodyClass: page-home
         </div>
         <div>
           <dt>Plays well at</dt>
-          <dd>Launch events · Art openings · Pop-ups . Club nights</dd>
+          <dd>Launch events · Art openings · Club nights</dd>
         </div>
       </dl>
     </div>
@@ -203,7 +203,7 @@ bodyClass: page-home
         <h3 class="upcoming-block__headline">Next date <span class="hl-pink">TBA</span>.<br />Book your next event.</h3>
         <div class="upcoming-block__body">
           <p>Whether it's conferences, gallery openings, or product launches, tell us the date, the vibe, and the location, and we'll be there.</p>
-          <a class="btn btn--primary btn--lg upcoming-block__cta" href="/book/">Check dates <span aria-hidden="true">→</span></a>
+          <a class="btn btn--primary btn--lg upcoming-block__cta" href="/book/">Book a show <span aria-hidden="true">→</span></a>
         </div>
       </div>
     {% endif %}
@@ -329,12 +329,104 @@ bodyClass: page-home
 
 <section class="cta-band" aria-labelledby="cta-label">
   <div class="container cta-band__inner">
-    <h2 class="cta-band__title" id="cta-label">Let's make your <span class="hl">event</span> awesome.</h2>
+    <h2 class="cta-band__title" id="cta-label">Keep in the <span class="hl">loop</span>.</h2>
     <div class="cta-band__aside">
-      <p>Throwing a launch event, art opening, pop-up, or club night? Send the date, location, and vibe, and we'll take it from there.</p>
-      <div class="cta-band__actions">
-        <a class="btn btn--primary btn--lg" href="/book/">Check dates <span aria-hidden="true">→</span></a>
-      </div>
+      <form class="updates-form" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
+        <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <label class="sr-only" for="updates-email">Email address</label>
+        <div class="updates-form__row">
+          <input type="email" id="updates-email" name="email" required autocomplete="email" placeholder="Email address" />
+          <button class="btn btn--primary btn--lg" type="submit">Sign up <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="updates-form__status" data-updates-status role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var form = document.querySelector('[data-updates-form]');
+    if (!form) return;
+
+    var endpoint = form.getAttribute('data-action');
+    if (!endpoint) return;
+
+    var source = form.getAttribute('data-source') || '';
+    var status = form.querySelector('[data-updates-status]');
+    var button = form.querySelector('button[type="submit"]');
+    var emailInput = form.querySelector('input[type="email"]');
+    var hpInput = form.querySelector('input[name="website"]');
+    var originalLabel = button ? button.textContent : 'Sign up →';
+
+    function setStatus(message) {
+      if (status) status.textContent = message;
+    }
+
+    function resetButton() {
+      if (!button) return;
+      button.disabled = false;
+      button.textContent = originalLabel;
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      var email = emailInput && emailInput.value ? emailInput.value.trim() : '';
+      if (!email) return;
+
+      setStatus('Signing up...');
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Sending...';
+      }
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          source: source,
+          website: hpInput ? hpInput.value : ''
+        }),
+        credentials: 'omit',
+        mode: 'cors'
+      }).then(function (response) {
+        return response.json().catch(function () {
+          return {};
+        }).then(function (body) {
+          return { status: response.status, body: body || {} };
+        });
+      }).then(function (result) {
+        if (result.status === 200 && result.body.ok) {
+          form.reset();
+          setStatus(result.body.state === 'active'
+            ? "You're already on the list."
+            : 'Check your email to confirm.');
+          resetButton();
+          return;
+        }
+
+        if (result.status === 400 && result.body.error === 'invalid_email') {
+          setStatus('That email looks invalid.');
+        } else if (result.status === 400 && result.body.error === 'turnstile_failed') {
+          setStatus('Spam check failed. Please try again.');
+        } else if (result.status === 429) {
+          setStatus('Too many tries. Please wait a moment.');
+        } else if (result.status === 502) {
+          setStatus('Could not send confirmation. Please try again.');
+        } else {
+          setStatus('Something went wrong. Please try again.');
+        }
+        resetButton();
+      }).catch(function () {
+        setStatus('Network error. Please try again.');
+        resetButton();
+      });
+    });
+  })();
+</script>

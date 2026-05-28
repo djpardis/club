@@ -18,7 +18,23 @@ bodyClass: page-post
     </div>
   </header>
 
-  <div class="mixtape-post__body container">
-    {{ content | safe }}
+  {% set toc = content | headingToc %}
+  <div class="mixtape-post__shell container{% if not toc.length %} mixtape-post__shell--no-toc{% endif %}">
+    {% if toc.length %}
+      <aside class="mixtape-post__toc" aria-labelledby="post-toc-title">
+        <p class="mixtape-post__toc-title" id="post-toc-title">Table of contents</p>
+        <ol>
+          {% for item in toc %}
+            <li class="mixtape-post__toc-item mixtape-post__toc-item--h{{ item.level }}{% if item.parentId %} mixtape-post__toc-item--child{% endif %}" data-heading-id="{{ item.id }}"{% if item.parentId %} data-parent-id="{{ item.parentId }}"{% endif %}>
+              <a href="#{{ item.id }}">{{ item.text }}</a>
+            </li>
+          {% endfor %}
+        </ol>
+      </aside>
+    {% endif %}
+    <div class="mixtape-post__body">
+      {{ content | addHeadingIds | safe }}
+    </div>
   </div>
 </article>
+<script src="/js/post-toc.js?v=click-collapse" defer></script>
