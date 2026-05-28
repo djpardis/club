@@ -150,24 +150,16 @@
 
     <link rel="stylesheet" href="/css/tokens.css?v=newsletter-connected" />
     <link rel="stylesheet" href="/css/base.css" />
-    <link rel="stylesheet" href="/css/components.css?v=toc-desktop-only" />
+    <link rel="stylesheet" href="/css/components.css?v=fold-px" />
     <script>
-      // Capture the visible viewport height once so 100svh works correctly
-      // in WKWebView in-app browsers (Instagram, TikTok, etc.) where it
-      // otherwise overshoots. On mobile we use 100svh (small viewport unit)
-      // which is stable — it never changes as browser chrome shows/hides,
-      // so the marquee stays put. We only re-measure on orientation change
-      // or a true width change, never on scroll-driven viewport changes.
+      // Lock fold height to a fixed pixel value captured once at page load.
+      // A pixel value never recalculates as mobile browser chrome shows/hides,
+      // so the marquee stays put. We only re-measure on orientation change or
+      // a true width change (never on scroll-driven viewport changes).
       (function () {
         var lastWidth = window.innerWidth;
-        var stableMobile = window.matchMedia("(max-width: 720px)");
         function setFoldHeight() {
-          if (stableMobile.matches) {
-            document.documentElement.style.setProperty('--fold-h', '100svh');
-            lastWidth = window.innerWidth;
-            return;
-          }
-          var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+          var h = window.innerHeight;
           document.documentElement.style.setProperty('--fold-h', h + 'px');
           lastWidth = window.innerWidth;
         }

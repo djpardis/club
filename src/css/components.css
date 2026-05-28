@@ -87,7 +87,7 @@
 
 @media (max-width: 720px) {
   .fold {
-    height: var(--fold-h, 100svh);
+    height: var(--fold-h, 100dvh);
     min-height: 0;
     overflow: hidden;
   }
