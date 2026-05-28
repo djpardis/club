@@ -152,15 +152,19 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/components.css?v=fold-px" />
     <script>
-      // Lock fold height to a fixed pixel value captured once at page load.
-      // A pixel value never recalculates as mobile browser chrome shows/hides,
-      // so the marquee stays put. We only re-measure on orientation change or
-      // a true width change (never on scroll-driven viewport changes).
+      // On desktop, capture the visual viewport height in pixels once so
+      // WKWebView in-app browsers (Instagram, TikTok, etc.) don't overshoot.
+      // On mobile we let CSS dvh do the work — it tracks the current visible
+      // viewport smoothly as browser chrome shows/hides, keeping the marquee
+      // pinned to the screen bottom without a sudden jump.
       (function () {
         var lastWidth = window.innerWidth;
+        var isMobile = window.matchMedia("(max-width: 720px)");
         function setFoldHeight() {
-          var h = window.innerHeight;
-          document.documentElement.style.setProperty('--fold-h', h + 'px');
+          if (!isMobile.matches) {
+            var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+            document.documentElement.style.setProperty('--fold-h', h + 'px');
+          }
           lastWidth = window.innerWidth;
         }
         setFoldHeight();
