@@ -90,8 +90,7 @@
     min-height: 100svh;
   }
   .marquee {
-    position: sticky;
-    bottom: 0;
+    display: none;
   }
 }
 

@@ -152,17 +152,14 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/components.css?v=fold-svh" />
     <script>
-      // On desktop, capture the visual viewport height in pixels once so the
-      // fold fills exactly one screen on WKWebView in-app browsers. On mobile
-      // the marquee uses position:sticky instead — no measurement needed.
+      // Capture the visual viewport height in pixels once so the fold fills
+      // exactly one screen on desktop WKWebView in-app browsers. Only
+      // re-measure on orientation change or a true width change.
       (function () {
         var lastWidth = window.innerWidth;
-        var isDesktop = window.matchMedia("(min-width: 721px)");
         function setFoldHeight() {
-          if (isDesktop.matches) {
-            var h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-            document.documentElement.style.setProperty('--fold-h', h + 'px');
-          }
+          var h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+          document.documentElement.style.setProperty('--fold-h', h + 'px');
           lastWidth = window.innerWidth;
         }
         setFoldHeight();
