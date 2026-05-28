@@ -87,9 +87,11 @@
 
 @media (max-width: 720px) {
   .fold {
-    height: var(--fold-h, 100svh);
-    min-height: 0;
-    overflow: hidden;
+    min-height: 100svh;
+  }
+  .marquee {
+    position: sticky;
+    bottom: 0;
   }
 }
 

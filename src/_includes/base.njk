@@ -152,18 +152,17 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/components.css?v=fold-svh" />
     <script>
-      // Lock the fold to the actually-visible pixel height captured once at
-      // page load. visualViewport.height accounts for browser chrome AND
-      // in-app browser overlays (Instagram tab bar, etc.) so the marquee
-      // lands exactly at the visible bottom on every client.
-      // We NEVER update on scroll or visualViewport.resize — only on a true
-      // width change (orientation flip, window resize) — so the value is
-      // frozen during scroll and the marquee never jumps.
+      // On desktop, capture the visual viewport height in pixels once so the
+      // fold fills exactly one screen on WKWebView in-app browsers. On mobile
+      // the marquee uses position:sticky instead — no measurement needed.
       (function () {
         var lastWidth = window.innerWidth;
+        var isDesktop = window.matchMedia("(min-width: 721px)");
         function setFoldHeight() {
-          var h = window.innerHeight;
-          document.documentElement.style.setProperty('--fold-h', h + 'px');
+          if (isDesktop.matches) {
+            var h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+            document.documentElement.style.setProperty('--fold-h', h + 'px');
+          }
           lastWidth = window.innerWidth;
         }
         setFoldHeight();
