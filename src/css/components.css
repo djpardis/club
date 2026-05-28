@@ -2016,14 +2016,21 @@ body.page-thanks {
 
 .mixtape-post__toc {
   --toc-offset: var(--sp-8);
-  position: sticky;
-  top: var(--sp-6);
-  float: right;
-  width: min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset)));
-  margin-right: calc(-1 * (min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset))) + var(--toc-offset)));
-  font-size: var(--fs-meta);
-  line-height: 1.5;
-  color: var(--muted);
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .mixtape-post__toc {
+    display: block;
+    position: sticky;
+    top: var(--sp-6);
+    float: right;
+    width: min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset)));
+    margin-right: calc(-1 * (min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset))) + var(--toc-offset)));
+    font-size: var(--fs-meta);
+    line-height: 1.5;
+    color: var(--muted);
+  }
 }
 
 .mixtape-post__toc-title {
