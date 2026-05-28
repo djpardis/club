@@ -150,26 +150,15 @@
 
     <link rel="stylesheet" href="/css/tokens.css?v=newsletter-connected" />
     <link rel="stylesheet" href="/css/base.css" />
-    <link rel="stylesheet" href="/css/components.css?v=toc-body-match" />
+    <link rel="stylesheet" href="/css/components.css?v=no-flower" />
     <script>
-      // Capture the visible viewport height once so 100svh works correctly
-      // in WKWebView in-app browsers (Instagram, TikTok, etc.) where it
-      // otherwise overshoots. We deliberately do NOT listen to
-      // visualViewport.resize: that fires constantly as the mobile URL bar
-      // collapses/expands during scroll, which would re-size the fold and
-      // shove the marquee around. We only re-measure when the viewport
-      // width actually changes (orientation change or true window resize).
-      // On narrow screens, keep a stable large viewport unit so the marquee
-      // does not float upward as mobile browser chrome changes size.
+      // Pin the fold to a stable pixel height captured once at load time so
+      // the marquee never jumps as mobile browser chrome shows/hides.
+      // We only re-measure on orientation change or a true width change
+      // (window resize), never on scroll-driven viewport changes.
       (function () {
         var lastWidth = window.innerWidth;
-        var stableMobile = window.matchMedia("(max-width: 720px)");
         function setFoldHeight() {
-          if (stableMobile.matches) {
-            document.documentElement.style.setProperty('--fold-h', '100lvh');
-            lastWidth = window.innerWidth;
-            return;
-          }
           var h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
           document.documentElement.style.setProperty('--fold-h', h + 'px');
           lastWidth = window.innerWidth;

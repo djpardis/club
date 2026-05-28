@@ -87,7 +87,7 @@
 
 @media (max-width: 720px) {
   .fold {
-    height: var(--fold-h, 100lvh);
+    height: var(--fold-h, 100svh);
     min-height: 0;
     overflow: hidden;
   }
@@ -121,25 +121,7 @@
 }
 
 .hero__inner::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-  width: 7rem;
-  height: 7rem;
-  right: 24%;
-  top: 26%;
-  background: var(--purple);
-  opacity: 0.16;
-  border-radius: 50%;
-  box-shadow:
-    0 -4.8rem 0 0 var(--purple),
-    4.2rem -2.4rem 0 0 var(--purple),
-    4.2rem 2.4rem 0 0 var(--purple),
-    0 4.8rem 0 0 var(--purple),
-    -4.2rem 2.4rem 0 0 var(--purple),
-    -4.2rem -2.4rem 0 0 var(--purple);
-  transform: rotate(-10deg);
+  content: none;
 }
 
 .hero__inner {
@@ -158,20 +140,6 @@
     padding-bottom: var(--sp-5);
   }
 
-  .hero__inner::before {
-    width: 3.8rem;
-    height: 3.8rem;
-    top: 16%;
-    right: 22%;
-    opacity: 0.12;
-    box-shadow:
-      0 -2.6rem 0 0 var(--purple),
-      2.25rem -1.3rem 0 0 var(--purple),
-      2.25rem 1.3rem 0 0 var(--purple),
-      0 2.6rem 0 0 var(--purple),
-      -2.25rem 1.3rem 0 0 var(--purple),
-      -2.25rem -1.3rem 0 0 var(--purple);
-  }
 }
 
 .hero__inner {
