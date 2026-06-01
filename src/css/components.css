@@ -1867,10 +1867,36 @@
   opacity: 0.8;
 }
 
-/* Normalize native date control text so it matches other inputs */
+/* Normalize native date control text so it matches other inputs.
+   Hold the same box height as the text inputs; an empty date control
+   otherwise collapses on iOS/WebKit and reads shorter than its siblings. */
 .field input[type="date"] {
   font-family: var(--font-body);
   color: var(--ink);
+  min-height: calc(1.45em + 1.6em + 2px);
+}
+
+/* iOS Safari quirks: it center-aligns the date value and shows no
+   placeholder hint when empty. Scope the fixes to iOS (only it supports
+   -webkit-touch-callout) so the native mm/dd/yyyy control on desktop
+   browsers is left untouched. data-placeholder/data-filled are set in the
+   booking page script so the hint matches the picked format (e.g. "Jun 1,
+   2026") and clears once a date is chosen. */
+@supports (-webkit-touch-callout: none) {
+  .field input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+    margin: 0;
+  }
+
+  .field input[type="date"]:not([data-filled])::before {
+    content: attr(data-placeholder);
+    color: var(--muted);
+    opacity: 0.85;
+  }
+
+  .field input[type="date"]:focus:not([data-filled])::before {
+    content: "";
+  }
 }
 
 .field input[type="date"]::-webkit-datetime-edit,

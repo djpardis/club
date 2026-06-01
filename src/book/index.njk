@@ -101,6 +101,30 @@ noIndex: true
       if (dateInput) dateInput.min = todayString();
     }
 
+    function friendlyDate(date) {
+      try {
+        return new Intl.DateTimeFormat(undefined, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        }).format(date);
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function syncDatePlaceholder() {
+      if (!dateInput) return;
+      if (!dateInput.getAttribute('data-placeholder')) {
+        dateInput.setAttribute('data-placeholder', friendlyDate(new Date()));
+      }
+      if (dateInput.value) {
+        dateInput.setAttribute('data-filled', '');
+      } else {
+        dateInput.removeAttribute('data-filled');
+      }
+    }
+
     function validateEventDate() {
       if (!dateInput) return true;
 
@@ -116,9 +140,16 @@ noIndex: true
     }
 
     setDateBounds();
+    syncDatePlaceholder();
     if (dateInput) {
-      dateInput.addEventListener('input', validateEventDate);
-      dateInput.addEventListener('change', validateEventDate);
+      dateInput.addEventListener('input', function () {
+        syncDatePlaceholder();
+        validateEventDate();
+      });
+      dateInput.addEventListener('change', function () {
+        syncDatePlaceholder();
+        validateEventDate();
+      });
     }
 
     form.addEventListener('submit', function (event) {
