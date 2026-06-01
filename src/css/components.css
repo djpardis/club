@@ -1892,6 +1892,7 @@
     content: attr(data-placeholder);
     color: var(--muted);
     opacity: 0.85;
+    white-space: nowrap;
   }
 
   .field input[type="date"]:focus:not([data-filled])::before {
