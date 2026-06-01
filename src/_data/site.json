@@ -16,7 +16,7 @@
   },
   "forms": {
     "booking": {
-      "action": "https://form.pardis-noorzad.workers.dev/submit/booking"
+      "action": "https://form.djpardis.club/submit/booking"
     }
   },
   "subscribeApiBase": "https://newsletter.djpardis.club",
