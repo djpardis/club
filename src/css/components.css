@@ -912,6 +912,10 @@
   max-width: 56ch;
 }
 
+.about-body .page-kicker {
+  margin-bottom: var(--sp-2);
+}
+
 .about-body p + p {
   margin-top: var(--sp-4);
 }

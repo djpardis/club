@@ -16,9 +16,21 @@ bodyClass: page-about
 <section class="page-body section">
   <div class="container">
     <div class="about-grid">
+      <figure class="about-hero">
+        <img
+          src="{{ site.hero.photo }}"
+          alt="{{ site.hero.alt }}"
+          width="{{ site.hero.width }}"
+          height="{{ site.hero.height }}"
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption>{{ site.hero.credit }}</figcaption>
+      </figure>
+
       <div class="about-content">
-        <span class="page-kicker">// Bio</span>
         <div class="about-body page-copy">
+          <span class="page-kicker">// Bio</span>
           <p>
             I started DJing in May 2017 and played
             <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
@@ -56,18 +68,6 @@ bodyClass: page-about
           </div>
         </dl>
       </div>
-
-      <figure class="about-hero">
-        <img
-          src="{{ site.hero.photo }}"
-          alt="{{ site.hero.alt }}"
-          width="{{ site.hero.width }}"
-          height="{{ site.hero.height }}"
-          loading="eager"
-          decoding="async"
-        />
-        <figcaption>{{ site.hero.credit }}</figcaption>
-      </figure>
     </div>
   </div>
 </section>
