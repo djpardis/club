@@ -676,25 +676,40 @@
 }
 
 /* ============================================================
-   Fold nav — desktop bottom nav (mirrors mobile tab-bar)
+   Fold nav — desktop left rail (mobile tab-bar handles phones)
    ============================================================ */
 .fold-nav {
   display: none;
 }
 
 @media (min-width: 721px) {
+  :root {
+    --rail-w: 5.25rem;
+  }
+
+  body {
+    padding-left: var(--rail-w);
+  }
+
+  .site-header {
+    left: var(--rail-w);
+  }
+
   .fold-nav {
     display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
-    right: 0;
+    bottom: 0;
+    width: var(--rail-w);
     z-index: 100;
     background: color-mix(in srgb, var(--cream) 93%, transparent);
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
-    border-top: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    border-right: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+    padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
   }
 
   .fold-nav__item {
@@ -730,10 +745,6 @@
     background: var(--green);
   }
 
-  /* Pad page content so the fold-nav doesn't overlap it */
-  body {
-    padding-bottom: calc(3.25rem + env(safe-area-inset-bottom, 0px));
-  }
 }
 
 /* ============================================================
