@@ -874,6 +874,17 @@
   padding: 0.02em 0.14em 0.06em;
 }
 
+.page-kicker,
+.feature-grid__label {
+  display: inline-block;
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--purple);
+}
+
 .about-hero {
   margin: 0;
   position: relative;
@@ -1156,7 +1167,17 @@
   margin-bottom: var(--sp-4);
 }
 
-.section--listen .mixtapes-head h3 {
+.mixtapes-head__title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.mixtapes-head__title .page-kicker {
+  margin: 0;
+}
+
+.section--listen .mixtapes-head :is(h2, h3) {
   background: var(--pink);
   color: #fff;
   padding: 0.05em 0.2em 0.12em;
@@ -1174,7 +1195,7 @@
   color: var(--pink);
 }
 
-.mixtapes-head h3 {
+.mixtapes-head :is(h2, h3) {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-h3);
@@ -1431,14 +1452,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
-}
-
-.feature-grid__label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--purple);
 }
 
 .feature-grid__title {
