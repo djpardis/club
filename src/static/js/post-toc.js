@@ -13,8 +13,6 @@
 
   // Sections the user has manually collapsed — cleared when scrolling past them
   var manuallyCollapsed = {};
-  var hasScrolled = false;
-
   function setActive(id) {
     var activeItem = toc.querySelector('[data-heading-id="' + id + '"]');
     var activeParentId = activeItem && (activeItem.getAttribute("data-parent-id") || id);
@@ -53,7 +51,6 @@
   }
 
   function updateActive() {
-    if (!hasScrolled) return;
     var id = activeHeadingId();
     if (id) setActive(id);
   }
@@ -86,22 +83,17 @@
 
   // Arrive via hash link — expand that section immediately
   if (window.location.hash) {
-    hasScrolled = true;
     setActive(window.location.hash.slice(1));
+  } else {
+    requestUpdate();
   }
 
   window.addEventListener("scroll", function () {
-    if (!hasScrolled) {
-      hasScrolled = true;
-      // Clear any manual collapses when the user starts scrolling
-      manuallyCollapsed = {};
-    }
     requestUpdate();
   }, { passive: true });
 
   window.addEventListener("resize", requestUpdate);
   window.addEventListener("hashchange", function () {
-    hasScrolled = true;
     requestUpdate();
   });
 })();

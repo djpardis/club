@@ -1,12 +1,3 @@
 <header class="site-header">
-  <div class="container site-header__inner">
-    <a href="/" class="wordmark" aria-label="{{ site.name }} — home">DJ PARDIS</a>
-    <nav class="site-nav" aria-label="Primary">
-      <ul>
-        <li>
-          <a href="/book/" class="nav-link nav-link--cta{% if page.url | navActive('/book/') %} is-active{% endif %}">Book</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  <p class="site-header__copy">© {% year %} {{ site.name }}</p>
 </header>

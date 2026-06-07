@@ -21,6 +21,11 @@ body {
   height: 100%;
 }
 
+body.page-home {
+  overflow: hidden;
+  height: 100svh;
+}
+
 body {
   background: var(--cream);
   color: var(--ink);

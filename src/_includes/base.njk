@@ -148,9 +148,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
     />
 
-    <link rel="stylesheet" href="/css/tokens.css?v=newsletter-connected" />
+    <link rel="stylesheet" href="/css/tokens.css?v=join-ink" />
     <link rel="stylesheet" href="/css/base.css" />
-    <link rel="stylesheet" href="/css/components.css?v=fold-svh" />
+    <link rel="stylesheet" href="/css/components.css?v=booking-submit-pink" />
     <script>
       // Capture the visual viewport height in pixels once so the fold fills
       // exactly one screen on desktop WKWebView in-app browsers. Only
@@ -173,10 +173,12 @@
     </script>
   </head>
   <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+    {% include "header.njk" %}
     <main id="main" data-lightbox-group="page">
       {{ content | safe }}
     </main>
-    {% include "footer.njk" %}
+    {% include "tab-bar.njk" %}
+    {% include "fold-nav.njk" %}
     <script src="/js/lightbox.js?v=page-group" defer></script>
   </body>
 </html>

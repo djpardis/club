@@ -1,0 +1,70 @@
+---
+layout: base.njk
+documentTitle: "About DJ Pardis"
+description: DJ Pardis is a pop house DJ on the West Coast, booking worldwide for corporate events, conferences, gallery openings, and themed parties.
+bodyClass: page-about
+---
+<header class="page-header section section--page-top">
+  <div class="container">
+    {% set headEyebrow = "About" %}
+    {% include "page-head.njk" %}
+    <h1 class="page-title">Hey, it's <span class="hl">DJ Pardis</span>.</h1>
+    <p class="page-subtitle">Est. 2017 · San Francisco</p>
+  </div>
+</header>
+
+<section class="page-body section">
+  <div class="container">
+    <figure class="about-hero">
+      <img
+        src="{{ site.hero.photo }}"
+        alt="{{ site.hero.alt }}"
+        width="{{ site.hero.width }}"
+        height="{{ site.hero.height }}"
+        loading="eager"
+        decoding="async"
+      />
+      <figcaption>{{ site.hero.credit }}</figcaption>
+    </figure>
+
+    <div class="about-grid">
+      <div class="about-body page-copy">
+        <p>
+          I started DJing in May 2017 and played
+          <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
+          at <span class="hl-pink">Twitter HQ</span>. I usually DJed with
+          <a href="https://soundcloud.com/juliengaillard" rel="noopener">Julien Gaillard</a>
+          on the
+          <a href="https://vimeo.com/463687716" rel="noopener">guitar</a>.
+        </p>
+        <p>
+          In the summer of 2019, I was the tour DJ for
+          <a href="https://soundcloud.com/ohsimsimah" rel="noopener">Sim Simah</a>
+          and
+          <a href="https://music.apple.com/us/artist/aarxn-cxle/1453179768" rel="noopener">Aarxn Cxle</a>.
+          The picture is by
+          <a href="https://www.instagram.com/meria.agency/" rel="noopener">Jesse Meria</a>
+          from July 2019 at
+          <a href="https://www.thenewparish.com/" rel="noopener">The New Parish</a>,
+          where we were
+          <a href="https://web.archive.org/web/20191023073406/https://www.teamllfent.com/news/2019/7/30/camron-with-special-guest-troyllf" rel="noopener"><span class="hl">the opening act</span></a>.
+        </p>
+      </div>
+
+      <dl class="about-rail" aria-label="Quick facts">
+        <div>
+          <dt>Location</dt>
+          <dd>West Coast · Booking worldwide</dd>
+        </div>
+        <div>
+          <dt>Sound</dt>
+          <dd>Pop house · Dance pop · Downtempo</dd>
+        </div>
+        <div>
+          <dt>Plays well at</dt>
+          <dd>Launch events · Art openings · Club nights</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>

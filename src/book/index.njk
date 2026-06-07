@@ -6,19 +6,17 @@ bodyClass: page-booking
 noIndex: true
 ---
 <article class="booking-page">
-  <header class="booking-page__header section">
+  <header class="page-header section section--page-top">
     <div class="container">
       {% set headEyebrow = "Bookings" %}
-      {% set headBackHref = "/" %}
-      {% set headBackLabel = "Home" %}
       {% include "page-head.njk" %}
       <h1 class="page-title"><span class="hl">Dates</span> and details.</h1>
-      <p class="booking-page__subtitle lead">We respond within 48 hours.</p>
+      <p class="page-subtitle">We respond within 48 hours.</p>
     </div>
   </header>
 
-  <section class="booking-page__body section">
-    <div class="booking-page__body-inner container">
+  <section class="page-body section">
+    <div class="page-body__inner container">
       <form
         class="booking-form"
         action="{{ site.forms.booking.action }}"

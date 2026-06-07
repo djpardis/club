@@ -4,15 +4,17 @@ documentTitle: "Mixtapes"
 description: DJ Pardis annual mixtapes archive.
 bodyClass: page-mixtapes
 ---
-<section class="section">
+<header class="page-header section section--page-top">
   <div class="container">
     {% set headEyebrow = "Mixtapes archive" %}
-    {% set headBackHref = "/" %}
-    {% set headBackLabel = "Home" %}
     {% include "page-head.njk" %}
     <h1 class="page-title"><span class="hl">All mixtapes</span>.</h1>
-    <p class="lead">One mixtape every year, with track notes and links.<br /><a class="mixtapes-head__feed" href="/feed.xml">Subscribe (RSS)</a></p>
+    <p class="page-subtitle">One mixtape every year, with track notes and links.<br /><a class="mixtapes-head__feed" href="/feed.xml">Subscribe (RSS)</a></p>
+  </div>
+</header>
 
+<section class="page-body section section--pad-lg">
+  <div class="container">
     <ul class="mixtapes-grid">
       {% for m in mixtapes | sortMixtapesDesc %}
         <li>

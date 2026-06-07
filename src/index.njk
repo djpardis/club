@@ -19,6 +19,7 @@ bodyClass: page-home
       <p class="hero__tagline"><span class="hl-pink">Pop house</span> · West Coast · Booking worldwide</p>
       <div class="hero__cta-bar">
         <nav class="hero__socials" aria-label="Social">
+
           <ul>
           <li class="hero__socials-item hero__socials-item--instagram">
             <a href="{{ site.socials.instagram }}" target="_blank" rel="me noopener noreferrer" aria-label="Instagram">
@@ -96,86 +97,22 @@ bodyClass: page-home
         <a class="btn btn--primary btn--lg" href="/book/">Book a show <span aria-hidden="true">→</span></a>
       </div>
       </div>
-      <figure class="hero__media">
-      <img
-        src="{{ site.hero.photo }}"
-        alt="{{ site.hero.alt }}"
-        width="800"
-        height="519"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-      />
-      <figcaption>{{ site.hero.credit }}</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    {% for i in range(0, 2) %}
-      <span class="marquee__item">Pop house</span>
-      <span class="marquee__item"><span class="dot"></span></span>
-      <span class="marquee__item marquee__item--alt">West Coast</span>
-      <span class="marquee__item"><span class="dot"></span></span>
-      <span class="marquee__item">Booking worldwide</span>
-      <span class="marquee__item"><span class="dot"></span></span>
-      <span class="marquee__item marquee__item--alt">DJ Pardis</span>
-      <span class="marquee__item"><span class="dot"></span></span>
-    {% endfor %}
-  </div>
-</div>
-</div>
-
-<section class="section section--sand" id="about" aria-labelledby="about-label">
-  <div class="container">
-    <header class="section-head">
-      <h2 class="section-label" id="about-label">// <span class="section-label__num">01</span> About</h2>
-      <span class="section-head__meta">Est. 2017 · San Francisco</span>
-    </header>
-    <div class="about-grid">
-      <div class="about-body">
-        <p class="about-lead">Hey, it's <span class="hl">DJ Pardis</span></p>
-        <p>
-          I started DJing in May 2017 and played
-          <a href="https://vimeo.com/463652373" rel="noopener">themed Tea Time tunes</a>
-          at <span class="hl-pink">Twitter HQ</span>. I usually DJed with
-          <a href="https://soundcloud.com/juliengaillard" rel="noopener">Julien Gaillard</a>
-          on the
-          <a href="https://vimeo.com/463687716" rel="noopener">guitar</a>.
-        </p>
-        <p>
-          In the summer of 2019, I was the tour DJ for
-          <a href="https://soundcloud.com/ohsimsimah" rel="noopener">Sim Simah</a>
-          and
-          <a href="https://music.apple.com/us/artist/aarxn-cxle/1453179768" rel="noopener">Aarxn Cxle</a>.
-          The picture is by
-          <a href="https://www.instagram.com/meria.agency/" rel="noopener">Jesse Meria</a>
-          from July 2019 at
-          <a href="https://www.thenewparish.com/" rel="noopener">The New Parish</a>,
-          where we were
-          <a href="https://web.archive.org/web/20191023073406/https://www.teamllfent.com/news/2019/7/30/camron-with-special-guest-troyllf" rel="noopener"><span class="hl">the opening act</span></a>.
-        </p>
+      <div class="hero__subscribe">
+        <h2 class="hero__subscribe-label">Stay in the <span class="hl">loop</span> with show dates, mixes, <span class="hero__subscribe-nowrap">and drops.</span></h2>
+        <form class="updates-form updates-form--light" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
+          <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <label class="sr-only" for="updates-email">Email address</label>
+          <div class="updates-form__row">
+            <input type="email" id="updates-email" name="email" required autocomplete="email" aria-label="Email address" />
+            <button class="btn btn--primary btn--lg" type="submit">Join <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="updates-form__status" data-updates-status role="status" aria-live="polite"></p>
+        </form>
       </div>
-
-      <dl class="about-rail" aria-label="Quick facts">
-        <div>
-          <dt>Location</dt>
-          <dd>West Coast · Booking worldwide</dd>
-        </div>
-        <div>
-          <dt>Sound</dt>
-          <dd>Pop house . Dance pop . Downtempo</dd>
-        </div>
-        <div>
-          <dt>Plays well at</dt>
-          <dd>Launch events · Art openings · Club nights</dd>
-        </div>
-      </dl>
     </div>
   </div>
 </section>
+</div>
 
 {# Keep the gigs/schedule section here so it can be restored when there are dates to list.
 <section class="section section--sand" id="gigs" aria-labelledby="gigs-label">
@@ -211,138 +148,6 @@ bodyClass: page-home
 </section>
 #}
 
-<section class="section section--pad-lg section--listen" id="listen" aria-labelledby="listen-label">
-  <div class="container">
-    <header class="section-head">
-      <h2 class="section-label" id="listen-label">// <span class="section-label__num">02</span> Listen</h2>
-      <span class="section-head__meta">Mixtapes · {{ mixtapes.length }} years</span>
-    </header>
-
-    <div class="mixtapes-head">
-      <h3>Annual mixtapes</h3>
-      <span class="meta mixtapes-head__meta">
-        One for every year, {{ mixtapes[mixtapes.length - 1].year }}–{{ mixtapes[0].year }}
-        <span class="mixtapes-head__sep" aria-hidden="true">·</span>
-        <a class="mixtapes-head__feed" href="/mixtapes/">All mixtapes</a>
-        <span class="mixtapes-head__sep" aria-hidden="true">·</span>
-        <a class="mixtapes-head__feed" href="/feed.xml">Subscribe (RSS)</a>
-      </span>
-    </div>
-    <ul class="mixtapes-grid">
-      {% for m in mixtapes | sortMixtapesDesc %}
-        <li>
-          <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
-            <span class="mixtape-tile__year">{{ m.year }}</span>
-            <span class="mixtape-tile__title">{{ m.title }}</span>
-            <span class="mixtape-tile__date">{{ m.date }}</span>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-{% if radio and radio.length %}
-<section class="section section--sand" id="radio" aria-labelledby="radio-label">
-  <div class="container">
-    <header class="section-head">
-      <h2 class="section-label" id="radio-label">// <span class="section-label__num">03</span> Radio</h2>
-      <span class="section-head__meta">Guest spots · bff.fm</span>
-    </header>
-    <ul class="radio-list">
-      {% for r in radio %}
-        <li class="radio-item">
-          <span class="radio-item__ep">Ep. {{ r.episode }} · {{ r.show }}</span>
-          <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }}</a>
-          <div class="radio-item__meta">
-            <span>with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a></span>
-            <span>·</span>
-            <span><a href="{{ r.showUrl }}" rel="noopener">{{ r.show }}</a></span>
-            <span>·</span>
-            <span>{{ r.date }}</span>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-{% endif %}
-
-{% if gallery and gallery.length %}
-<section class="section section--pad-lg" id="gallery" aria-labelledby="gallery-label">
-  <div class="container">
-    <header class="section-head">
-      <h2 class="section-label" id="gallery-label">// <span class="section-label__num">04</span> Gallery</h2>
-      <span class="section-head__meta">Posters · flyers · ephemera</span>
-    </header>
-
-    {% if gallery.length == 1 %}
-      {% set g = gallery[0] %}
-      <div class="feature-grid">
-        <figure class="feature-grid__media">
-          <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
-        </figure>
-        <div class="feature-grid__copy">
-          <span class="feature-grid__label">// Poster</span>
-          <h3 class="feature-grid__title">Bay to Breakers 2019</h3>
-          <p>Sunday May 19th, 8am start. Music by DJ Pardis &amp; Pupusa Papi. A full morning of bottle-fueled dance pop and hip hop through the streets of San Francisco.</p>
-          <dl class="feature-grid__meta">
-            <div><dt>Designer</dt><dd>Regy Augustin</dd></div>
-            <div><dt>Date</dt><dd>May 19, 2019</dd></div>
-            <div><dt>City</dt><dd>San Francisco, CA</dd></div>
-          </dl>
-        </div>
-      </div>
-    {% else %}
-      <ul class="gallery-grid">
-        {% for g in gallery %}
-          <li class="gallery-item">
-            <figure>
-              <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
-              {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
-            </figure>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </div>
-</section>
-{% endif %}
-
-{% if press and press.length %}
-<section class="section section--sand" id="press" aria-labelledby="press-label">
-  <div class="container">
-    <header class="section-head">
-      <h2 class="section-label" id="press-label">// <span class="section-label__num">05</span> Press</h2>
-    </header>
-    <ul class="press-list">
-      {% for p in press %}
-        <li class="pull-quote">
-          <blockquote>"{{ p.quote }}"</blockquote>
-          <cite class="meta">— {% if p.url %}<a href="{{ p.url }}" rel="noopener">{{ p.source }}</a>{% else %}{{ p.source }}{% endif %}{% if p.date %} · {{ p.date }}{% endif %}</cite>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-{% endif %}
-
-<section class="cta-band" aria-labelledby="cta-label">
-  <div class="container cta-band__inner">
-    <h2 class="cta-band__title" id="cta-label">Stay in the <span class="hl">loop</span> with show dates, mixes, <span class="cta-band__nowrap">and drops.</span></h2>
-    <div class="cta-band__aside">
-      <form class="updates-form" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
-        <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <label class="sr-only" for="updates-email">Email address</label>
-        <div class="updates-form__row">
-          <input type="email" id="updates-email" name="email" required autocomplete="email" placeholder="Email address" />
-          <button class="btn btn--primary btn--lg" type="submit">Join <span aria-hidden="true">→</span></button>
-        </div>
-        <p class="updates-form__status" data-updates-status role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </div>
-</section>
 
 <script>
   (function () {
