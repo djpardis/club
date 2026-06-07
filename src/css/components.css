@@ -1873,12 +1873,12 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
 }
 
 .page-subtitle {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--ink-2);
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: var(--hero-subline-size);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink);
   margin: 0;
   max-width: 40ch;
 }
@@ -2052,23 +2052,26 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
   font-weight: 400;
 }
 
-/* Inputs — clean editorial boxes: transparent fill, ink border, no
-   drop shadow. Border tints purple on focus with a soft purple glow
-   ring (matches --focus-ring used elsewhere on the site). */
+/* Inputs — clean editorial boxes with a stable white fill and ink border. */
 .field input,
 .field textarea {
+  --field-input-h: calc(1.45em + 1.6em + 2px);
   font-family: var(--font-body);
   font-size: 1.125rem;
   line-height: 1.45;
   color: var(--ink);
   background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: var(--r-sm);
+  border: 1px solid var(--muted);
+  border-radius: 0;
   padding: 0.8em 0.9em;
   width: 100%;
-  transition: border-color var(--t-fast), background-color var(--t-fast);
+  transition: border-color var(--t-fast);
   -webkit-appearance: none;
   appearance: none;
+}
+
+.field input {
+  height: var(--field-input-h);
 }
 
 .field textarea {
@@ -2089,7 +2092,8 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
 .field input[type="date"] {
   font-family: var(--font-body);
   color: var(--ink);
-  min-height: calc(1.45em + 1.6em + 2px);
+  height: var(--field-input-h);
+  min-height: 0;
 }
 
 /* iOS Safari quirks: it center-aligns the date value and shows no
@@ -2129,28 +2133,43 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
   opacity: 0.75;
 }
 
-.field input:hover,
-.field textarea:hover {
-  background: color-mix(in srgb, var(--cream) 20%, #fff);
-}
-
 .field input:focus,
 .field textarea:focus {
   outline: none;
   background: #fff;
-  border-color: var(--ink);
+  border-color: var(--muted);
 }
 
-/* Keep the transparent fill across Chrome/Safari autofill. */
+/* Keep a stable white fill across Chrome/Safari autofill. */
 .field input:-webkit-autofill,
 .field textarea:-webkit-autofill,
 .field input:-webkit-autofill:hover,
 .field input:-webkit-autofill:focus,
-.field input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--cream) inset !important;
+.field input:-webkit-autofill:active,
+.field textarea:-webkit-autofill:hover,
+.field textarea:-webkit-autofill:focus,
+.field textarea:-webkit-autofill:active {
+  border-color: var(--muted);
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
   -webkit-text-fill-color: var(--ink) !important;
   caret-color: var(--ink);
   transition: background-color 9999s ease-out 0s;
+}
+
+.booking-form .field input,
+.booking-form .field textarea,
+.booking-form .field input:focus,
+.booking-form .field textarea:focus,
+.booking-form .field input:-webkit-autofill,
+.booking-form .field textarea:-webkit-autofill,
+.booking-form .field input:-webkit-autofill:hover,
+.booking-form .field textarea:-webkit-autofill:hover,
+.booking-form .field input:-webkit-autofill:focus,
+.booking-form .field textarea:-webkit-autofill:focus,
+.booking-form .field input:-webkit-autofill:active,
+.booking-form .field textarea:-webkit-autofill:active {
+  border-color: var(--muted);
+  box-shadow: none;
 }
 
 .form-submit {
