@@ -558,6 +558,8 @@
   margin: 0;
   min-width: 0;
   position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
 }
 
 .hero__media img {
@@ -853,8 +855,8 @@
    ============================================================ */
 .about-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: start;
 }
 
@@ -873,8 +875,10 @@
 }
 
 .about-hero {
-  margin: 0 0 var(--sp-7);
+  margin: 0;
   position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
 }
 
 .about-hero img {
@@ -883,6 +887,12 @@
   height: auto;
   aspect-ratio: 800 / 519;
   object-fit: cover;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
 }
 
 .about-body p {
@@ -899,12 +909,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-5);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--sand-deep);
 }
 
 @media (max-width: 860px) {
   .about-rail {
-    padding-top: var(--sp-4);
-    border-top: 2px solid var(--ink);
+    padding-top: var(--sp-1);
   }
 }
 
@@ -941,6 +952,10 @@
 @media (max-width: 860px) {
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-hero img {
+    aspect-ratio: 800 / 519;
   }
 }
 
@@ -1398,6 +1413,8 @@
 
 .feature-grid__media {
   margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-md);
 }
 
 .feature-grid__media img {
@@ -1444,8 +1461,8 @@
   grid-template-columns: repeat(3, minmax(0, auto));
   gap: var(--sp-5);
   margin-top: var(--sp-3);
-  padding-top: var(--sp-4);
-  border-top: 2px solid var(--ink);
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--sand-deep);
 }
 
 .feature-grid__meta dt {
@@ -1500,6 +1517,8 @@
 .gallery-item figure {
   margin: 0;
   position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
 }
 
 .gallery-item img {
@@ -1750,7 +1769,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--sp-4);
-  margin-bottom: var(--sp-4);
+  margin-bottom: var(--sp-3);
   flex-wrap: wrap;
 }
 
@@ -1760,7 +1779,7 @@
   font-size: clamp(2.25rem, 7vw, 5.5rem);
   line-height: 1;
   letter-spacing: -0.025em;
-  margin-block: var(--sp-4) var(--sp-5);
+  margin-block: var(--sp-3) var(--sp-3);
 }
 
 .page-title .hl {
@@ -1832,7 +1851,7 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
   font-weight: 400;
   line-height: 1.4;
   color: var(--ink-2);
-  margin: 0 0 var(--sp-4);
+  margin: 0;
   max-width: 40ch;
 }
 
@@ -1865,17 +1884,17 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
    Book, mixtape posts, etc. — never repeat this rule per page. */
 .section--page-top {
   padding-top: var(--eyebrow-offset-top);
-  padding-bottom: var(--sp-8);
+  padding-bottom: var(--sp-6);
 }
 
 @media (max-width: 720px) {
   .section--page-top {
     padding-top: var(--eyebrow-offset-top);
-    padding-bottom: var(--sp-7);
+    padding-bottom: var(--sp-5);
   }
 
   .section--page-top .page-title {
-    margin-block: var(--sp-3) var(--sp-4);
+    margin-block: var(--sp-2) var(--sp-3);
   }
 
   .section--page-top .lead {
@@ -1885,7 +1904,7 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
 
   .page-subtitle {
     font-size: 1.25rem;
-    margin-bottom: var(--sp-4);
+    margin-bottom: 0;
   }
 
   .booking-form > .fieldset + .fieldset {
