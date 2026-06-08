@@ -21,9 +21,11 @@ body {
   height: 100%;
 }
 
-body.page-home {
-  overflow: hidden;
-  height: 100svh;
+@media (min-width: 1100px) {
+  body.page-home {
+    overflow: hidden;
+    height: 100svh;
+  }
 }
 
 body {
