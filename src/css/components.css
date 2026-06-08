@@ -714,31 +714,39 @@
 @media (max-width: 720px) {
   .hero {
     display: flex;
+    height: calc(100svh - 3.25rem - env(safe-area-inset-bottom, 0px));
     min-height: calc(100svh - 3.25rem - env(safe-area-inset-bottom, 0px));
+    padding-bottom: 0;
     justify-content: flex-start;
     overflow: visible;
   }
 
   .hero__inner {
-    display: flex;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
     flex: 1 1 auto;
-    flex-direction: column;
     align-self: stretch;
+    position: relative;
+    height: 100%;
     min-height: 0;
   }
 
-  .hero__stage {
-    flex: 1 1 auto;
-    flex-direction: column;
-    min-height: auto;
-    align-items: stretch;
-    justify-content: center;
-    gap: var(--sp-5);
+  .page-head--hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
   }
 
-  .hero__copy-main,
-  .hero__subscribe {
+  .hero__stage {
+    display: contents;
+  }
+
+  .hero__copy-main {
     flex: 0 0 auto;
+    grid-row: 1;
+    align-self: center;
     width: 100%;
     min-width: 0;
   }
@@ -748,6 +756,9 @@
   }
 
   .hero__subscribe {
+    grid-row: 2;
+    align-self: stretch;
+    min-height: 0;
     justify-content: flex-start;
     gap: var(--sp-4);
     width: calc(100% + (2 * var(--gutter)));
@@ -807,7 +818,7 @@
   }
 
   .hero {
-    padding-bottom: var(--sp-5);
+    padding-bottom: 0;
   }
 
   .hero__stage {
@@ -1121,7 +1132,7 @@
     background:
       radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
       radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
-      var(--hero-ticket-perf) left -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
+      var(--hero-ticket-perf) left var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
