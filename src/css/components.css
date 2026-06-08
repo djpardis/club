@@ -1,4 +1,24 @@
 /* ============================================================
+   Ticket design tokens
+   ============================================================ */
+:root {
+  --hero-ticket-notch: 1.15rem;
+  --hero-ticket-stock: #E8D9B8;
+  --hero-ticket-ink: #3B3020;
+  --hero-ticket-rule: var(--pink);
+  --hero-ticket-corner: 0.55rem;
+  --hero-ticket-rule-gap: 0rem;
+  --hero-ticket-stub: var(--hero-ticket-stock);
+  --hero-ticket-drop: 4rem;
+  --hero-ticket-connect: -0.25rem;
+  --hero-ticket-blank-desktop: 4rem;
+  --hero-ticket-cutout: 0.68rem;
+  --hero-ticket-cutout-stop: 0.69rem;
+  --hero-ticket-perf-offset: -0.36rem;
+  --hero-ticket-perf: radial-gradient(circle, var(--cream) 0 0.24rem, transparent 0.25rem);
+}
+
+/* ============================================================
    Header
    ============================================================ */
 .site-header {
@@ -81,27 +101,16 @@
     background: var(--purple);
   }
 
-  .tab-bar__item--cta {
-    --hero-ticket-rule-gap: 0rem;
-    color: #3B3020;
-    background:
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      #E8D9B8;
-  }
-
+  .tab-bar__item--cta,
   .tab-bar__item--cta.is-active,
   .tab-bar__item--cta:hover {
-    --hero-ticket-rule-gap: 0rem;
-    color: #3B3020;
+    color: var(--hero-ticket-ink);
     background:
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      #E8D9B8;
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      var(--hero-ticket-stock);
   }
 
   /* Pad page content so the fixed tab bar doesn't overlap it. */
@@ -310,20 +319,6 @@
 }
 
 .hero__cta-bar {
-  --hero-ticket-notch: 1.15rem;
-  --hero-ticket-stock: #E8D9B8;
-  --hero-ticket-ink: #3B3020;
-  --hero-ticket-rule: var(--hero-ticket-ink);
-  --hero-ticket-corner: 0.55rem;
-  --hero-ticket-rule-gap: 0rem;
-  --hero-ticket-stub: var(--hero-ticket-stock);
-  --hero-ticket-drop: 4rem;
-  --hero-ticket-connect: -0.25rem;
-  --hero-ticket-blank-desktop: 4rem;
-  --hero-ticket-cutout: 0.68rem;
-  --hero-ticket-cutout-stop: 0.69rem;
-  --hero-ticket-perf-offset: -0.36rem;
-  --hero-ticket-perf: radial-gradient(circle, var(--cream) 0 0.24rem, transparent 0.25rem);
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -723,20 +718,15 @@
 
   .hero__inner {
     display: grid;
-    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
     flex: 1 1 auto;
     align-self: stretch;
-    position: relative;
     height: 100%;
     min-height: 0;
   }
 
   .page-head--hero {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin-bottom: 0;
+    margin-bottom: var(--sp-4);
   }
 
   .hero__stage {
@@ -745,7 +735,7 @@
 
   .hero__copy-main {
     flex: 0 0 auto;
-    grid-row: 1;
+    grid-row: 2;
     align-self: center;
     width: 100%;
     min-width: 0;
@@ -756,7 +746,7 @@
   }
 
   .hero__subscribe {
-    grid-row: 2;
+    grid-row: 3;
     align-self: stretch;
     min-height: 0;
     justify-content: flex-start;
@@ -968,27 +958,16 @@
     background: var(--purple);
   }
 
-  .fold-nav__item--cta {
-    --hero-ticket-rule-gap: 0rem;
-    color: #3B3020;
-    background:
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      #E8D9B8;
-  }
-
+  .fold-nav__item--cta,
   .fold-nav__item--cta.is-active,
   .fold-nav__item--cta:hover {
-    --hero-ticket-rule-gap: 0rem;
-    color: #3B3020;
+    color: var(--hero-ticket-ink);
     background:
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      #E8D9B8;
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      var(--hero-ticket-stock);
   }
 
 }

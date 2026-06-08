@@ -2,6 +2,8 @@
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy({ "src/static": "/" });
+  eleventyConfig.addWatchTarget("src/css");
+  eleventyConfig.addWatchTarget("src/static");
 
   eleventyConfig.addFilter("navActive", (pageUrl, itemUrl) => {
     const p = (pageUrl || "/").replace(/\/$/, "") || "/";

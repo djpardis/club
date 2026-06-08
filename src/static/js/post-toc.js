@@ -11,11 +11,19 @@
 
   if (!items.length || !headings.length) return;
 
+  var scrollRoot = document.scrollingElement || document.documentElement;
+  if (document.body && getComputedStyle(document.body).overflowY !== "visible") {
+    scrollRoot = document.body;
+  }
+
   // Sections the user has manually collapsed — cleared when scrolling past them
   var manuallyCollapsed = {};
+
   function setActive(id) {
     var activeItem = toc.querySelector('[data-heading-id="' + id + '"]');
     var activeParentId = activeItem && (activeItem.getAttribute("data-parent-id") || id);
+
+    delete manuallyCollapsed[activeParentId];
 
     items.forEach(function (item) {
       var itemId = item.getAttribute("data-heading-id");
@@ -33,8 +41,8 @@
 
   function activeHeadingId() {
     var marker = window.innerHeight * 0.28;
-    var scrollBottom = window.scrollY + window.innerHeight;
-    var pageBottom = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    var scrollBottom = scrollRoot.scrollTop + window.innerHeight;
+    var pageBottom = scrollRoot.scrollHeight;
 
     if (scrollBottom >= pageBottom - 8) {
       return headings[headings.length - 1].id;
@@ -91,6 +99,11 @@
   window.addEventListener("scroll", function () {
     requestUpdate();
   }, { passive: true });
+  if (scrollRoot !== window && scrollRoot !== document.documentElement) {
+    scrollRoot.addEventListener("scroll", function () {
+      requestUpdate();
+    }, { passive: true });
+  }
 
   window.addEventListener("resize", requestUpdate);
   window.addEventListener("hashchange", function () {
