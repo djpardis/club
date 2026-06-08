@@ -98,7 +98,13 @@ bodyClass: page-home
       </div>
       </div>
       <div class="hero__subscribe">
-        <h2 class="hero__subscribe-label">Stay in the <span class="hl">loop</span> with show dates, mixes, <span class="hero__subscribe-nowrap">and drops.</span></h2>
+        <h2 class="hero__subscribe-label">
+          <span class="hero__subscribe-line">Stay in the</span>
+          <span class="hero__subscribe-line"><span class="hl">loop</span> with</span>
+          <span class="hero__subscribe-line">show dates,</span>
+          <span class="hero__subscribe-line">mixes, and</span>
+          <span class="hero__subscribe-line">drops.</span>
+        </h2>
         <form class="updates-form updates-form--light" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
           <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <label class="sr-only" for="updates-email">Email address</label>
