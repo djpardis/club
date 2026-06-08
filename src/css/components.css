@@ -593,8 +593,6 @@
 .hero__subscribe-label .hl {
   background: var(--yellow);
   color: var(--ink);
-  font-family: inherit;
-  font-weight: 700;
 }
 
 .hero__subscribe-nowrap {
