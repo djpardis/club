@@ -2344,6 +2344,10 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
     padding-top: 0;
   }
 
+  .booking-form > .form-submit {
+    margin-top: var(--sp-4);
+  }
+
   .booking-form .fieldset {
     gap: var(--sp-3);
   }
