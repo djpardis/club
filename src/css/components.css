@@ -78,24 +78,24 @@
   }
 
   .tab-bar__item--cta {
-    color: #3A321F;
+    color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      #E6D2A3;
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      #E8D9B8;
   }
 
   .tab-bar__item--cta.is-active,
   .tab-bar__item--cta:hover {
-    color: #3A321F;
+    color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      #E6D2A3;
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      #E8D9B8;
   }
 
   /* Pad page content so the fixed tab bar doesn't overlap it. */
@@ -295,6 +295,7 @@
   .hero__tagline {
     margin-top: -0.45em;
     margin-bottom: var(--sp-6);
+    font-size: 1.25rem;
   }
 
   .hero__tagline .hl-pink {
@@ -304,10 +305,11 @@
 
 .hero__cta-bar {
   --hero-ticket-notch: 1.15rem;
-  --hero-ticket-stock: #E6D2A3;
-  --hero-ticket-ink: #3A321F;
+  --hero-ticket-stock: #E8D9B8;
+  --hero-ticket-ink: #3B3020;
   --hero-ticket-rule: #9C7A3E;
   --hero-ticket-corner: 0.55rem;
+  --hero-ticket-rule-gap: 0.3rem;
   --hero-ticket-stub: var(--hero-ticket-stock);
   --hero-ticket-drop: 4rem;
   --hero-ticket-connect: 0.75rem;
@@ -323,10 +325,10 @@
   max-width: 100%;
   padding-left: var(--hero-ticket-notch);
   background:
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
     var(--hero-ticket-stock);
   position: relative;
   clip-path: none;
@@ -402,6 +404,7 @@
   min-height: 2.5rem;
   padding: 0;
   position: relative;
+  z-index: 2;
   transition: color var(--t-fast);
 }
 
@@ -568,43 +571,43 @@
 
 /* Hero variant — ink text on light background */
 .updates-form--light input[type="email"] {
-  color: var(--ink);
-  caret-color: var(--ink);
-  border-bottom-color: var(--join);
+  color: #9C7A3E;
+  caret-color: #9C7A3E;
+  border-bottom-color: #9C7A3E;
 }
 
 .updates-form--light input[type="email"]:focus {
-  border-color: var(--join);
-  color: var(--ink);
-  caret-color: var(--ink);
+  border-color: #9C7A3E;
+  color: #9C7A3E;
+  caret-color: #9C7A3E;
 }
 
 .hero__subscribe .updates-form input[type="email"] {
-  border-bottom-color: var(--join);
-  color: var(--ink);
-  caret-color: var(--ink);
+  border-bottom-color: #9C7A3E;
+  color: #9C7A3E;
+  caret-color: #9C7A3E;
 }
 .hero__subscribe .updates-form input[type="email"]::placeholder {
-  color: var(--muted);
+  color: color-mix(in srgb, #9C7A3E 72%, var(--cream) 28%);
   font-weight: 500;
   opacity: 1;
 }
 .hero__subscribe .updates-form .btn--primary {
-  background: var(--join);
+  background: #9C7A3E;
   color: #fff;
-  border-color: var(--join);
+  border-color: #9C7A3E;
 }
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
-  background: color-mix(in srgb, var(--join) 85%, #000 15%);
-  border-color: color-mix(in srgb, var(--join) 85%, #000 15%);
+  background: color-mix(in srgb, #9C7A3E 85%, #000 15%);
+  border-color: color-mix(in srgb, #9C7A3E 85%, #000 15%);
 }
 .hero__subscribe .updates-form .btn--primary:active {
-  background: color-mix(in srgb, var(--join) 70%, #000 30%);
+  background: color-mix(in srgb, #9C7A3E 70%, #000 30%);
 }
 
 .updates-form--light input[type="email"]::placeholder {
-  color: color-mix(in srgb, var(--ink) 68%, var(--cream) 32%);
+  color: color-mix(in srgb, #9C7A3E 72%, var(--cream) 28%);
   opacity: 1;
 }
 
@@ -616,9 +619,9 @@
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:hover,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:focus,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:active {
-  -webkit-text-fill-color: var(--ink) !important;
+  -webkit-text-fill-color: #9C7A3E !important;
   -webkit-box-shadow: 0 0 0 1000px var(--cream) inset !important;
-  caret-color: var(--ink);
+  caret-color: #9C7A3E;
 }
 
 .hero__media {
@@ -727,6 +730,42 @@
   .hero__subscribe .updates-form .btn {
     min-height: 3.25rem;
     padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 420px) and (max-height: 700px) {
+  .page-head--hero {
+    margin-bottom: var(--sp-5);
+  }
+
+  .hero {
+    padding-bottom: var(--sp-5);
+  }
+
+  .hero__stage {
+    gap: var(--sp-5);
+  }
+
+  .hero__tagline {
+    margin-bottom: var(--sp-5);
+  }
+
+  .hero__subscribe {
+    gap: var(--sp-3);
+  }
+
+  .hero__subscribe-label {
+    font-size: clamp(2.25rem, 11.5vw, 2.75rem);
+    line-height: 0.94;
+  }
+
+  .hero__subscribe .updates-form {
+    padding-bottom: 1rem;
+  }
+
+  .hero__subscribe .updates-form input[type="email"],
+  .hero__subscribe .updates-form .btn {
+    min-height: 3.15rem;
   }
 }
 
@@ -851,24 +890,24 @@
   }
 
   .fold-nav__item--cta {
-    color: #3A321F;
+    color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      #E6D2A3;
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      #E8D9B8;
   }
 
   .fold-nav__item--cta.is-active,
   .fold-nav__item--cta:hover {
-    color: #3A321F;
+    color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
-      #E6D2A3;
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      #E8D9B8;
   }
 
 }
@@ -913,9 +952,9 @@
 .hero__cta-bar .btn--primary {
   margin-left: 0;
   background:
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
     var(--hero-ticket-stub);
   color: var(--hero-ticket-ink);
   position: relative;
@@ -971,10 +1010,12 @@
 
   .hero__socials {
     background:
+      radial-gradient(circle at right top, var(--cream) 0 0.68rem, transparent 0.69rem),
+      radial-gradient(circle at right bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
       var(--hero-ticket-perf) right -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
       var(--hero-ticket-stock);
     height: var(--cta-height);
     margin-top: var(--hero-ticket-connect);
@@ -986,10 +1027,12 @@
 
   .hero__cta-bar .btn--primary {
     background:
+      radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
+      radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
       var(--hero-ticket-perf) left -0.42rem top 0.45rem / 0.72rem 0.72rem repeat-y,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
       var(--hero-ticket-stub);
     margin-left: -2.25rem;
     margin-top: var(--hero-ticket-drop);
@@ -1008,10 +1051,12 @@
 .hero__cta-bar .btn--primary:focus-visible,
 .hero__cta-bar .btn--primary:active {
   background:
+    radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
+    radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
     var(--hero-ticket-perf) left -0.42rem top 0.45rem / 0.72rem 0.72rem repeat-y,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem 0.35rem / calc(100% - 0.7rem) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(100% - 0.35rem) / calc(100% - 0.7rem) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
     color-mix(in srgb, var(--hero-ticket-stub) 90%, #fff 10%);
   color: var(--hero-ticket-ink);
 }
@@ -1391,8 +1436,8 @@
 }
 
 .section--listen .mixtape-tile__badge {
-  background: #E6D2A3;
-  color: #3A321F;
+  background: #E8D9B8;
+  color: #3B3020;
 }
 
 .section--listen .mixtapes-head__feed:hover,
