@@ -50,10 +50,17 @@
   color: var(--cream);
 }
 
-/* Phones: hide the header copy entirely — tab bar takes over. */
 @media (max-width: 720px) {
-  .site-header {
-    display: none;
+  .site-header__copy {
+    top: var(--eyebrow-offset-top);
+    right: var(--gutter);
+    font-size: 0.75rem;
+    line-height: 1;
+    color: var(--muted);
+  }
+
+  .page-home .site-header__copy {
+    color: var(--muted);
   }
 }
 
@@ -287,6 +294,16 @@
 @media (max-width: 900px) {
   .hero__tagline {
     white-space: normal;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero__tagline-extra {
+    display: block;
+  }
+
+  .hero__tagline-separator {
+    display: none;
   }
 }
 
@@ -718,7 +735,11 @@
 
   .hero__inner {
     display: grid;
-    grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+    /* Eyebrow (auto) + copy that flexes to fill slack + subscribe at its
+       natural height. Pinning subscribe to auto (instead of a second 1fr
+       that halves the viewport) keeps the Join button above the tab bar
+       on every device instead of overflowing behind it. */
+    grid-template-rows: auto minmax(0, 1fr) auto;
     flex: 1 1 auto;
     align-self: stretch;
     height: 100%;
@@ -753,7 +774,7 @@
     gap: var(--sp-4);
     width: calc(100% + (2 * var(--gutter)));
     margin-inline: calc(-1 * var(--gutter));
-    padding-inline: var(--gutter);
+    padding: var(--sp-5) var(--gutter) clamp(var(--sp-7), 7svh, var(--sp-8));
   }
 
   .hero__subscribe::before {
@@ -769,7 +790,7 @@
   }
 
   .hero__subscribe .updates-form {
-    padding-bottom: 1.25rem;
+    padding-bottom: 0;
   }
 
   .hero__subscribe .updates-form__row {
@@ -821,6 +842,7 @@
 
   .hero__subscribe {
     gap: var(--sp-4);
+    padding-bottom: var(--sp-7);
   }
 
   .hero__subscribe-label {
@@ -829,7 +851,7 @@
   }
 
   .hero__subscribe .updates-form {
-    padding-bottom: 1rem;
+    padding-bottom: 0;
   }
 
   .hero__subscribe .updates-form input[type="email"],
