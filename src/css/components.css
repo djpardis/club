@@ -319,6 +319,7 @@
   --hero-ticket-stub: var(--hero-ticket-stock);
   --hero-ticket-drop: 4rem;
   --hero-ticket-connect: -0.25rem;
+  --hero-ticket-blank-desktop: 4rem;
   --hero-ticket-cutout: 0.68rem;
   --hero-ticket-cutout-stop: 0.69rem;
   --hero-ticket-perf-offset: -0.36rem;
@@ -1100,15 +1101,33 @@
     background:
       radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
       radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
+      radial-gradient(circle at right top, var(--cream) 0 0.68rem, transparent 0.69rem),
+      radial-gradient(circle at right bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
       var(--hero-ticket-perf) left -0.42rem top 0.45rem / 0.72rem 0.72rem repeat-y,
       var(--hero-ticket-perf) right -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
       var(--hero-ticket-stub);
-    margin-left: -2.25rem;
+    margin-left: calc(-1.9rem - var(--hero-ticket-blank-desktop));
     margin-top: var(--hero-ticket-drop);
     min-height: var(--cta-height);
     height: var(--cta-height);
+  }
+
+  .hero__ticket-blank {
+    display: block;
+    flex: 0 0 var(--hero-ticket-blank-desktop);
+    height: var(--cta-height);
+    margin-left: -0.35rem;
+    margin-top: var(--hero-ticket-drop);
+    background:
+      radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
+      radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
+      var(--hero-ticket-perf) left -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+      var(--hero-ticket-stub);
   }
 }
 
@@ -1179,6 +1198,8 @@
   background:
     radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
     radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
+    radial-gradient(circle at right top, var(--cream) 0 0.68rem, transparent 0.69rem),
+    radial-gradient(circle at right bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
     var(--hero-ticket-perf) left -0.42rem top 0.45rem / 0.72rem 0.72rem repeat-y,
     var(--hero-ticket-perf) right -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
     linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
