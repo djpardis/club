@@ -26,6 +26,10 @@
   color: var(--muted);
 }
 
+.page-home .site-header__copy {
+  color: var(--cream);
+}
+
 /* Phones: hide the header copy entirely — tab bar takes over. */
 @media (max-width: 720px) {
   .site-header {
@@ -78,23 +82,25 @@
   }
 
   .tab-bar__item--cta {
+    --hero-ticket-rule-gap: 0rem;
     color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
       #E8D9B8;
   }
 
   .tab-bar__item--cta.is-active,
   .tab-bar__item--cta:hover {
+    --hero-ticket-rule-gap: 0rem;
     color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
       #E8D9B8;
   }
 
@@ -307,12 +313,15 @@
   --hero-ticket-notch: 1.15rem;
   --hero-ticket-stock: #E8D9B8;
   --hero-ticket-ink: #3B3020;
-  --hero-ticket-rule: #9C7A3E;
+  --hero-ticket-rule: var(--hero-ticket-ink);
   --hero-ticket-corner: 0.55rem;
-  --hero-ticket-rule-gap: 0.3rem;
+  --hero-ticket-rule-gap: 0rem;
   --hero-ticket-stub: var(--hero-ticket-stock);
   --hero-ticket-drop: 4rem;
-  --hero-ticket-connect: 0.75rem;
+  --hero-ticket-connect: -0.25rem;
+  --hero-ticket-cutout: 0.68rem;
+  --hero-ticket-cutout-stop: 0.69rem;
+  --hero-ticket-perf-offset: -0.36rem;
   --hero-ticket-perf: radial-gradient(circle, var(--cream) 0 0.24rem, transparent 0.25rem);
   display: inline-flex;
   flex-direction: row;
@@ -337,6 +346,10 @@
 
 .hero__cta-bar .btn {
   justify-content: center;
+}
+
+.hero__ticket-blank {
+  display: none;
 }
 
 .hero__socials {
@@ -543,6 +556,27 @@
   flex-direction: column;
   justify-content: center;
   gap: var(--sp-4);
+  align-self: stretch;
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+  color: var(--cream);
+  padding: clamp(var(--sp-5), 4vw, var(--sp-7));
+}
+
+.hero__subscribe::before {
+  content: "";
+  position: absolute;
+  inset-block: -100vh;
+  left: 0;
+  right: calc(50% - 50vw);
+  background: var(--ink);
+  z-index: -1;
+}
+
+.hero__subscribe,
+.hero__subscribe :is(h2, p, label, input, button) {
+  color: var(--cream);
 }
 
 .hero__subscribe-label {
@@ -552,7 +586,14 @@
   line-height: 0.93;
   letter-spacing: -0.035em;
   margin: 0 0 var(--sp-4);
+  color: var(--cream);
+}
+
+.hero__subscribe-label .hl {
+  background: var(--yellow);
   color: var(--ink);
+  font-family: inherit;
+  font-weight: 700;
 }
 
 .hero__subscribe-nowrap {
@@ -571,43 +612,45 @@
 
 /* Hero variant — ink text on light background */
 .updates-form--light input[type="email"] {
-  color: #9C7A3E;
-  caret-color: #9C7A3E;
-  border-bottom-color: #9C7A3E;
+  color: var(--cream);
+  caret-color: var(--cream);
+  border-bottom-color: color-mix(in srgb, var(--cream) 78%, transparent);
 }
 
 .updates-form--light input[type="email"]:focus {
-  border-color: #9C7A3E;
-  color: #9C7A3E;
-  caret-color: #9C7A3E;
+  border-color: var(--cream);
+  color: var(--cream);
+  caret-color: var(--cream);
 }
 
 .hero__subscribe .updates-form input[type="email"] {
-  border-bottom-color: #9C7A3E;
-  color: #9C7A3E;
-  caret-color: #9C7A3E;
+  border-bottom-color: color-mix(in srgb, var(--cream) 78%, transparent);
+  color: var(--cream);
+  caret-color: var(--cream);
 }
 .hero__subscribe .updates-form input[type="email"]::placeholder {
-  color: color-mix(in srgb, #9C7A3E 72%, var(--cream) 28%);
+  color: color-mix(in srgb, var(--cream) 70%, transparent);
   font-weight: 500;
   opacity: 1;
 }
 .hero__subscribe .updates-form .btn--primary {
-  background: #9C7A3E;
-  color: #fff;
-  border-color: #9C7A3E;
+  background: var(--purple);
+  color: var(--cream);
+  border-color: var(--purple);
 }
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
-  background: color-mix(in srgb, #9C7A3E 85%, #000 15%);
-  border-color: color-mix(in srgb, #9C7A3E 85%, #000 15%);
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
 }
+
 .hero__subscribe .updates-form .btn--primary:active {
-  background: color-mix(in srgb, #9C7A3E 70%, #000 30%);
+  background: var(--plum);
+  border-color: var(--plum);
 }
 
 .updates-form--light input[type="email"]::placeholder {
-  color: color-mix(in srgb, #9C7A3E 72%, var(--cream) 28%);
+  color: color-mix(in srgb, var(--cream) 70%, transparent);
   opacity: 1;
 }
 
@@ -619,9 +662,9 @@
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:hover,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:focus,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:active {
-  -webkit-text-fill-color: #9C7A3E !important;
-  -webkit-box-shadow: 0 0 0 1000px var(--cream) inset !important;
-  caret-color: #9C7A3E;
+  -webkit-text-fill-color: var(--cream) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--ink) inset !important;
+  caret-color: var(--cream);
 }
 
 .hero__media {
@@ -691,25 +734,38 @@
     min-height: auto;
     align-items: stretch;
     justify-content: center;
-    gap: clamp(var(--sp-5), 5svh, var(--sp-7));
+    gap: var(--sp-5);
   }
 
   .hero__copy-main,
-  .hero__media,
   .hero__subscribe {
     flex: 0 0 auto;
     width: 100%;
+    min-width: 0;
+  }
+
+  .hero__media {
+    flex: 0 0 auto;
   }
 
   .hero__subscribe {
     justify-content: flex-start;
-    gap: var(--sp-3);
+    gap: var(--sp-4);
+    width: calc(100% + (2 * var(--gutter)));
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+  }
+
+  .hero__subscribe::before {
+    inset-block: 0;
+    left: 0;
+    right: 0;
   }
 
   .hero__subscribe-label {
-    font-size: clamp(2.5rem, 13vw, 3.25rem);
-    line-height: 0.92;
-    margin-bottom: 0;
+    font-size: clamp(2.6rem, 11vw, 3.45rem);
+    line-height: 0.95;
+    margin-bottom: var(--sp-3);
   }
 
   .hero__subscribe .updates-form {
@@ -731,6 +787,19 @@
     min-height: 3.25rem;
     padding-inline: 1rem;
   }
+
+  .wordmark-display {
+    font-size: clamp(2.65rem, 14vw, 3.75rem);
+    margin-bottom: var(--sp-3);
+  }
+
+  .hero__tagline {
+    font-size: 1.25rem;
+  }
+
+  .hero__cta-bar {
+    width: auto;
+  }
 }
 
 @media (max-width: 420px) and (max-height: 700px) {
@@ -743,7 +812,7 @@
   }
 
   .hero__stage {
-    gap: var(--sp-5);
+    gap: var(--sp-4);
   }
 
   .hero__tagline {
@@ -751,12 +820,12 @@
   }
 
   .hero__subscribe {
-    gap: var(--sp-3);
+    gap: var(--sp-4);
   }
 
   .hero__subscribe-label {
-    font-size: clamp(2.25rem, 11.5vw, 2.75rem);
-    line-height: 0.94;
+    font-size: clamp(2.35rem, 10vw, 3rem);
+    line-height: 0.95;
   }
 
   .hero__subscribe .updates-form {
@@ -890,23 +959,25 @@
   }
 
   .fold-nav__item--cta {
+    --hero-ticket-rule-gap: 0rem;
     color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
       #E8D9B8;
   }
 
   .fold-nav__item--cta.is-active,
   .fold-nav__item--cta:hover {
+    --hero-ticket-rule-gap: 0rem;
     color: #3B3020;
     background:
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
-      linear-gradient(#9C7A3E, #9C7A3E) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) 1px no-repeat,
+      linear-gradient(#3B3020, #3B3020) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
+      linear-gradient(#3B3020, #3B3020) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap, 0.3rem)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap, 0.3rem))) no-repeat,
       #E8D9B8;
   }
 
@@ -1030,9 +1101,9 @@
       radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
       radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
       var(--hero-ticket-perf) left -0.42rem top 0.45rem / 0.72rem 0.72rem repeat-y,
+      var(--hero-ticket-perf) right -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
       linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
       var(--hero-ticket-stub);
     margin-left: -2.25rem;
     margin-top: var(--hero-ticket-drop);
@@ -1043,7 +1114,62 @@
 
 @media (max-width: 899px) {
   .hero__cta-bar {
+    align-self: stretch;
+    padding-left: 0;
+    background: transparent;
     overflow: visible;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__socials::before,
+  .hero__socials::after,
+  .hero__cta-bar .btn--primary::before,
+  .hero__cta-bar .btn--primary::after {
+    content: none;
+  }
+
+  .hero__socials {
+    background:
+      radial-gradient(circle at right top, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at right bottom, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      var(--hero-ticket-perf) right var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.35rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.35rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      var(--hero-ticket-stock);
+  }
+
+  .hero__cta-bar .btn--primary {
+    flex: 0 0 auto;
+    min-width: max-content;
+    background:
+      radial-gradient(circle at left top, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at left bottom, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at right top, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at right bottom, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      var(--hero-ticket-perf) left var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
+      var(--hero-ticket-perf) right var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      var(--hero-ticket-stub);
+    margin-left: -0.35rem;
+  }
+
+  .hero__ticket-blank {
+    display: block;
+    flex: 1 1 var(--hero-ticket-notch);
+    min-width: var(--hero-ticket-notch);
+    height: var(--cta-height);
+    margin-left: -0.35rem;
+    background:
+      radial-gradient(circle at left top, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at left bottom, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      var(--hero-ticket-perf) left var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - var(--hero-ticket-rule-gap)) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) 0.35rem / 1px calc(100% - 0.7rem) no-repeat,
+      var(--hero-ticket-stub);
   }
 }
 
@@ -1054,11 +1180,28 @@
     radial-gradient(circle at left top, var(--cream) 0 0.68rem, transparent 0.69rem),
     radial-gradient(circle at left bottom, var(--cream) 0 0.68rem, transparent 0.69rem),
     var(--hero-ticket-perf) left -0.42rem top 0.45rem / 0.72rem 0.72rem repeat-y,
+    var(--hero-ticket-perf) right -0.3rem top 0.45rem / 0.72rem 0.72rem repeat-y,
     linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
     linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
-    linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
     color-mix(in srgb, var(--hero-ticket-stub) 90%, #fff 10%);
   color: var(--hero-ticket-ink);
+}
+
+@media (max-width: 899px) {
+  .hero__cta-bar .btn--primary:hover,
+  .hero__cta-bar .btn--primary:focus-visible,
+  .hero__cta-bar .btn--primary:active {
+    background:
+      radial-gradient(circle at left top, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at left bottom, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at right top, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      radial-gradient(circle at right bottom, var(--cream) 0 var(--hero-ticket-cutout), transparent var(--hero-ticket-cutout-stop)),
+      var(--hero-ticket-perf) left var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
+      var(--hero-ticket-perf) right var(--hero-ticket-perf-offset) top 0.45rem / 0.72rem 0.72rem repeat-y,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      color-mix(in srgb, var(--hero-ticket-stub) 90%, #fff 10%);
+  }
 }
 
 .btn--primary:hover,
@@ -1944,13 +2087,13 @@
 
 .updates-form.updates-form--light input[type="email"],
 .updates-form.updates-form--light input[type="email"]:focus {
-  color: var(--ink);
-  caret-color: var(--ink);
-  border-color: var(--join);
+  color: var(--cream);
+  caret-color: var(--cream);
+  border-color: color-mix(in srgb, var(--cream) 78%, transparent);
 }
 
 .updates-form.updates-form--light input[type="email"]::placeholder {
-  color: var(--muted);
+  color: color-mix(in srgb, var(--cream) 70%, transparent);
   font-weight: 500;
   opacity: 1;
 }
@@ -1959,9 +2102,9 @@
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:hover,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:focus,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:active {
-  -webkit-text-fill-color: var(--ink) !important;
-  -webkit-box-shadow: 0 0 0 1000px var(--cream) inset !important;
-  caret-color: var(--ink);
+  -webkit-text-fill-color: var(--cream) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--ink) inset !important;
+  caret-color: var(--cream);
 }
 
 .updates-form .btn {
@@ -1978,8 +2121,25 @@
   background: color-mix(in srgb, var(--join) 85%, #000 15%);
 }
 
+.hero__subscribe .updates-form .btn--primary {
+  background: var(--purple);
+  color: var(--cream);
+  border-color: var(--purple);
+}
+
+.hero__subscribe .updates-form .btn--primary:hover,
+.hero__subscribe .updates-form .btn--primary:focus-visible {
+  background: var(--purple-deep);
+  border-color: var(--purple-deep);
+}
+
 .updates-form .btn--primary:active {
   background: color-mix(in srgb, var(--join) 70%, #000 30%);
+}
+
+.hero__subscribe .updates-form .btn--primary:active {
+  background: var(--plum);
+  border-color: var(--plum);
 }
 
 .updates-form .btn:disabled {
