@@ -769,18 +769,14 @@
     min-height: 0;
     justify-content: center;
     gap: var(--sp-4);
-    width: calc(100% + (2 * var(--gutter)));
+    width: auto;
     margin-inline: calc(-1 * var(--gutter));
-    background: transparent;
+    background: var(--ink);
     padding: var(--sp-5) var(--gutter) var(--sp-7);
   }
 
   .hero__subscribe::before {
-    content: "";
-    inset-block: 0;
-    left: calc(50% - 50vw);
-    right: calc(50% - 50vw);
-    transform: none;
+    content: none;
   }
 
   .hero__subscribe-label {
