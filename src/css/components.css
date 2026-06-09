@@ -765,8 +765,9 @@
     justify-content: flex-start;
     gap: var(--sp-4);
     width: calc(100% + (2 * var(--gutter)));
+    margin-top: var(--sp-5);
     margin-inline: calc(-1 * var(--gutter));
-    padding: var(--sp-5) var(--gutter) clamp(var(--sp-7), 7svh, var(--sp-8));
+    padding: var(--sp-5) var(--gutter) var(--sp-7);
   }
 
   .hero__subscribe::before {
@@ -834,6 +835,7 @@
 
   .hero__subscribe {
     gap: var(--sp-4);
+    margin-top: var(--sp-4);
     padding-bottom: var(--sp-7);
   }
 
