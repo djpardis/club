@@ -749,6 +749,8 @@
     height: 100%;
     transform: none;
     align-items: stretch;
+    width: calc(100% + (2 * var(--gutter)));
+    margin-inline: calc(-1 * var(--gutter));
   }
 
   .hero__copy-main {
@@ -757,6 +759,7 @@
     align-self: center;
     width: 100%;
     min-width: 0;
+    padding-inline: var(--gutter);
   }
 
   .hero__media {
@@ -769,8 +772,6 @@
     min-height: 0;
     justify-content: center;
     gap: var(--sp-4);
-    width: calc(100% + (2 * var(--gutter)));
-    margin-inline: calc(-1 * var(--gutter));
     background: var(--ink);
     padding: var(--sp-5) var(--gutter) var(--sp-7);
   }
