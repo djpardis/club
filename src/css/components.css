@@ -771,13 +771,16 @@
     gap: var(--sp-4);
     width: calc(100% + (2 * var(--gutter)));
     margin-inline: calc(-1 * var(--gutter));
+    background: transparent;
     padding: var(--sp-5) var(--gutter) var(--sp-7);
   }
 
   .hero__subscribe::before {
+    content: "";
     inset-block: 0;
-    left: 0;
-    right: 0;
+    left: calc(50% - 50vw);
+    right: calc(50% - 50vw);
+    transform: none;
   }
 
   .hero__subscribe-label {
