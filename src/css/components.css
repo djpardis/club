@@ -769,7 +769,7 @@
     min-height: 0;
     justify-content: center;
     gap: var(--sp-4);
-    width: auto;
+    width: calc(100% + (2 * var(--gutter)));
     margin-inline: calc(-1 * var(--gutter));
     background: var(--ink);
     padding: var(--sp-5) var(--gutter) var(--sp-7);
