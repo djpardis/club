@@ -131,7 +131,7 @@
   grid-template-rows: minmax(0, 1fr) auto;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 899px) {
   .fold {
     display: block;
     min-height: auto;
@@ -142,7 +142,7 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 899px) {
   :root {
     --eyebrow-offset-top: var(--sp-5);
   }
@@ -289,7 +289,7 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 899px) {
   .hero__tagline-extra {
     display: block;
   }
@@ -299,12 +299,11 @@
   }
 }
 
-/* On phones the smaller font scales the em-based paddings down so the
+/* On smaller screens the font scales the em-based paddings down so the
    pink "Pop house" block no longer visually overlaps the yellow PARDIS
-   block above it (which it does at larger sizes). Pull the tagline up
-   and grow the pink block's vertical padding so the overlap reads the
-   same as it does on tablet/desktop. */
-@media (max-width: 720px) {
+   block above it. Pull the tagline up and grow the pink block's vertical
+   padding so the overlap reads the same as it does on desktop. */
+@media (max-width: 899px) {
   .page-head--hero {
     margin-bottom: var(--sp-6);
   }
@@ -319,7 +318,7 @@
   .hero__tagline {
     margin-top: -0.45em;
     margin-bottom: var(--sp-6);
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 3vw, 2rem);
   }
 
   .hero__tagline .hl-pink {
@@ -715,7 +714,7 @@
   color: currentColor;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 899px) {
   .hero {
     display: flex;
     height: calc(100svh - 3.25rem - env(safe-area-inset-bottom, 0px));
@@ -770,7 +769,7 @@
     min-height: 0;
     justify-content: center;
     gap: var(--sp-4);
-    padding: var(--sp-5) var(--gutter) var(--sp-7);
+    padding: var(--sp-5) 0 var(--sp-7);
   }
 
   .hero__subscribe::before {
@@ -778,7 +777,7 @@
   }
 
   .hero__subscribe-label {
-    font-size: clamp(2.6rem, 11vw, 3.45rem);
+    font-size: clamp(2.6rem, 11vw, 5rem);
     line-height: 0.95;
     margin-bottom: var(--sp-3);
   }
@@ -804,12 +803,12 @@
   }
 
   .wordmark-display {
-    font-size: clamp(2.65rem, 14vw, 3.75rem);
+    font-size: clamp(2.65rem, 14vw, 7.5rem);
     margin-bottom: var(--sp-3);
   }
 
   .hero__tagline {
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 3vw, 2rem);
   }
 
   .hero__cta-bar {
