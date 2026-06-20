@@ -8,11 +8,12 @@ bodyClass: page-post
       {% set headEyebrow = year + " mixtape" %}
       {% include "page-head.njk" %}
 
-      <h1 class="page-title">{{ title }}</h1>
-      {% if subtitle %}
-        <p class="page-subtitle">{{ subtitle }}</p>
+      <h1 class="page-title">{{ subtitle or title }}</h1>
+      {% if title or displayDate %}
+        <p class="page-subtitle">
+          {{ title }}{% if title and displayDate %} · {% endif %}{{ displayDate }}
+        </p>
       {% endif %}
-      <p class="mixtape-post__date meta">{{ displayDate }}</p>
     </div>
   </header>
 
