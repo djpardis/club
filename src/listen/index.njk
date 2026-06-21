@@ -14,48 +14,55 @@ bodyClass: page-listen
 </header>
 
 <section class="page-body section section--listen" aria-labelledby="mixtapes-label">
-  <div class="container">
-    <div class="mixtapes-head">
-      <div class="mixtapes-head__title">
-        <span class="page-kicker">// Mixtapes</span>
-        <h2 id="mixtapes-label"><a class="mixtapes-head__feed" href="/feed.xml">Annual mixtapes · RSS</a></h2>
+  <div class="container listen-layout">
+    <div class="listen-layout__mixtapes">
+      <div class="mixtapes-head">
+        <div class="mixtapes-head__title">
+          <span class="page-kicker">// Mixtapes</span>
+          <h2 id="mixtapes-label"><a class="mixtapes-head__feed" href="/feed.xml">RSS</a></h2>
+        </div>
+      </div>
+      <div class="mixtapes-gallery" data-mixtapes-gallery>
+        <div class="mixtapes-gallery__controls" aria-label="Browse mixtapes">
+          <button class="mixtapes-gallery__button" type="button" data-mixtapes-prev>Previous</button>
+          <span class="mixtapes-gallery__status" data-mixtapes-status>1 of {{ mixtapes.length }}</span>
+          <button class="mixtapes-gallery__button" type="button" data-mixtapes-next>Next</button>
+        </div>
+        <ul class="mixtapes-grid mixtapes-gallery__track" data-mixtapes-track>
+          {% for m in mixtapes | sortMixtapesDesc %}
+            <li>
+              <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
+                {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
+                <span class="mixtape-tile__year">{{ m.year }}</span>
+                <span class="mixtape-tile__title">{{ m.title }}</span>
+                <span class="mixtape-tile__date">{{ m.date }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
-    <ul class="mixtapes-grid">
-      {% for m in mixtapes | sortMixtapesDesc %}
-        <li>
-          <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
-            {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
-            <span class="mixtape-tile__year">{{ m.year }}</span>
-            <span class="mixtape-tile__title">{{ m.title }}</span>
-            <span class="mixtape-tile__date">{{ m.date }}</span>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
 
-{% if radio and radio.length %}
-<section class="section" aria-labelledby="radio-label">
-  <div class="container">
-    <h2 class="sr-only" id="radio-label">Radio</h2>
-    <span class="page-kicker">// Radio</span>
-    <ul class="radio-list">
-      {% for r in radio %}
-        <li class="radio-item">
-          <span class="radio-item__ep">Ep. {{ r.episode }} · {{ r.show }}</span>
-          <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }}</a>
-          <div class="radio-item__meta">
-            <span>with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a></span>
-            <span>·</span>
-            <span><a href="{{ r.showUrl }}" rel="noopener">{{ r.show }}</a></span>
-            <span>·</span>
-            <span>{{ r.date }}</span>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
+    {% if radio and radio.length %}
+      <aside class="listen-layout__radio" aria-labelledby="radio-label">
+        <h2 class="sr-only" id="radio-label">Radio</h2>
+        <span class="page-kicker">// Radio</span>
+        <ul class="radio-list">
+          {% for r in radio %}
+            <li class="radio-item">
+              <span class="radio-item__ep">Ep. {{ r.episode }} · {{ r.show }}</span>
+              <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }}</a>
+              <div class="radio-item__meta">
+                <span>with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a></span>
+                <span>·</span>
+                <span><a href="{{ r.showUrl }}" rel="noopener">{{ r.show }}</a></span>
+                <span>·</span>
+                <span>{{ r.date }}</span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </aside>
+    {% endif %}
   </div>
 </section>
-{% endif %}

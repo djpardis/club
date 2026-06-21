@@ -1690,6 +1690,14 @@
   border: 1px solid color-mix(in srgb, var(--purple) 55%, transparent);
 }
 
+.mixtapes-gallery {
+  min-width: 0;
+}
+
+.mixtapes-gallery__controls {
+  display: none;
+}
+
 @media (max-width: 1120px) {
   .mixtapes-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1710,31 +1718,129 @@
 }
 
 @media (min-width: 1100px) {
-  .page-listen .section--listen,
-  .page-mixtapes .page-body {
+  .page-listen .section--listen {
     display: flex;
     align-items: stretch;
   }
 
-  .page-listen .section--listen .container,
-  .page-mixtapes .page-body .container {
+  .page-listen .section--listen .container {
     min-height: 0;
   }
 
   .page-listen .mixtapes-head {
-    margin-bottom: var(--sp-3);
+    margin-bottom: var(--sp-2);
   }
 
-  .page-mixtapes .mixtapes-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .page-listen .mixtapes-head__title {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--sp-4);
   }
 
-  .page-listen .mixtapes-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .page-listen .listen-layout {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(20rem, 34rem) minmax(0, 1fr);
+    gap: clamp(var(--sp-5), 4vw, var(--sp-8));
+    align-items: start;
+  }
+
+  .page-listen .listen-layout__mixtapes,
+  .page-listen .listen-layout__radio {
+    min-width: 0;
+  }
+
+  .page-listen .listen-layout__radio {
+    padding-top: calc(var(--fs-micro) + var(--sp-3) + 2rem);
+  }
+
+  .mixtapes-gallery {
+    display: grid;
+    gap: 0;
+    border: 1px solid color-mix(in srgb, var(--purple) 55%, transparent);
+    background: color-mix(in srgb, var(--purple) 55%, transparent);
+  }
+
+  .mixtapes-gallery__controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--sp-2);
+    padding: var(--sp-3);
+    background: var(--purple);
+  }
+
+  .mixtapes-gallery__status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding-inline: var(--sp-3);
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--fs-meta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .mixtapes-gallery__button {
+    border: 1px solid color-mix(in srgb, var(--cream) 65%, transparent);
+    background: transparent;
+    color: var(--cream);
+    padding: 0.45em 0.75em;
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .mixtapes-gallery__button:disabled {
+    color: color-mix(in srgb, var(--cream) 45%, transparent);
+    cursor: default;
+  }
+
+  .mixtapes-gallery__track {
+    display: block;
+    background: transparent;
+  }
+
+  .mixtapes-gallery__track > li {
+    display: none;
+  }
+
+  .mixtapes-gallery__track > li.is-active {
+    display: block;
   }
 
   .page-listen .mixtape-tile {
-    min-height: clamp(8.75rem, 18vh, 10.5rem);
+    min-height: clamp(11rem, 22vh, 13rem);
+    background: var(--cream);
+  }
+
+  .page-listen .mixtape-tile--latest {
+    background: var(--cream);
+  }
+
+  .page-listen .mixtape-tile__year {
+    display: inline;
+    width: fit-content;
+    background: var(--yellow);
+    padding: 0.02em 0.18em 0.08em;
+  }
+
+  .page-listen .listen-layout__radio {
+    border: 1px solid color-mix(in srgb, var(--purple) 55%, transparent);
+    padding: var(--sp-3);
+    background: #fff;
+  }
+
+  .page-listen .listen-layout__radio .page-kicker {
+    margin-bottom: var(--sp-2);
   }
 }
 
@@ -1832,19 +1938,6 @@
 }
 
 @media (min-width: 1100px) {
-  .page-listen .section--sand {
-    display: flex;
-    align-items: stretch;
-    padding-block: clamp(var(--sp-4), 2.5vh, var(--sp-6));
-  }
-
-  .page-listen .section--sand .container {
-    height: 100%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
   .page-listen .radio-list {
     grid-template-columns: 1fr;
     gap: var(--sp-3);
@@ -2367,7 +2460,7 @@
   line-height: 1.6;
 }
 
-body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking, .page-post, .page-thanks) {
+body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, .page-thanks) {
   background-color: #fff;
 }
 
@@ -2392,62 +2485,45 @@ body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booki
 }
 
 @media (min-width: 1100px) {
-  body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking, .page-thanks) {
+  body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-thanks) {
     height: var(--fold-h, 100svh);
     min-height: 0;
     overflow: hidden;
   }
 
-  body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking, .page-thanks) main {
+  body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-thanks) main {
     height: var(--fold-h, 100svh);
     min-height: 0;
     overflow: hidden;
   }
 
-  body:where(.page-about, .page-gallery, .page-mixtapes, .page-listen) main,
+  body:where(.page-about, .page-gallery, .page-listen) main,
   body:where(.page-booking, .page-thanks) main > article {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
   }
 
   body.page-listen main {
-    grid-template-columns: minmax(0, 1.55fr) minmax(20rem, 0.85fr);
     grid-template-rows: auto minmax(0, 1fr);
   }
 
-  body.page-listen .page-header {
-    grid-column: 1 / -1;
-  }
-
-  body.page-listen .section--listen {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  body.page-listen .section--sand {
-    grid-column: 2;
-    grid-row: 2;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking, .page-post, .page-thanks) .section--page-top {
+  body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, .page-thanks) .section--page-top {
     padding-top: var(--eyebrow-offset-top);
     padding-bottom: clamp(var(--sp-3), 2vh, var(--sp-5));
   }
 
-  body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking, .page-post, .page-thanks) .page-title {
+  body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, .page-thanks) .page-title {
     font-size: clamp(2.25rem, 5vw, 4.5rem);
     margin-block: var(--sp-2);
   }
 
-  body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking) .page-body.section {
+  body:where(.page-about, .page-listen, .page-gallery, .page-booking) .page-body.section {
     min-height: 0;
     padding-block: clamp(var(--sp-4), 2.5vh, var(--sp-6));
     overflow: hidden;
   }
 
-  body:where(.page-about, .page-listen, .page-gallery, .page-mixtapes, .page-booking) .page-body > .container {
+  body:where(.page-about, .page-listen, .page-gallery, .page-booking) .page-body > .container {
     height: 100%;
     min-height: 0;
   }
