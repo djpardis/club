@@ -19,44 +19,6 @@
 }
 
 /* ============================================================
-   Header
-   ============================================================ */
-.site-header {
-  padding-inline: var(--gutter);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.site-header__copy {
-  pointer-events: auto;
-  position: absolute;
-  top: var(--eyebrow-offset-top);
-  right: var(--gutter);
-  margin: 0;
-  white-space: nowrap;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.125rem;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--muted);
-}
-
-.page-home .site-header__copy {
-  color: #fff;
-}
-
-@media (max-width: 720px) {
-  .site-header {
-    display: none;
-  }
-}
-
-/* ============================================================
    Tab bar — phone/tablet bottom navigation
    ============================================================ */
 .tab-bar {
@@ -523,6 +485,10 @@
     min-width: 0;
   }
 
+  .hero__cta-bar .btn--primary span[aria-hidden="true"] {
+    margin-left: 0;
+  }
+
   .hero__socials {
     flex: 0 0 auto;
     min-width: 0;
@@ -849,7 +815,7 @@
   .hero__subscribe .updates-form__row {
     flex-direction: row;
     align-items: stretch;
-    gap: 0;
+    gap: var(--sp-3);
   }
 
   .hero__subscribe .updates-form input[type="email"] {
@@ -996,10 +962,6 @@
     padding-left: var(--rail-w);
   }
 
-  .site-header {
-    left: var(--rail-w);
-  }
-
   .fold-nav {
     display: flex;
     flex-direction: column;
@@ -1124,7 +1086,7 @@
 }
 
 .hero__cta-bar .btn--primary span[aria-hidden="true"] {
-  margin-left: auto;
+  margin-left: var(--sp-2);
 }
 
 .hero__cta-bar .btn--primary::before,
@@ -2645,7 +2607,7 @@
   .hero__subscribe .updates-form__row {
     flex-direction: row;
     align-items: stretch;
-    gap: 0;
+    gap: var(--sp-3);
     height: var(--cta-height);
     min-height: var(--cta-height);
   }
@@ -3763,5 +3725,31 @@ body.lightbox-open {
     justify-content: center;
     padding-block: 0;
     line-height: 1;
+  }
+
+  /* Reset hero + subscribe action buttons to one shared mobile shape. */
+  .hero__cta-bar .btn--primary,
+  .hero__cta-bar .btn--primary:hover,
+  .hero__cta-bar .btn--primary:focus-visible,
+  .hero__cta-bar .btn--primary:active,
+  .hero__subscribe .updates-form .btn--primary,
+  .hero__subscribe .updates-form .btn--primary:hover,
+  .hero__subscribe .updates-form .btn--primary:focus-visible,
+  .hero__subscribe .updates-form .btn--primary:active {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    box-sizing: border-box;
+    height: var(--cta-height);
+    min-height: var(--cta-height);
+    max-height: var(--cta-height);
+    padding: 0 1.25rem;
+    line-height: 1;
+  }
+
+  .hero__cta-bar .btn--primary span[aria-hidden="true"],
+  .hero__subscribe .updates-form .btn--primary span[aria-hidden="true"] {
+    margin-left: var(--sp-2);
   }
 }

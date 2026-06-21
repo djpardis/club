@@ -150,7 +150,7 @@
 
     <link rel="stylesheet" href="/css/tokens.css?v=join-ink" />
     <link rel="stylesheet" href="/css/base.css?v=tablet-bottom-nav" />
-    <link rel="stylesheet" href="/css/components.css?v=mobile-controls-cleanup" />
+    <link rel="stylesheet" href="/css/components.css?v=mobile-buttons-reset-v1" />
     <script>
       // Capture the visual viewport height in pixels once so the fold fills
       // exactly one screen on desktop WKWebView in-app browsers. Only
@@ -173,7 +173,6 @@
     </script>
   </head>
   <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
-    {% include "header.njk" %}
     <main id="main" data-lightbox-group="page">
       {{ content | safe }}
     </main>
