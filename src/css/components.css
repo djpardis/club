@@ -86,7 +86,7 @@
     justify-content: center;
     gap: 3px;
     padding: var(--sp-2) var(--sp-1);
-    min-height: 3.25rem;
+    min-height: var(--cta-height);
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.03em;
@@ -363,6 +363,11 @@
 }
 
 @media (min-width: 900px) {
+  .wordmark-display,
+  .hero__tagline {
+    transform: translateY(clamp(2.5rem, 7vh, 4.5rem));
+  }
+
   .hero__tagline {
     margin-bottom: 0;
   }
@@ -509,7 +514,7 @@
 
 @media (max-width: 1099px) {
   :root {
-    --cta-height: 3.75rem;
+    --cta-height: 3.25rem;
   }
 
   .hero__cta-bar {
@@ -848,12 +853,12 @@
   }
 
   .hero__subscribe .updates-form input[type="email"] {
-    min-height: 3.25rem;
+    min-height: var(--cta-height);
     font-size: 1.25rem;
   }
 
   .hero__subscribe .updates-form .btn {
-    min-height: 3.25rem;
+    min-height: var(--cta-height);
     padding-inline: 1rem;
   }
 
@@ -906,7 +911,7 @@
 
   .hero__subscribe .updates-form input[type="email"],
   .hero__subscribe .updates-form .btn {
-    min-height: 3.15rem;
+    min-height: var(--cta-height);
   }
 }
 
@@ -1016,7 +1021,7 @@
     justify-content: center;
     gap: 3px;
     padding: var(--sp-2) var(--sp-1);
-    min-height: 3.25rem;
+    min-height: var(--cta-height);
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.03em;
