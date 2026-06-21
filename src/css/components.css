@@ -71,7 +71,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-    background: color-mix(in srgb, var(--cream) 93%, transparent);
+    background: #fff;
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-top: 1px solid var(--ink);
@@ -97,19 +97,28 @@
 
   .tab-bar__item.is-active {
     color: var(--ink);
-    background: #fff;
+    background:
+      linear-gradient(var(--pink), var(--pink)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--pink), var(--pink)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--pink), var(--pink)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      linear-gradient(var(--pink), var(--pink)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      #fff;
   }
 
   .tab-bar__item--cta,
-  .tab-bar__item--cta.is-active,
   .tab-bar__item--cta:hover {
-    color: var(--hero-ticket-ink);
+    color: #fff;
+    background: var(--purple);
+  }
+
+  .tab-bar__item--cta.is-active {
+    color: #fff;
     background:
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
-      var(--hero-ticket-stock);
+      linear-gradient(#fff, #fff) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(#fff, #fff) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(#fff, #fff) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      linear-gradient(#fff, #fff) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      var(--purple);
   }
 
   /* Pad page content so the fixed tab bar doesn't overlap it. */
@@ -647,19 +656,21 @@
   opacity: 1;
 }
 .hero__subscribe .updates-form .btn--primary {
-  background: var(--purple);
-  color: #fff;
-  border-color: var(--purple);
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--ink);
 }
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
-  background: var(--purple-deep);
-  border-color: var(--purple-deep);
+  background: color-mix(in srgb, #fff 92%, var(--yellow) 8%);
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .hero__subscribe .updates-form .btn--primary:active {
-  background: var(--plum);
-  border-color: var(--plum);
+  background: color-mix(in srgb, #fff 86%, var(--yellow) 14%);
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .updates-form--light input[type="email"]::placeholder {
@@ -990,7 +1001,7 @@
     bottom: 0;
     width: var(--rail-w);
     z-index: 100;
-    background: color-mix(in srgb, var(--cream) 93%, transparent);
+    background: #fff;
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-right: 1px solid var(--ink);
@@ -1016,19 +1027,28 @@
 
   .fold-nav__item.is-active {
     color: var(--ink);
-    background: #fff;
+    background:
+      linear-gradient(var(--pink), var(--pink)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--pink), var(--pink)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(var(--pink), var(--pink)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      linear-gradient(var(--pink), var(--pink)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      #fff;
   }
 
   .fold-nav__item--cta,
-  .fold-nav__item--cta.is-active,
   .fold-nav__item--cta:hover {
-    color: var(--hero-ticket-ink);
+    color: #fff;
+    background: var(--purple);
+  }
+
+  .fold-nav__item--cta.is-active {
+    color: #fff;
     background:
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
-      linear-gradient(var(--hero-ticket-rule), var(--hero-ticket-rule)) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
-      var(--hero-ticket-stock);
+      linear-gradient(#fff, #fff) calc(0.35rem + var(--hero-ticket-rule-gap)) 0.35rem / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(#fff, #fff) calc(0.35rem + var(--hero-ticket-rule-gap)) calc(100% - 0.35rem) / calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) 1px no-repeat,
+      linear-gradient(#fff, #fff) 0.35rem calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      linear-gradient(#fff, #fff) calc(100% - 0.35rem) calc(0.35rem + var(--hero-ticket-rule-gap)) / 1px calc(100% - 0.7rem - (2 * var(--hero-ticket-rule-gap))) no-repeat,
+      var(--purple);
   }
 
 }
@@ -1330,8 +1350,8 @@
   min-height: var(--cta-height);
   height: var(--cta-height);
   justify-content: center;
-  background: transparent;
-  color: var(--hero-ticket-ink);
+  background: var(--purple);
+  color: #fff;
 }
 
 .hero__ticket-blank {
@@ -2563,15 +2583,16 @@
 }
 
 .hero__subscribe .updates-form .btn--primary {
-  background: var(--purple);
-  color: var(--cream);
-  border-color: var(--purple);
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--ink);
 }
 
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
-  background: var(--purple-deep);
-  border-color: var(--purple-deep);
+  background: color-mix(in srgb, #fff 92%, var(--yellow) 8%);
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .updates-form .btn--primary:active {
@@ -2579,8 +2600,9 @@
 }
 
 .hero__subscribe .updates-form .btn--primary:active {
-  background: var(--plum);
-  border-color: var(--plum);
+  background: color-mix(in srgb, #fff 86%, var(--yellow) 14%);
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .updates-form .btn:disabled {
@@ -2905,17 +2927,17 @@ body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, 
 }
 
 .booking-form .form-submit .btn--primary {
-  background: var(--pink);
+  background: var(--purple);
   color: #fff;
 }
 
 .booking-form .form-submit .btn--primary:hover,
 .booking-form .form-submit .btn--primary:focus-visible {
-  background: color-mix(in srgb, var(--pink) 85%, #000 15%);
+  background: var(--purple-deep);
 }
 
 .booking-form .form-submit .btn--primary:active {
-  background: color-mix(in srgb, var(--pink) 70%, #000 30%);
+  background: var(--plum);
 }
 
 /* Single shared primitive for the top intro section on every content page.
@@ -3253,7 +3275,7 @@ body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, 
   .mixtape-post__toc {
     display: block;
     position: sticky;
-    top: clamp(12rem, 32vh, 20rem);
+    top: clamp(5rem, 14vh, 8rem);
     float: right;
     width: min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset)));
     margin-right: calc(-1 * (min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset))) + var(--toc-offset)));
