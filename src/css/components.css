@@ -446,21 +446,44 @@
 
 /* Desktop has room for all channels; smaller screens keep the compact three. */
 @media (min-width: 1100px) {
+  .hero__stage {
+    --hero-row-w: 449px;
+  }
+
   .hero__socials-item--soundcloud,
   .hero__socials-item--mixcloud {
     display: list-item;
   }
 
   .hero__socials {
-    width: auto;
     flex: 0 0 auto;
+    width: auto;
     max-width: none;
     margin-top: 0;
   }
 
+  /* Lock both control rows to the same width. */
+  .hero__cta-bar {
+    width: var(--hero-row-w);
+    max-width: var(--hero-row-w);
+    overflow: visible;
+  }
+
+  .hero__cta-bar .btn--primary,
+  .hero__cta-bar .btn--primary:hover,
+  .hero__cta-bar .btn--primary:focus-visible,
+  .hero__cta-bar .btn--primary:active {
+    flex: 1 1 auto;
+  }
+
+  .hero__subscribe .updates-form__row {
+    max-width: var(--hero-row-w);
+  }
+
   .hero__socials ul {
-    grid-template-columns: repeat(5, 2.45rem);
-    gap: 0.35rem;
+    grid-template-columns: repeat(5, 2.25rem);
+    gap: 0.08rem;
+    padding-inline: 0;
   }
 
   .hero__socials a {
@@ -469,14 +492,10 @@
   }
 
   .hero__socials-icon svg {
-    width: 26px;
-    height: 26px;
+    width: 35px;
+    height: 35px;
   }
 
-  .hero__subscribe .updates-form__row {
-    width: 100%;
-    max-width: 489px;
-  }
 }
 
 @media (max-width: 1099px) {
@@ -623,6 +642,14 @@
 
 .hero__subscribe .updates-form__row {
   gap: var(--sp-3);
+  align-items: flex-end;
+}
+
+@media (min-width: 900px) {
+  .hero__subscribe .updates-form__row {
+    position: relative;
+    top: -4px;
+  }
 }
 
 .hero__subscribe .updates-form input[type="email"] {
@@ -630,6 +657,9 @@
   color: #fff;
   caret-color: #fff;
   font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  box-sizing: border-box;
+  height: var(--cta-height);
+  min-height: var(--cta-height);
 }
 .hero__subscribe .updates-form input[type="email"]::placeholder {
   color: #fff;
@@ -648,6 +678,10 @@
   background: var(--green);
   color: var(--cream);
   border: 1px solid var(--green);
+  box-sizing: border-box;
+  height: var(--cta-height);
+  min-height: var(--cta-height);
+  line-height: 1;
 }
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
@@ -1327,8 +1361,7 @@
   flex: 0 0 auto;
   height: var(--cta-height);
   background: transparent;
-  border: 1px solid var(--purple);
-  border-right: 0;
+  border: 0;
   position: relative;
   color: var(--purple);
 }
@@ -3789,5 +3822,16 @@ body.lightbox-open {
   .hero__cta-bar .btn--primary span[aria-hidden="true"],
   .hero__subscribe .updates-form .btn--primary span[aria-hidden="true"] {
     margin-left: var(--sp-2);
+  }
+}
+
+/* Desktop: keep social icon strip padding balanced left/right. */
+@media (min-width: 1100px) {
+  .hero__socials ul {
+    grid-template-columns: repeat(5, 2.5rem);
+    gap: 0.25rem;
+    width: max-content;
+    margin-inline: auto;
+    padding-inline: 0.25rem;
   }
 }
