@@ -3,48 +3,56 @@
     "year": 2025,
     "title": "True love",
     "date": "December 2025",
+    "image": "/images/mixtapes/2025-guinness.jpeg",
     "url": "/mixtapes/2025/"
   },
   {
     "year": 2024,
     "title": "Just to be here on this train once again",
     "date": "January 2025",
+    "image": "/images/mixtapes/2024-featured.jpeg",
     "url": "/mixtapes/2024/"
   },
   {
     "year": 2023,
     "title": "It's a cruel summer with you",
     "date": "December 2023",
+    "image": "/images/mixtapes/2023-featured.jpeg",
     "url": "/mixtapes/2023/"
   },
   {
     "year": 2022,
     "title": "The world is yours",
     "date": "November 2022",
+    "image": "/images/mixtapes/2022-featured.jpeg",
     "url": "/mixtapes/2022/"
   },
   {
     "year": 2021,
     "title": "Everlasting game",
     "date": "December 2021",
+    "image": "/images/mixtapes/2021-architecture.jpeg",
     "url": "/mixtapes/2021/"
   },
   {
     "year": 2020,
     "title": "As long as there is something to strive for",
     "date": "January 2021",
+    "image": "/images/mixtapes/2020-outdoor-dining.jpeg",
     "url": "/mixtapes/2020/"
   },
   {
     "year": 2019,
     "title": "Let me be your DJ",
     "date": "January 2020",
+    "image": "/images/mixtapes/2019-dj-pardis-live.jpeg",
     "url": "/mixtapes/2019/"
   },
   {
     "year": 2018,
     "title": "Let me be your Chase B",
     "date": "December 2018",
+    "image": "/images/mixtapes/2018-record-store.jpeg",
     "url": "/mixtapes/2018/"
   }
 ]

@@ -8,6 +8,7 @@
     "showUrl": "https://bff.fm/shows/1-21-gigawatts",
     "station": "bff.fm",
     "date": "February 2018",
+    "summary": "A guest mix focused on songs from 1999.",
     "url": "https://bff.fm/broadcasts/13188"
   },
   {
@@ -19,6 +20,7 @@
     "showUrl": "https://bff.fm/shows/1-21-gigawatts",
     "station": "bff.fm",
     "date": "May 2018",
+    "summary": "A guest mix focused on songs from 2018.",
     "url": "https://bff.fm/broadcasts/14056"
   }
 ]

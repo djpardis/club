@@ -15,27 +15,34 @@ bodyClass: page-listen
 
 <section class="page-body section section--listen" aria-labelledby="mixtapes-label">
   <div class="container listen-layout">
-    <div class="listen-layout__mixtapes">
+    <div class="listen-layout__mixtapes" data-mixtapes-gallery>
       <div class="mixtapes-head">
         <div class="mixtapes-head__title">
           <span class="page-kicker">// Mixtapes</span>
           <h2 id="mixtapes-label"><a class="mixtapes-head__feed" href="/feed.xml">RSS</a></h2>
         </div>
-      </div>
-      <div class="mixtapes-gallery" data-mixtapes-gallery>
         <div class="mixtapes-gallery__controls" aria-label="Browse mixtapes">
-          <button class="mixtapes-gallery__button" type="button" data-mixtapes-prev>Previous</button>
+          <button class="mixtapes-gallery__button mixtapes-gallery__button--prev" type="button" data-mixtapes-prev aria-label="Previous mixtape">&larr;</button>
           <span class="mixtapes-gallery__status" data-mixtapes-status>1 of {{ mixtapes.length }}</span>
-          <button class="mixtapes-gallery__button" type="button" data-mixtapes-next>Next</button>
+          <button class="mixtapes-gallery__button mixtapes-gallery__button--next" type="button" data-mixtapes-next aria-label="Next mixtape">&rarr;</button>
         </div>
+      </div>
+      <div class="mixtapes-gallery">
         <ul class="mixtapes-grid mixtapes-gallery__track" data-mixtapes-track>
           {% for m in mixtapes | sortMixtapesDesc %}
             <li>
               <a class="mixtape-tile {% if loop.first %}mixtape-tile--latest{% endif %}" href="{{ m.url }}" rel="noopener">
                 {% if loop.first %}<span class="mixtape-tile__badge">Latest</span>{% endif %}
-                <span class="mixtape-tile__year">{{ m.year }}</span>
-                <span class="mixtape-tile__title">{{ m.title }}</span>
-                <span class="mixtape-tile__date">{{ m.date }}</span>
+                {% if m.image %}
+                  <span class="mixtape-tile__image">
+                    <img src="{{ m.image }}" alt="" loading="lazy" decoding="async">
+                  </span>
+                {% endif %}
+                <span class="mixtape-tile__copy">
+                  <span class="mixtape-tile__year">{{ m.year }}</span>
+                  <span class="mixtape-tile__title">{{ m.title }}</span>
+                  <span class="mixtape-tile__date">{{ m.date }}</span>
+                </span>
               </a>
             </li>
           {% endfor %}
@@ -52,6 +59,9 @@ bodyClass: page-listen
             <li class="radio-item">
               <span class="radio-item__ep">Ep. {{ r.episode }} · {{ r.show }}</span>
               <a class="radio-item__title" href="{{ r.url }}" rel="noopener">{{ r.title }}</a>
+              {% if r.summary %}
+                <p class="radio-item__summary">{{ r.summary }}</p>
+              {% endif %}
               <div class="radio-item__meta">
                 <span>with <a href="{{ r.withUrl }}" rel="noopener">{{ r.with }}</a></span>
                 <span>·</span>

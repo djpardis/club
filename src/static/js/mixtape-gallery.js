@@ -26,12 +26,16 @@
       }
     }
 
-    prev.addEventListener("click", function () {
+    prev.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       index = Math.max(index - 1, 0);
       updateButtons();
     });
 
-    next.addEventListener("click", function () {
+    next.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       index = Math.min(index + 1, items().length - 1);
       updateButtons();
     });
