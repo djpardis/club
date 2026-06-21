@@ -641,7 +641,7 @@
 .updates-form--light input[type="email"] {
   color: #fff;
   caret-color: #fff;
-  border-bottom-color: color-mix(in srgb, #fff 78%, transparent);
+  border-bottom-color: #fff;
 }
 
 .updates-form--light input[type="email"]:focus {
@@ -651,35 +651,35 @@
 }
 
 .hero__subscribe .updates-form input[type="email"] {
-  border-bottom-color: color-mix(in srgb, #fff 78%, transparent);
+  border-bottom-color: #fff;
   color: #fff;
   caret-color: #fff;
 }
 .hero__subscribe .updates-form input[type="email"]::placeholder {
-  color: color-mix(in srgb, #fff 70%, transparent);
+  color: #fff;
   font-weight: 500;
   opacity: 1;
 }
 .hero__subscribe .updates-form .btn--primary {
   background: #fff;
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid #fff;
 }
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
   background: color-mix(in srgb, #fff 92%, var(--yellow) 8%);
   color: var(--ink);
-  border-color: var(--ink);
+  border-color: #fff;
 }
 
 .hero__subscribe .updates-form .btn--primary:active {
   background: color-mix(in srgb, #fff 86%, var(--yellow) 14%);
   color: var(--ink);
-  border-color: var(--ink);
+  border-color: #fff;
 }
 
 .updates-form--light input[type="email"]::placeholder {
-  color: color-mix(in srgb, #fff 70%, transparent);
+  color: #fff;
   opacity: 1;
 }
 
@@ -827,9 +827,9 @@
     grid-row: 2;
     align-self: stretch;
     min-height: 0;
-    justify-content: center;
+    justify-content: flex-start;
     gap: var(--sp-4);
-    padding: var(--sp-5) 0 var(--sp-7);
+    padding: var(--sp-4) 0 var(--sp-6);
   }
 
   .hero__subscribe::before {
@@ -849,17 +849,20 @@
   .hero__subscribe .updates-form__row {
     flex-direction: row;
     align-items: stretch;
-    gap: var(--sp-3);
+    gap: 0;
   }
 
   .hero__subscribe .updates-form input[type="email"] {
+    height: var(--cta-height);
     min-height: var(--cta-height);
     font-size: 1.25rem;
   }
 
   .hero__subscribe .updates-form .btn {
+    height: var(--cta-height);
     min-height: var(--cta-height);
     padding-inline: 1rem;
+    border-color: #fff;
   }
 
   .wordmark-display {
@@ -897,7 +900,7 @@
 
   .hero__subscribe {
     gap: var(--sp-4);
-    padding-bottom: var(--sp-7);
+    padding-block: var(--sp-4) var(--sp-7);
   }
 
   .hero__subscribe-label {
@@ -911,6 +914,7 @@
 
   .hero__subscribe .updates-form input[type="email"],
   .hero__subscribe .updates-form .btn {
+    height: var(--cta-height);
     min-height: var(--cta-height);
   }
 }
@@ -1309,7 +1313,7 @@
   min-height: var(--cta-height);
   padding-left: 0;
   background: var(--hero-ticket-stock);
-  border: 1px solid var(--hero-ticket-rule);
+  border: 0;
   overflow: hidden;
 }
 
@@ -1324,24 +1328,13 @@
   flex: 0 0 auto;
   height: var(--cta-height);
   background: transparent;
+  border: 1px solid var(--hero-ticket-rule);
   border-right: 0;
   position: relative;
 }
 
-.hero__socials::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 1px;
-  height: auto;
-  border-radius: 0;
-  background: var(--hero-ticket-rule);
-  transform: none;
-}
-
 .hero__socials::before,
+.hero__socials::after,
 .hero__cta-bar .btn--primary::before,
 .hero__cta-bar .btn--primary::after {
   content: none;
@@ -2502,7 +2495,7 @@
 .updates-form__row {
   display: flex;
   align-items: stretch;
-  gap: var(--sp-4);
+  gap: 0;
 }
 
 .updates-form input[type="email"] {
@@ -2510,7 +2503,7 @@
   flex: 1 1 auto;
   min-height: var(--cta-height);
   border: 0;
-  border-bottom: 3px solid var(--join);
+  border-bottom: 1px solid var(--join);
   border-radius: 0;
   padding: 0 var(--sp-4) 0 0;
   background: transparent;
@@ -2553,13 +2546,13 @@
 
 .updates-form.updates-form--light input[type="email"],
 .updates-form.updates-form--light input[type="email"]:focus {
-  color: var(--cream);
-  caret-color: var(--cream);
-  border-color: color-mix(in srgb, var(--cream) 78%, transparent);
+  color: #fff;
+  caret-color: #fff;
+  border-color: #fff;
 }
 
 .updates-form.updates-form--light input[type="email"]::placeholder {
-  color: color-mix(in srgb, var(--cream) 70%, transparent);
+  color: #fff;
   font-weight: 500;
   opacity: 1;
 }
@@ -2568,9 +2561,9 @@
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:hover,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:focus,
 .updates-form.updates-form--light input[type="email"]:-webkit-autofill:active {
-  -webkit-text-fill-color: var(--cream) !important;
+  -webkit-text-fill-color: #fff !important;
   -webkit-box-shadow: 0 0 0 1000px var(--ink) inset !important;
-  caret-color: var(--cream);
+  caret-color: #fff;
 }
 
 .updates-form .btn {
@@ -2590,14 +2583,14 @@
 .hero__subscribe .updates-form .btn--primary {
   background: #fff;
   color: var(--ink);
-  border: 1px solid var(--ink);
+  border: 1px solid #fff;
 }
 
 .hero__subscribe .updates-form .btn--primary:hover,
 .hero__subscribe .updates-form .btn--primary:focus-visible {
   background: color-mix(in srgb, #fff 92%, var(--yellow) 8%);
   color: var(--ink);
-  border-color: var(--ink);
+  border-color: #fff;
 }
 
 .updates-form .btn--primary:active {
@@ -2607,7 +2600,7 @@
 .hero__subscribe .updates-form .btn--primary:active {
   background: color-mix(in srgb, #fff 86%, var(--yellow) 14%);
   color: var(--ink);
-  border-color: var(--ink);
+  border-color: #fff;
 }
 
 .updates-form .btn:disabled {
@@ -2647,6 +2640,29 @@
 
   .updates-form .btn {
     justify-content: center;
+  }
+
+  .hero__subscribe .updates-form__row {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+    height: var(--cta-height);
+    min-height: var(--cta-height);
+  }
+
+  .hero__subscribe .updates-form {
+    padding-bottom: 1.5rem;
+  }
+
+  .hero__subscribe .updates-form__status {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -2960,7 +2976,7 @@ body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, 
   }
 
   .section--page-top .page-title {
-    margin-block: var(--sp-2) var(--sp-3);
+    margin-block: var(--sp-4) var(--sp-3);
   }
 
   .section--page-top .lead {
@@ -3493,6 +3509,7 @@ body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, 
 /* Mobile */
 @media (max-width: 1100px) {
   .mixtape-post__toc {
+    display: block;
     position: static;
     float: none;
     width: auto;
@@ -3719,5 +3736,32 @@ body.lightbox-open {
   .lightbox__nav--next { right: var(--sp-2); }
   .lightbox__img {
     max-height: calc(100vh - var(--sp-9));
+  }
+}
+
+/* Mobile: keep the hero ticket + newsletter controls a single shared height. */
+@media (max-width: 1099px) {
+  .hero__cta-bar,
+  .hero__socials,
+  .hero__socials ul,
+  .hero__cta-bar .btn,
+  .hero__cta-bar .btn--primary,
+  .hero__subscribe .updates-form__row,
+  .hero__subscribe .updates-form input[type="email"],
+  .hero__subscribe .updates-form .btn,
+  .booking-form .form-submit .btn {
+    box-sizing: border-box;
+    height: var(--cta-height);
+    min-height: var(--cta-height);
+    max-height: var(--cta-height);
+  }
+
+  .hero__cta-bar .btn,
+  .hero__subscribe .updates-form .btn,
+  .booking-form .form-submit .btn {
+    align-items: center;
+    justify-content: center;
+    padding-block: 0;
+    line-height: 1;
   }
 }
