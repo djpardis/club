@@ -3539,17 +3539,6 @@ body:where(.page-about, .page-listen, .page-gallery, .page-booking, .page-post, 
 
 .mixtape-post__body a:hover { color: var(--purple-deep); }
 
-/* Mobile */
-@media (max-width: 1100px) {
-  .mixtape-post__toc {
-    display: block;
-    position: static;
-    float: none;
-    width: auto;
-    margin: 0 0 var(--sp-6);
-    padding: 0;
-  }
-}
 
 @media (max-width: 640px) {
   .mixtape-post__shell {
