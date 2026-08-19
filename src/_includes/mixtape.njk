@@ -3,11 +3,10 @@ layout: base.njk
 bodyClass: page-post
 ---
 <article>
-  <header class="page-header section section--page-top">
+  <header class="page-header">
     <div class="container">
-      {% set headEyebrow = year + " mixtape" %}
-      {% include "page-head.njk" %}
-
+      <a href="/" class="back-link">&larr; DJ Pardis</a>
+      <p class="eyebrow">{{ year }} mixtape</p>
       <h1 class="page-title">{{ subtitle or title }}</h1>
       {% if title or displayDate %}
         <p class="page-subtitle">

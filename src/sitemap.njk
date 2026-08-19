@@ -4,13 +4,8 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  {#- /book/ and /book/thanks/ are intentionally excluded: they are
-      utility pages marked noindex via meta robots. Only the home page
-      should be crawled and indexed. -#}
-  {%- set urls = ["/"] -%}
-  {%- for u in urls %}
   <url>
-    <loc>{{ site.url }}{{ u }}</loc>
+    <loc>{{ site.url }}/</loc>
     <lastmod>{{ page.date | dateIso }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -24,6 +19,18 @@ eleventyExcludeFromCollections: true
       <image:caption>{{ (item.caption or item.alt) | xmlEscape }}</image:caption>
     </image:image>
     {%- endfor %}
+  </url>
+  {%- for m in mixtapes | sortMixtapesDesc %}
+  <url>
+    <loc>{{ site.url }}{{ m.url }}</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    {%- if m.image %}
+    <image:image>
+      <image:loc>{{ site.url }}{{ m.image }}</image:loc>
+      <image:caption>{{ m.title | xmlEscape }} ({{ m.year }})</image:caption>
+    </image:image>
+    {%- endif %}
   </url>
   {%- endfor %}
 </urlset>
