@@ -200,13 +200,15 @@
 }
 
 @media (max-width: 600px) {
+  .about-tile__images {
+    display: block;
+  }
+  .about-tile__images .about-tile__img:not(:first-child) {
+    display: none;
+  }
   .about-tile__images .about-tile__img img {
     height: auto;
     width: 100%;
-  }
-  .about-tile__img {
-    flex: 1;
-    min-width: 0;
   }
 }
 

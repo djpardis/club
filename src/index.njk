@@ -129,7 +129,7 @@ bodyClass: page-home
     <div class="book-row">
       <input type="text" name="full_name" required autocomplete="name" placeholder="Name" aria-label="Name" />
       <input type="email" name="email" required autocomplete="email" placeholder="Email" aria-label="Email" />
-      <input type="date" name="event_date" required data-event-date aria-label="Date" />
+      <input type="text" name="event_date" required data-event-date placeholder="Date" aria-label="Date" />
       <input type="text" name="event_location" required placeholder="Location" aria-label="Location" />
     </div>
     <div class="book-row">
@@ -194,7 +194,11 @@ bodyClass: page-home
     var button = form.querySelector('button[type="submit"]');
     var dateInput = form.querySelector('[data-event-date]');
     function today() { var n = new Date(); return n.getFullYear() + '-' + String(n.getMonth()+1).padStart(2,'0') + '-' + String(n.getDate()).padStart(2,'0'); }
-    if (dateInput) dateInput.min = today();
+    if (dateInput) {
+      dateInput.setAttribute('min', today());
+      dateInput.addEventListener('focus', function () { this.type = 'date'; });
+      dateInput.addEventListener('blur', function () { if (!this.value) this.type = 'text'; });
+    }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (dateInput && dateInput.value && dateInput.value < dateInput.min) { if (status) status.textContent = 'Future date.'; return; }
