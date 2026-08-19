@@ -44,7 +44,7 @@
   flex-direction: column;
   align-items: flex-end;
   gap: var(--sp-2);
-  padding-top: 0.35em;
+  align-self: center;
 }
 
 .hero__top {
@@ -119,6 +119,7 @@
 
   .hero__right {
     align-items: flex-start;
+    align-self: auto;
     padding-bottom: var(--sp-2);
   }
 
@@ -475,7 +476,7 @@ p.eyebrow {
 }
 
 .hl-green {
-  background: linear-gradient(transparent 68%, rgba(138, 169, 68, 0.28) 68%);
+  background: linear-gradient(transparent 62%, rgba(38, 184, 215, 0.45) 62%);
   padding: 0 0.1em;
 }
 
