@@ -190,6 +190,15 @@
         scWidget.toggle();
       });
 
+      function runInlineScripts(container) {
+        var scripts = container.querySelectorAll('script[src]');
+        scripts.forEach(function (old) {
+          var s = document.createElement('script');
+          s.src = old.src;
+          old.parentNode.replaceChild(s, old);
+        });
+      }
+
       function swap(url, push) {
         fetch(url).then(function (r) { return r.text(); }).then(function (html) {
           var doc = new DOMParser().parseFromString(html, 'text/html');
@@ -200,6 +209,7 @@
           document.title = doc.title;
           if (push) history.pushState(null, '', url);
           window.scrollTo(0, 0);
+          runInlineScripts(oldMain);
           if (typeof window.initLightbox === 'function') window.initLightbox();
         }).catch(function () { window.location = url; });
       }
@@ -209,6 +219,7 @@
         if (!a) return;
         var href = a.getAttribute('href');
         if (!href) return;
+        if (href.charAt(0) === '#') return;
         if (a.target === '_blank' || a.hasAttribute('download')) return;
         if (href.indexOf('://') !== -1 && href.indexOf(location.origin) !== 0) return;
         if (href.indexOf('mailto:') === 0) return;

@@ -21,7 +21,7 @@ bodyClass: page-post
     <div class="mixtape-post__shell page-body__inner container{% if not toc.length %} mixtape-post__shell--no-toc{% endif %}">
       {% if toc.length %}
         <aside class="mixtape-post__toc" aria-labelledby="post-toc-title">
-          <p class="mixtape-post__toc-title" id="post-toc-title">Table of contents</p>
+          <p class="mixtape-post__toc-title" id="post-toc-title">TOC</p>
           <ol>
             {% for item in toc %}
               <li class="mixtape-post__toc-item mixtape-post__toc-item--h{{ item.level }}{% if item.parentId %} mixtape-post__toc-item--child{% endif %}" data-heading-id="{{ item.id }}"{% if item.parentId %} data-parent-id="{{ item.parentId }}"{% endif %}>

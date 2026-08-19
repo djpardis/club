@@ -1,4 +1,6 @@
 (function () {
+  if (window._tocCleanup) window._tocCleanup();
+
   var toc = document.querySelector(".mixtape-post__toc");
   if (!toc) return;
 
@@ -11,12 +13,6 @@
 
   if (!items.length || !headings.length) return;
 
-  var scrollRoot = document.scrollingElement || document.documentElement;
-  if (document.body && getComputedStyle(document.body).overflowY !== "visible") {
-    scrollRoot = document.body;
-  }
-
-  // Sections the user has manually collapsed — cleared when scrolling past them
   var manuallyCollapsed = {};
 
   function setActive(id) {
@@ -41,8 +37,9 @@
 
   function activeHeadingId() {
     var marker = window.innerHeight * 0.28;
-    var scrollBottom = scrollRoot.scrollTop + window.innerHeight;
-    var pageBottom = scrollRoot.scrollHeight;
+    var scrollEl = document.scrollingElement || document.documentElement;
+    var scrollBottom = scrollEl.scrollTop + window.innerHeight;
+    var pageBottom = scrollEl.scrollHeight;
 
     if (scrollBottom >= pageBottom - 8) {
       return headings[headings.length - 1].id;
@@ -67,7 +64,6 @@
     window.requestAnimationFrame(updateActive);
   }
 
-  // Click a top-level section: toggle collapse of its children
   items.forEach(function (item) {
     if (item.hasAttribute("data-parent-id")) return;
     var link = item.querySelector("a");
@@ -89,24 +85,33 @@
     });
   });
 
-  // Arrive via hash link — expand that section immediately
+  toc.addEventListener("click", function (e) {
+    var a = e.target.closest("a");
+    if (!a) return;
+    var href = a.getAttribute("href");
+    if (!href || href.charAt(0) !== "#") return;
+    var target = document.getElementById(href.slice(1));
+    if (!target) return;
+    e.preventDefault();
+    e.stopPropagation();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", href);
+  });
+
   if (window.location.hash) {
     setActive(window.location.hash.slice(1));
   } else {
     requestUpdate();
   }
 
-  window.addEventListener("scroll", function () {
-    requestUpdate();
-  }, { passive: true });
-  if (scrollRoot !== window && scrollRoot !== document.documentElement) {
-    scrollRoot.addEventListener("scroll", function () {
-      requestUpdate();
-    }, { passive: true });
-  }
-
+  window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", requestUpdate);
-  window.addEventListener("hashchange", function () {
-    requestUpdate();
-  });
+  window.addEventListener("hashchange", requestUpdate);
+
+  window._tocCleanup = function () {
+    window.removeEventListener("scroll", requestUpdate);
+    window.removeEventListener("resize", requestUpdate);
+    window.removeEventListener("hashchange", requestUpdate);
+    window._tocCleanup = null;
+  };
 })();

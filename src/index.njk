@@ -10,20 +10,22 @@ bodyClass: page-home
   <div class="container">
     <h1 class="hero__name">DJ <em>PARDIS</em></h1>
     <div class="hero__right">
-      <form class="hero__subscribe" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
-        <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <input type="email" name="email" required autocomplete="email" placeholder="Email" aria-label="Email address" />
-        <button class="btn btn--sm" type="submit">Join</button>
-      </form>
-      <p class="hero__subscribe-status" data-updates-status role="status" aria-live="polite"></p>
-      <ul class="hero__socials">
-        <li><a href="{{ site.socials.instagram }}">IG</a></li>
-        <li><a href="{{ site.socials.spotify }}">Spotify</a></li>
-        <li><a href="{{ site.socials.appleMusic }}">Apple</a></li>
-        <li><a href="{{ site.socials.soundcloud }}">SC</a></li>
-        <li><a href="{{ site.socials.mixcloud }}">MC</a></li>
-        <li><a href="/feed.xml">RSS</a></li>
-      </ul>
+      <div class="hero__top">
+        <form class="hero__subscribe" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
+          <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="email" name="email" required autocomplete="email" placeholder="Email" aria-label="Email address" />
+          <button class="btn btn--sm" type="submit">Join</button>
+        </form>
+        <p class="hero__subscribe-status" data-updates-status role="status" aria-live="polite"></p>
+        <ul class="hero__socials">
+          <li><a href="{{ site.socials.instagram }}">IG</a></li>
+          <li><a href="{{ site.socials.spotify }}">Spotify</a></li>
+          <li><a href="{{ site.socials.appleMusic }}">Apple</a></li>
+          <li><a href="{{ site.socials.soundcloud }}">SC</a></li>
+          <li><a href="{{ site.socials.mixcloud }}">MC</a></li>
+          <li><a href="/feed.xml">RSS</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -63,7 +65,7 @@ bodyClass: page-home
       <li><a href="{{ m.url }}">
         <span class="listen-list__year">{{ m.year }}</span>
         <span class="listen-list__title">{{ m.title }}</span>
-        <span class="listen-list__meta">{{ m.date }}</span>
+        <span class="listen-list__meta"><span class="hl-green">{{ m.date }}</span></span>
       </a></li>
     {% endfor %}
   </ul>
@@ -75,7 +77,7 @@ bodyClass: page-home
         <li><a href="{{ r.url }}">
           <span class="listen-list__year">{{ r.title }}</span>
           <span class="listen-list__title">Ep. {{ r.episode }} · {{ r.show }} · {{ r.with }}</span>
-          <span class="listen-list__meta">{{ r.date }}</span>
+          <span class="listen-list__meta"><span class="hl-green">{{ r.date }}</span></span>
         </a></li>
       {% endfor %}
     </ul>

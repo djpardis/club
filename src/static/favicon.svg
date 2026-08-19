@@ -1,14 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#F5EDE0"/>
-  <rect x="6" y="26" width="52" height="24" fill="#FFFF99"/>
+  <rect width="64" height="64" fill="#ff00aa"/>
   <text
     x="32"
-    y="44"
+    y="46"
     text-anchor="middle"
-    font-family="'Space Grotesk', system-ui, sans-serif"
-    font-weight="700"
-    font-size="26"
-    fill="#1A1814"
-    letter-spacing="-1"
-  >djp</text>
+    font-family="'Bebas Neue', 'Arial Narrow', sans-serif"
+    font-weight="400"
+    font-size="30"
+    fill="#fff"
+    letter-spacing="1"
+  >DJP</text>
 </svg>
