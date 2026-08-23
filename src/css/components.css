@@ -499,6 +499,7 @@ p.eyebrow {
 
 .mixtape-post__toc {
   --toc-offset: var(--sp-8);
+  --toc-top: clamp(5rem, 14vh, 8rem);
   display: none;
 }
 
@@ -506,19 +507,19 @@ p.eyebrow {
   .mixtape-post__toc {
     display: block;
     position: sticky;
-    top: clamp(5rem, 14vh, 8rem);
+    top: var(--toc-top);
     float: right;
     width: min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset)));
     margin-right: calc(-1 * (min(13rem, calc((100vw - 680px - (2 * var(--gutter))) / 2 - var(--toc-offset))) + var(--toc-offset)));
-    font-size: var(--fs-body);
-    line-height: 1.5;
+    font-size: var(--fs-sm);
+    line-height: 1.35;
     color: var(--text-2);
   }
 }
 
 .mixtape-post__toc-title {
   margin: 0 0 var(--sp-2);
-  font-size: var(--fs-body);
+  font-size: var(--fs-sm);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -526,7 +527,7 @@ p.eyebrow {
 
 .mixtape-post__toc ol { margin: 0; padding: 0; list-style: none; }
 .mixtape-post__toc a { color: inherit; }
-.mixtape-post__toc-item { margin-bottom: 0.25em; transition: color var(--t-fast); }
+.mixtape-post__toc-item { margin-bottom: 0.15em; transition: color var(--t-fast); }
 .mixtape-post__toc-item:not(.mixtape-post__toc-item--child) > a { font-weight: 600; }
 .mixtape-post__toc-item--child { display: none; padding-left: var(--sp-3); }
 .mixtape-post__toc-item--child.is-expanded { display: block; }
