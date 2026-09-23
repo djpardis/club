@@ -16,7 +16,8 @@
   },
   "forms": {
     "booking": {
-      "action": "https://form.djpardis.club/submit/booking"
+      "action": "https://form.djpardis.club/submit/booking",
+      "turnstileSiteKey": "0x4AAAAAAFBVrT8pvBXMXp_l"
     }
   },
   "subscribeApiBase": "https://newsletter.djpardis.club",
