@@ -178,9 +178,10 @@
 }
 
 .about-tile__text {
+  align-self: center;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  padding-top: var(--sp-2);
+  padding-top: 0;
 }
 
 .about-tile__text a {
