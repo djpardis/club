@@ -137,15 +137,6 @@ bodyClass: page-home
       <input type="text" name="comments" placeholder="Details (optional)" aria-label="Details" />
       <button type="submit" class="btn btn--sm">Submit</button>
     </div>
-    {% if site.forms.booking.turnstileSiteKey %}
-    <div class="book-row">
-      <div
-        class="cf-turnstile"
-        data-sitekey="{{ site.forms.booking.turnstileSiteKey }}"
-        data-action="booking"
-      ></div>
-    </div>
-    {% endif %}
     <p class="form-status" data-booking-status role="status" aria-live="polite"></p>
   </form>
 </section>
@@ -220,11 +211,7 @@ bodyClass: page-home
         .catch(function (err) {
           if (status) status.textContent = err instanceof TypeError ? 'Unreachable.' : 'Error.';
           if (button) button.disabled = false;
-          if (window.turnstile) window.turnstile.reset();
         });
     });
   })();
 </script>
-{% if site.forms.booking.turnstileSiteKey %}
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-{% endif %}
