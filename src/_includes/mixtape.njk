@@ -2,16 +2,16 @@
 layout: base.njk
 bodyClass: page-post
 ---
-<article>
+<article id="top">
   <header class="page-header">
     <div class="container">
-      <a href="/" class="back-link">&larr; DJ Pardis</a>
-      <p class="eyebrow">{{ year }} mixtape</p>
-      <h1 class="page-title">{{ subtitle or title }}</h1>
-      {% if title or displayDate %}
-        <p class="page-subtitle">
-          {{ title }}{% if title and displayDate %} · {% endif %}{{ displayDate }}
-        </p>
+      <a href="/" class="back-link">&larr; Home</a>
+      {% if subtitle %}
+        <p class="eyebrow">{{ subtitle }}</p>
+      {% endif %}
+      <h1 class="page-title">{{ title }}</h1>
+      {% if displayDate %}
+        <p class="page-subtitle">{{ displayDate }}</p>
       {% endif %}
     </div>
   </header>
@@ -21,7 +21,7 @@ bodyClass: page-post
     <div class="mixtape-post__shell page-body__inner container{% if not toc.length %} mixtape-post__shell--no-toc{% endif %}">
       {% if toc.length %}
         <aside class="mixtape-post__toc" aria-labelledby="post-toc-title">
-          <p class="mixtape-post__toc-title" id="post-toc-title">TOC</p>
+          <p class="mixtape-post__toc-title" id="post-toc-title"><a href="#top">TOC</a></p>
           <ol>
             {% for item in toc %}
               <li class="mixtape-post__toc-item mixtape-post__toc-item--h{{ item.level }}{% if item.parentId %} mixtape-post__toc-item--child{% endif %}" data-heading-id="{{ item.id }}"{% if item.parentId %} data-parent-id="{{ item.parentId }}"{% endif %}>
@@ -37,4 +37,4 @@ bodyClass: page-post
     </div>
   </div>
 </article>
-<script src="/js/post-toc.js?v=body-scroll-toc" defer></script>
+<script src="/js/post-toc.js?v=body-scroll-toc-2" defer></script>

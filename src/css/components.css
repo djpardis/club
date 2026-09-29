@@ -548,6 +548,10 @@ p.eyebrow {
   scroll-margin-top: var(--sp-6);
 }
 
+.mixtape-post__body p[id] {
+  scroll-margin-top: var(--sp-6);
+}
+
 .mixtape-post__body h2::before,
 .mixtape-post__body h3::before {
   content: "";

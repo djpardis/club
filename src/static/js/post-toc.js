@@ -90,11 +90,20 @@
     if (!a) return;
     var href = a.getAttribute("href");
     if (!href || href.charAt(0) !== "#") return;
+    if (href === "#top") {
+      e.preventDefault();
+      e.stopPropagation();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.replaceState(null, "", location.pathname);
+      return;
+    }
     var target = document.getElementById(href.slice(1));
     if (!target) return;
     e.preventDefault();
     e.stopPropagation();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    var offset = Math.min(96, Math.max(32, window.innerHeight * 0.12));
+    var top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     history.replaceState(null, "", href);
   });
 
