@@ -336,9 +336,11 @@
     flex: 1 1 calc(50% - var(--sp-2));
     min-width: 0;
   }
-  .book-row .btn {
-    width: 100%;
-    justify-content: center;
+  .book-row--submit input:first-of-type {
+    flex: 1 1 100%;
+  }
+  .book-row--submit input:last-of-type {
+    flex: 1 1 0;
   }
 }
 
