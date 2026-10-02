@@ -167,6 +167,26 @@
     <script src="https://w.soundcloud.com/player/api.js" defer></script>
     <script>
     (function () {
+      // Strip tracking params that Instagram, Facebook, and ad links append,
+      // so the address bar shows a clean URL without reloading the page.
+      (function stripTrackingParams() {
+        if (!window.history || !history.replaceState) return;
+        var params = new URLSearchParams(location.search);
+        if (![].slice.call(params.keys()).length) return;
+        var drop = ['fbclid', 'gclid', 'dclid', 'gbraid', 'wbraid', 'msclkid', 'twclid', 'yclid', 'igshid', 'igsh', 'mc_eid', 'mc_cid', 'ref', 'ref_src', 'si'];
+        var changed = false;
+        [].slice.call(params.keys()).forEach(function (key) {
+          var k = key.toLowerCase();
+          if (k.indexOf('utm_') === 0 || k.indexOf('fb_') === 0 || k.indexOf('_hs') === 0 || drop.indexOf(k) !== -1) {
+            params.delete(key);
+            changed = true;
+          }
+        });
+        if (!changed) return;
+        var qs = params.toString();
+        history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+      })();
+
       var scWidget = null;
 
       function initSC() {
