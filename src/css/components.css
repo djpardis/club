@@ -83,6 +83,7 @@
 
 .hero__subscribe-status {
   font-size: var(--fs-sm);
+  line-height: 1.2;
   color: var(--text-2);
   text-align: left;
   position: absolute;
@@ -134,6 +135,15 @@
 
   .hero__subscribe {
     width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .hero__subscribe-status {
+    position: static;
+    flex-basis: 100%;
+    width: 100%;
+    min-height: 1.2em;
+    margin: 0 0 var(--sp-1);
   }
 
   .hero__socials {
