@@ -167,6 +167,7 @@ bodyClass: page-home
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (!form.reportValidity()) return;
       var email = emailInput ? emailInput.value.trim() : '';
       if (!email) return;
       if (status) status.textContent = '';
@@ -181,6 +182,9 @@ bodyClass: page-home
       }).then(function (r) {
         if (r.status === 200 && r.body.ok) { form.reset(); if (status) status.textContent = r.body.state === 'active' ? 'Already listed.' : 'Check email.'; }
         else if (r.status === 429) { if (status) status.textContent = 'Too many tries.'; }
+        else if (r.body.error === 'invalid_email') { if (status) status.textContent = 'Enter a valid email.'; }
+        else if (r.body.error === 'turnstile_failed') { if (status) status.textContent = 'Verification failed.'; }
+        else if (r.body.error === 'email_send_failed') { if (status) status.textContent = 'Email failed.'; }
         else { if (status) status.textContent = 'Error.'; }
         if (button) { button.disabled = false; button.textContent = orig; }
       }).catch(function () {
