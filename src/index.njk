@@ -13,10 +13,10 @@ bodyClass: page-home
       <div class="hero__top">
         <form class="hero__subscribe" data-action="{{ site.subscribeApiBase }}/api/subscribe" data-source="{{ site.subscribeSource }}" data-updates-form novalidate>
           <input type="text" name="website" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <p class="hero__subscribe-status" data-updates-status role="status" aria-live="polite"></p>
           <input type="email" name="email" required autocomplete="email" placeholder="Email" aria-label="Email address" />
           <button class="btn btn--sm" type="submit">Join</button>
         </form>
-        <p class="hero__subscribe-status" data-updates-status role="status" aria-live="polite"></p>
         <ul class="hero__socials">
           <li><a href="{{ site.socials.instagram }}">IG</a></li>
           <li><a href="{{ site.socials.soundcloud }}">SC</a></li>
@@ -180,7 +180,7 @@ bodyClass: page-home
       }).then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (b) { return { status: r.status, body: b || {} }; });
       }).then(function (r) {
-        if (r.status === 200 && r.body.ok) { form.reset(); if (status) status.textContent = r.body.state === 'active' ? 'Already listed.' : 'Check email.'; }
+        if (r.status === 200 && r.body.ok) { form.reset(); if (status) status.textContent = r.body.state === 'active' ? "You're already on the list. :)" : 'Check your email to confirm. :)'; }
         else if (r.status === 429) { if (status) status.textContent = 'Too many tries.'; }
         else if (r.body.error === 'invalid_email') { if (status) status.textContent = 'Enter a valid email.'; }
         else if (r.body.error === 'turnstile_failed') { if (status) status.textContent = 'Verification failed.'; }
