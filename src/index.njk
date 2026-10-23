@@ -45,7 +45,7 @@ bodyClass: page-home
       {% for g in gallery %}
       <figure class="about-tile__img">
         <img src="{{ g.src }}" alt="{{ g.alt }}" loading="lazy" decoding="async" />
-        {% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
+        {% if g.captionHtml %}<figcaption>{{ g.captionHtml | safe }}</figcaption>{% elif g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}
       </figure>
       {% endfor %}
       {% endif %}
